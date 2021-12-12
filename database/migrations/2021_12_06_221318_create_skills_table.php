@@ -17,7 +17,6 @@ class CreateSkillsTable extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('rate')->nullable();
-            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }

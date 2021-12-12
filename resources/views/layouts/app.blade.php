@@ -161,7 +161,6 @@
     $('.loader').addClass("disaper");
      window.Livewire.on("update-darkmode",function(){
 
-
      const Toast = Swal.mixin({
      toast: true,
     position: 'top-end',

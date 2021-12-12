@@ -24,7 +24,7 @@
         <hr class="mb-4">
         <div class="container-xl">
         <div class="row mb-4">
-
+              <div class="col-12 text-center mb-5 text-success text-bold" style="font-size: 25px">اضافه قسم عنى  bout me or</div>
             <div class="col-12 col-md-8 ms-auto me-auto">
 
                 <div class="app-card app-card-settings shadow-sm p-4">
@@ -125,9 +125,10 @@
                                 <form wire:submit.prevent="uploadimg">
 
                                 <div class=" col-sm-12 mb-4">
-
                                     @if ($img)
+
                                     <img src="{{$img->temporaryUrl() }}" width="100%" height="250">
+
                                     @else
                                     <img src="{{ asset('storage/'.$realimage)}}" width="100%" height="250">
 
@@ -137,7 +138,7 @@
 
                                     <div class="mb-3 col-sm-12">
                                     <label for="{{$imageid++}}" class="form-label">اختر صوره المقدمه</label>
-                                    <input  class="form-control @error("img")  is-invalid @enderror" wire:model="img" type="file" id="{{$imageid++}}">
+                                    <input  class="form-control @error("img")  is-invalid @enderror" wire:model="img" accept="image/*" type="file" id="{{$imageid++}}">
                                     <div wire:loading wire:target="img"><span class="text-success" >جارى  تحميل الصوره</span></div>
 
                                     @error('img')
@@ -162,7 +163,7 @@
                                 <form wire:submit.prevent="uploadurl">
                                 <div class="mb-3 col-sm-12">
                                     <label for="formFile" class="form-label">ملف السيره الذاتيه</label>
-                                    <input class="form-control  @error("url")  is-invalid @enderror" wire:model="url" type="file" id="">
+                                    <input class="form-control  @error("url")  is-invalid @enderror" wire:model="url" accept="" type="file" id="">
                                     <div wire:loading wire:target="url"><span class="text-success" >جارى  تحميل الملفات</span></div>
 
                                     @error('url')
@@ -234,7 +235,7 @@ window.addEventListener('updateimg',function(event){
 
 Toast.fire({
 icon: 'success',
-title: 'تم  تحديث الصوره بنجاح'
+title: 'تم  تحديث بيانات الملف بنجاح'
 })
 
 

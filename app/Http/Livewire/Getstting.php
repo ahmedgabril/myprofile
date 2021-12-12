@@ -30,6 +30,7 @@ public function mount(){
     $this->getdata();
 
 }
+
     public function render()
     {
 
@@ -82,6 +83,7 @@ public function mount(){
         public function uploadimg()
         {
 
+
             $this->tabid = 1;
             $this->validate([
                 'img' => 'image|max:1024', // 1MB Max
@@ -94,15 +96,20 @@ public function mount(){
 
             if($this->img){
             $getimg = about::select('id','img')->first();
-            $url = $this->img->store("images",'public');
+            $getimg->img  = $this->img->store("images",'public');
 
-            $getimg->img =  $url;
+
 
             $getimg->save();
             $this->dispatchBrowserEvent('updateimg');
+            //$this->restimagetemprorayurl();
 
             }
 
+        }
+        public function restimagetemprorayurl()
+        {
+          $this->img= null;
         }
         public function uploadurl()
         {

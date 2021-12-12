@@ -54,7 +54,7 @@
 
                     <div class=" col-sm-2 form-group" style="margin-top:29px;padding:4px">
                         <button type="button"  wire:click.prevent="showmodel"
-                        class="btn btn-block btn-outline-success"><i class="fas fa-plus-circle"></i>
+                        class="btn btn-block btn-outline-success text-white"><i class="fas fa-plus-circle"></i>
                          اضافه مستخدم </button>
                     </div>
 
@@ -86,13 +86,14 @@
                 <div class="col-sm-2 form-group" style="margin-top:32px" wire:ignore>
 
                     <select class="form-select form-select-md  d-inline-flex" wire:model="pagenate">
-                      <option selected>5</option>
+                         <option >5</option>
                         <option >10</option>
                         <option> 20</option>
                         <option> 30</option>
+                        <option> 50</option>
+                        <option> 70</option>
                         <option> 100</option>
                         <option> 150</option>
-                        <option> 200</option>
 
 
                       </select>
@@ -101,18 +102,18 @@
                    </div> <!-- /.end-row-card-header -->
                 </div>
                 <!-- /.card-header -->
+           <x-spaner />
+                <div class="card-body" wire:loading.remove wire:target="pagenate,sortDirections" style="display: block;">
+                  <div class="row" >
 
-                <div class="card-body" style="display: block;">
-                  <div class="row">
-
-                    <table class="table text-nowrap table-striped table-hover">
+                    <table class="table  table-striped table-hover">
                         <thead>
                           <tr>
                             <th>ID</th>
                             <th> اسم المستخدم</th>
                             <th> تاريخ الانشاء</th>
 
-                            <th>  الحاله</th>
+
 
 
                             <th><i class="fas fa-wrench"></i></th>
@@ -127,12 +128,7 @@
                             <td style="width: 40px">{{ $data->firstItem() + $index}}</td>
                             <td>{{ $getdata->name }}</td>
 
-                            </td>
-
-
-
                             <td >{{ $getdata->created_at->format('Y/m/d') }}</td>
-                            <td><span class='badge {{$getdata->status == 1 ?"badge-success":"badge-danger" }}'>{{$getdata->status == 1?"مفعل":"غير مفعل"}}</span></td>
 
 
 
@@ -150,7 +146,7 @@
 
                                         </button>
 
-                                          <div class="dropdown-menu dropdown-menu-right" role="menu" style="">
+                                          <div class="dropdown-menu dropdown-menu-right" role="menu" >
                                             <a href="#"   class="dropdown-item" data-target="#modal-showdes" data-toggle="modal" wire:click.prevent="showdes({{$getdata->id}})" >
                                                 <i  class="fa fa-eye text-primary"></i>
                                                  عرض جميع البيانات
@@ -200,15 +196,16 @@
                   </div>
                   <!-- /.row -->
                 </div>
+
                 <!-- ./card-body -->
-                <div class="card-footer" style="display: block;">
-                  <div class="row">
-                    <div class=" col-12  d-flex justify-content-sm-between ">
-                        <div class="col-sm-8">{{$data->links()}}</div>
-                        <div class="col-sm-4 mt-2 shows" style="font-size: 13px;margin-right:auto">
+                <div class="card-footer"  wire:loading.remove wire:target="pagenate,sortDirections" style="overflow: auto;">
+                  <div class="row" >
+
+                        <div class="col-12">{{$data->links()}}</div>
+                        <div class="col-12" style="font-size: 13px;">
                          عرض <span class="text-success text-bold">{{ $data->firstItem() + $getpaginateindex}}</span> من اجمالى السجلات <span class="text-primary text-bold">{{ $counts }}</span>
 
-                        </div>
+
 
                     </div>
                 <!-- /.card-footer -->

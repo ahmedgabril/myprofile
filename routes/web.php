@@ -6,9 +6,11 @@ use App\Http\Livewire\Backend;
 use App\Http\Livewire\Front\Welecome;
 use App\Http\Livewire\Login;
 use App\Http\Livewire\Getrole;
+use App\Http\Livewire\Getservice;
 use App\Http\Livewire\Getstting;
 use App\Http\Livewire\Getuser;
 use App\Http\Livewire\Setting;
+use App\Http\Livewire\Skills;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -56,10 +58,25 @@ Route::group(['middleware' =>['auth','permission:المستخدمين والصل
        Route::group(['middleware' =>['auth','permission:الاعدادت اعدادت الموقع']],function () {
 
 
-        Route::get('/getsetting',Getstting::class)->name('site_setting');
+        Route::get('/getsetting',Getstting::class)->name('getsetting');
 
 
          });
+         Route::group(['middleware' =>['auth','permission:المهارات']],function () {
+
+
+            Route::get('/getskills',Skills::class)->name('getskills');
+
+
+             });
+             Route::group(['middleware' =>['auth','permission:الخدمات']],function () {
+
+
+                Route::get('/getservices',Getservice::class)->name('getservice');
+
+
+                 });
+
 
 
 

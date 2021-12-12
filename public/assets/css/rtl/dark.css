@@ -3090,7 +3090,7 @@ fieldset:disabled .btn {
 }
 
 .btn-primary:hover {
-    color: #000;
+    color: #dfd9d9;
     background-color: #38b17a;
     border-color: #2cac72
 }
@@ -3225,9 +3225,9 @@ fieldset:disabled .btn {
 }
 
 .btn-danger:hover {
-    color: #000;
-    background-color: #d98380;
-    border-color: #d77c78
+    color: #d0c3c3;
+    background-color: #dd3c36;
+    border-color: #e3aeab;
 }
 
 .btn-check:focus+.btn-danger,
@@ -5832,6 +5832,7 @@ fieldset:disabled .btn {
     border-top: 1px solid #dee2e6;
     border-bottom-right-radius: calc(0.3rem - 1px);
     border-bottom-left-radius: calc(0.3rem - 1px);
+    margin-top: 20px;
 }
 
 .modal-footer>* {
@@ -6525,8 +6526,8 @@ fieldset:disabled .btn {
 
 .spinner-border {
     display: inline-block;
-    width: 2rem;
-    height: 2rem;
+    width: 4rem;
+    height: 4rem;
     vertical-align: -0.125em;
     border: .25em solid currentColor;
     border-right-color: transparent;
@@ -8264,7 +8265,7 @@ fieldset:disabled .btn {
     }
     .justify-content-sm-center {
         -webkit-justify-content: center !important;
-        justify-content: center !important
+        justify-content: center !important;
     }
     .justify-content-sm-between {
         -webkit-justify-content: space-between !important;
@@ -12395,7 +12396,7 @@ color: #f7f7f7;
 
 }
 .dark-mode,h1,h2,h3,h4,h5,h6,.btn{
-color: #fff;
+color: #535457;
 }
 .dark-mode,.app-card,.card-header{
 background-color: black;
@@ -12429,7 +12430,7 @@ background: #000!important;}
 .dark-mode,.app-nav .nav-link.active{
 
 color: #15a362;
-background: #090615;
+background: #cddbf7;
 
 
 }

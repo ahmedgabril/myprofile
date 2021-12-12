@@ -12,7 +12,7 @@
             <ul class="app-menu list-unstyled accordion" id="menu-accordion">
                 <li class="nav-item">
                     <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                    <a class="nav-link active" href="{{route('backend')}}">
+                    <a class="nav-link {{request()->is('backend')?'active':''}} " href="{{route('backend')}}">
                         <span class="nav-icon">
                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-house-door" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M7.646 1.146a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 .146.354v7a.5.5 0 0 1-.5.5H9.5a.5.5 0 0 1-.5-.5v-4H7v4a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .146-.354l6-6zM2.5 7.707V14H6v-4a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v4h3.5V7.707L8 2.207l-5.5 5.5z"></path>
@@ -26,7 +26,7 @@
                       @can('عنى')
                       <li class="nav-item">
                        <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                       <a class="nav-link" href="">
+                       <a class="nav-link {{request()->is('getsetting')?'active':''}}" href="{{route('getsetting')}}" >
                            <span class="nav-icon">
                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-person" viewBox="0 0 16 16">
                                    <path d="M11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
@@ -37,9 +37,35 @@
                        </a><!--//nav-link-->
                      </li><!--//nav-item-->
                      @endcan
+                     @can('المهارات')
+                     <li class="nav-item">
+                      <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+                      <a class="nav-link {{request()->is('getskills')?'active':''}}" href="{{route('getskills')}}" >
+                          <span class="nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bricks" viewBox="0 0 16 16">
+                                <path d="M0 .5A.5.5 0 0 1 .5 0h15a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5H14v2h1.5a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5H14v2h1.5a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5H2v-2H.5a.5.5 0 0 1-.5-.5v-3A.5.5 0 0 1 .5 6H2V4H.5a.5.5 0 0 1-.5-.5v-3zM3 4v2h4.5V4H3zm5.5 0v2H13V4H8.5zM3 10v2h4.5v-2H3zm5.5 0v2H13v-2H8.5zM1 1v2h3.5V1H1zm4.5 0v2h5V1h-5zm6 0v2H15V1h-3.5zM1 7v2h3.5V7H1zm4.5 0v2h5V7h-5zm6 0v2H15V7h-3.5zM1 13v2h3.5v-2H1zm4.5 0v2h5v-2h-5zm6 0v2H15v-2h-3.5z"/>
+                              </svg>
+                                 </span>
+                           <span class="nav-link-text">المهارات</span>
+                      </a><!--//nav-link-->
+                    </li><!--//nav-item-->
+                    @endcan
+                    @can('الخدمات')
+                    <li class="nav-item">
+                     <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+                     <a class="nav-link {{request()->is('getservice')?'active':''}}" href="{{route('getservice')}}" >
+                         <span class="nav-icon">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bricks" viewBox="0 0 16 16">
+                               <path d="M0 .5A.5.5 0 0 1 .5 0h15a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5H14v2h1.5a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5H14v2h1.5a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5H2v-2H.5a.5.5 0 0 1-.5-.5v-3A.5.5 0 0 1 .5 6H2V4H.5a.5.5 0 0 1-.5-.5v-3zM3 4v2h4.5V4H3zm5.5 0v2H13V4H8.5zM3 10v2h4.5v-2H3zm5.5 0v2H13v-2H8.5zM1 1v2h3.5V1H1zm4.5 0v2h5V1h-5zm6 0v2H15V1h-3.5zM1 7v2h3.5V7H1zm4.5 0v2h5V7h-5zm6 0v2H15V7h-3.5zM1 13v2h3.5v-2H1zm4.5 0v2h5v-2h-5zm6 0v2H15v-2h-3.5z"/>
+                             </svg>
+                                </span>
+                          <span class="nav-link-text">الخدمات</span>
+                     </a><!--//nav-link-->
+                   </li><!--//nav-item-->
+                   @endcan
 
 
-                @can('الموظفين والصلاحيات')
+                @can('المستخدمين والصلاحيات')
                 <li class="nav-item has-submenu">
                     <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
                     <a class="nav-link submenu-toggle" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-1" aria-expanded="false" aria-controls="submenu-1">
@@ -49,7 +75,7 @@
                                 <path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
                               </svg>
                              </span>
-                         <span class="nav-link-text">الموظفين والصلاحيات</span>
+                         <span class="nav-link-text">المستخدمين والصلاحيات</span>
                          <span class="submenu-arrow">
                              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path>
@@ -127,7 +153,7 @@
                             @can('اعدادت الموقع')
                             <li class="nav-item">
                                 <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                                <a class="nav-link" href="{{route('site_setting')}}">
+                                <a class="nav-link" href="{{route('getsetting')}}">
                                     <span class="nav-icon">
                                         <i class="fas fa-user-cog"></i>
                                      </span>

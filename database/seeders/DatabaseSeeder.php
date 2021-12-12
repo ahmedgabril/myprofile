@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+;
 use Illuminate\Database\Seeder;
 use Database\Seeders\Userseeder;
 
@@ -20,7 +21,8 @@ class DatabaseSeeder extends Seeder
             setting::class,
             aboutme::class,
             sochal::class,
-            facts::class
+            facts::class,
+            getskillseeder::class,
 
         ]);
 
