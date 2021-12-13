@@ -2,16 +2,17 @@
 
 //use App\Http\Livewire\Dashbord;
 
-use App\Http\Livewire\Backend;
-use App\Http\Livewire\Front\Welecome;
 use App\Http\Livewire\Login;
+use App\Http\Livewire\Getcat;
+use App\Http\Livewire\Skills;
+use App\Http\Livewire\Backend;
 use App\Http\Livewire\Getrole;
-use App\Http\Livewire\Getservice;
-use App\Http\Livewire\Getstting;
 use App\Http\Livewire\Getuser;
 use App\Http\Livewire\Setting;
-use App\Http\Livewire\Skills;
+use App\Http\Livewire\Getstting;
+use App\Http\Livewire\Getservice;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Livewire\Front\Welecome;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -77,7 +78,13 @@ Route::group(['middleware' =>['auth','permission:المستخدمين والصل
 
                  });
 
+                 Route::group(['middleware' =>['auth','permission:معرض الاعمال اداره الاقسام']],function () {
 
+
+                    Route::get('/getcat',Getcat::class)->name('getcat');
+
+
+                });
 
 
 //

@@ -17,14 +17,15 @@ class CreatePortfoliosTable extends Migration
             $table->unsignedBigInteger('id')->autoIncrement();
             $table->mediumText('title')->nullable();
             $table->string('name')->nullable();
-            $table->string('icon')->nullable();
+            $table->string('clint_name')->nullable();
+            $table->date('date')->nullable();
             $table->text('dec')->nullable();
             $table->string('img')->nullable();
-            $table->string('price')->nullable();
             $table->string('url')->nullable();
+            $table->string('video_url')->nullable();
+
             $table->unsignedBigInteger('cat_id')->nullable();
             $table->foreign('cat_id')->references('id')->on('catogeries');
-            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }

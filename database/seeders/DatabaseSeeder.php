@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             sochal::class,
             facts::class,
             getskillseeder::class,
+            Cat::class,
 
         ]);
 

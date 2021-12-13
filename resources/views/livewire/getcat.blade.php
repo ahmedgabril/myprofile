@@ -55,7 +55,7 @@
                  <div class=" col-sm-2 form-group" style="margin-top:29px;padding:4px">
                      <button type="button"  wire:click.prevent="showmodel"
                      class="btn btn-block btn-outline-success text-white"><i class="fas fa-plus-circle"></i>
-                      اضافه مهاره </button>
+                      اضافه قسم </button>
                  </div>
 
 
@@ -110,8 +110,7 @@
                      <thead>
                        <tr>
                          <th>ID</th>
-                         <th>اسم المهاره</th>
-                         <th>التقيم</th>
+                         <th>اسم القسم</th>
 
                          <th> تاريخ الانشاء</th>
 
@@ -127,7 +126,6 @@
                          <td style="width: 40px">{{ $data->firstItem() + $index}}</td>
                          <td>{{ $getdata->name }}</td>
 
-                         <td><span class="badge badge-success">{{ $getdata->rate }} %</span></td>
                          <td style="display: none">{{ $getpaginateindex = $index }}</td>
 
 
@@ -213,13 +211,13 @@
       </div><!--end col-12-->
          <!--model add -->
 <div class=" modal fade " wire:ignore.self id="modal-role"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
- <div class=" modal-dialog modal-fullscreen-sm-down">
+ <div class=" modal-dialog">
    <div class="modal-content">
      <div class="modal-header">
        @if (!$showmodelf)
-       <h4 class="modal-title">اضافه  مهاره  جديده</h4>
+       <h4 class="modal-title">اضافه  قسم  جديده</h4>
        @else
-       <h4 class="modal-title">تحديث بيانات مهاره </h4>
+       <h4 class="modal-title">تحديث بيانات قسم </h4>
 
        @endif
 
@@ -232,7 +230,7 @@
 
         <div class="row">
               <div class="col-sm-12 form-group">
-              <label for="">اسم المهاره</label>
+              <label for="">اسم القسم</label>
                 <input class="form-control @error("form.name")  is-invalid
 
                @enderror"  type="text"
@@ -247,23 +245,7 @@
                @enderror
 
            </div>
-           <div class="col-sm-12 form-group">
-             <label >التقيم</label>
-               <input type="number"  class="form-control @error("form.rate") is-invalid @enderror"
-               aria-describedby="exampleInputEmail1-error"
-                      autocomplete="off"
-                      aria-invalid="true"
-                wire:model="form.rate" placeholder="(اجبارى*)"/>
 
-
-               @error('form.rate')
-              <div class="invalid-feedback">
-               {{$message}}
-             </div>
-
-              @enderror
-
-          </div>
 
 
 

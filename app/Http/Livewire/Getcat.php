@@ -5,9 +5,9 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Http\mytraits\WithSorting;
-use App\Models\skill;
+use App\Models\catogery;
 
-class Skills extends Component
+class Getcat extends Component
 {
     use WithSorting;
     use WithPagination;
@@ -36,7 +36,7 @@ class Skills extends Component
 
     public $form = [
         'name' =>'',
-        'rate' =>'',
+
 
 
     ];
@@ -45,15 +45,15 @@ class Skills extends Component
     public function render()
     {
 
-        $skill = skill::query()
+        $catogery = catogery::query()
 
         ->where("name","LIKE", "%" . $this->searsh . "%")
         ->orderBy($this->sortByany,$this->sortDirections)
 
         ->paginate($this->pagenate)->withQueryString();
-        return view('livewire.skills', ['data'=> $skill,
+        return view('livewire.getcat', ['data'=> $catogery,
 
-        "counts" => skill::count(),
+        "counts" => catogery::count(),
 
 
 
@@ -78,16 +78,14 @@ class Skills extends Component
  {
      $this->validateOnly($propertyName, [
 
-        'form.name' => 'required|string|unique:skills,name|max:255',
-        'form.rate' => 'required|alpha_num',
+        'form.name' => 'required|string|unique:catogeries,name|max:255',
 
 
 
     ],[
 
-        "form.name.required" => "اسم المهاره مطلوب",
-        "form.name.unique" => "اسم المهاره مسجل من قبل",
-        "form.rate.required" => "التقيم مطلوب",
+        "form.name.required" => "اسم القسم مطلوب",
+        "form.name.unique" => "اسم القسم مسجل من قبل",
         "form.name.max" => "الحد المسموح به 255 حرف فقط",
 
     ]);
@@ -113,16 +111,16 @@ class Skills extends Component
 
     $this->validate([
 
-        'form.name' => 'required|string|unique:skills,name|max:255',
-        'form.rate' => 'required|alpha_num',
+        'form.name' => 'required|string|unique:catogeries,name|max:255',
+
 
 
     ],[
 
-        "form.name.required" => "اسم المهاره مطلوب",
-        "form.name.unique" => "اسم المهاره مسجل من قبل",
-        "form.rate.required" => "التقيم مطلوب",
+        "form.name.required" => "اسم القسم مطلوب",
+        "form.name.unique" => "اسم القسم مسجل من قبل",
         "form.name.max" => "الحد المسموح به 255 حرف فقط",
+
 
     ]);
 
@@ -130,11 +128,10 @@ class Skills extends Component
 
 
 
-   $setuser =  skill::create([
+   $catogery =  catogery::create([
 
    'name'=> $this->form['name'],
 
-   'rate'=> $this->form['rate'],
     ]);
 
 
@@ -159,10 +156,9 @@ public function edit($bid){
     if($this->showmodelf){
         $this->dispatchBrowserEvent("show-model");
         $this->globalids = $bid;
-        $skill = skill::findOrFail($bid);
+        $catogery = catogery::findOrFail($bid);
 
-        $this->form["name"] = $skill->name;
-        $this->form["rate"] = $skill->rate;
+        $this->form["name"] = $catogery->name;
 
 
 
@@ -179,25 +175,25 @@ public function updateone(){
     $this->validate([
 
 
-        'form.name' => 'required|string|max:255|unique:skills,name,'.$this->globalids,
-        'form.rate' => 'required|alpha_num',
+        'form.name' => 'required|string|max:255|unique:catogeries,name,'.$this->globalids,
+
 
 
     ],[
 
-  "form.name.required" => "اسم المهاره مطلوب",
-  "form.name.unique" => "اسم المهاره مسجل من قبل",
-  "form.rate.required" => "التقيم مطلوب",
-  "form.name.max" => "الحد المسموح به 255 حرف فقط",
+        "form.name.required" => "اسم القسم مطلوب",
+        "form.name.unique" => "اسم القسم مسجل من قبل",
+        "form.name.max" => "الحد المسموح به 255 حرف فقط",
+
 
     ]);
 
 
-  $updateskill = skill::findOrFail($this->globalids);
-  $updateskill->name = $this->form['name'];
-  $updateskill->rate =  $this->form['rate'];
+  $updatecatogery = catogery::findOrFail($this->globalids);
+  $updatecatogery->name = $this->form['name'];
 
-  $updateskill->save();
+
+  $updatecatogery->save();
 
 
   $this->dispatchBrowserEvent("add",['message'=> "تمت  تحديث البيانات بنجاح 🙂"]);
@@ -221,7 +217,7 @@ $this->dispatchBrowserEvent("getconfirm",['title'=> 'هل انت متأكد ??',
 public function delete(){
 
 
-    skill::destroy($this->idfordelete);
+    catogery::destroy($this->idfordelete);
     $this->dispatchBrowserEvent("getdel",['message'=> "تمت  حذف  البيانات بنجاح 🙂"]);
     /*
     $getlog = new loge();

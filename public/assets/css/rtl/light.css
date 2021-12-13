@@ -4718,6 +4718,7 @@ fieldset:disabled .btn {
     padding: .5rem 1rem;
     background-color: rgba(250, 252, 253, 0.25);
     border-top: 1px solid rgba(0, 0, 0, .125);
+    overflow: auto;
 }
 
 .card-footer:last-child {
@@ -7999,7 +8000,7 @@ fieldset:disabled .btn {
 }
 
 .text-white {
-    color: #fff !important
+    color: #000;
 }
 
 .text-body {

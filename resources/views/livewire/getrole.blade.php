@@ -251,7 +251,7 @@
                     <label for="{{$index}}" style="cursor: pointer">
                         {{$item->name}}
                     </label>
-                    <input  wire:model="prename.{{$item->id}}" id="{{$index}}" style="margin:10px" value="{{$item->id}}" type="checkbox">
+                    <input  wire:model="prename.{{$item->id}}" id="{{$index}}" style="margin:6px" value="{{$item->id}}" type="checkbox">
 
                   </div>
                  @endforeach
