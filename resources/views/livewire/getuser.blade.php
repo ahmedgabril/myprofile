@@ -128,7 +128,7 @@
                             <td style="width: 40px">{{ $data->firstItem() + $index}}</td>
                             <td>{{ $getdata->name }}</td>
 
-                            <td >{{ $getdata->created_at->format('Y/m/d') }}</td>
+                            <td >{{ $getdata->created_at?$getdata->created_at->format('Y/m/d'):'UnKnowen' }}</td>
 
 
 

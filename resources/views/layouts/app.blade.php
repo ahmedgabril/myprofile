@@ -65,7 +65,7 @@
 
        }
        .disaper{
-           animation: pre 1.2s forwards;
+           animation: pre 1.4s forwards;
 
 
        }

@@ -13,6 +13,7 @@ use App\Http\Livewire\Getstting;
 use App\Http\Livewire\Getservice;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Livewire\Front\Welecome;
+use App\Http\Livewire\Myprofile;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -83,9 +84,13 @@ Route::group(['middleware' =>['auth','permission:المستخدمين والصل
 
                     Route::get('/getcat',Getcat::class)->name('getcat');
 
+                });
+                Route::group(['middleware' =>['auth','permission:معرض الاعمال اداره المشاريع']],function () {
+
+
+                    Route::get('/myprofile',Myprofile::class)->name('myprofile');
 
                 });
-
 
 //
 

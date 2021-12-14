@@ -5833,6 +5833,7 @@ fieldset:disabled .btn {
     border-top: 1px solid #dee2e6;
     border-bottom-right-radius: calc(0.3rem - 1px);
     border-bottom-left-radius: calc(0.3rem - 1px);
+    margin-top: 25px;
 }
 
 .modal-footer>* {
@@ -11437,7 +11438,7 @@ button.close:focus {
 
 .app-sidepanel .app-nav-main {
     overflow-y: auto;
-    scrollbar-color: rgba(0, 0, 0, 0.1) #26282d;
+    scrollbar-color: rgba(247, 242, 242, 0.1) #ccced2;
     scrollbar-width: thin;
 }
 
@@ -11609,7 +11610,7 @@ button.close:focus {
 
 @media(max-width: 1199.98px) {
     .app-sidepanel {
-        transition: all .3s ease-in-out;
+        transition: all .3s cubic-bezier(.47,0,.74,.71);
         border-right: 0;
     }
 }

@@ -21,9 +21,8 @@ class CreatePortfoliosTable extends Migration
             $table->date('date')->nullable();
             $table->text('dec')->nullable();
             $table->string('img')->nullable();
-            $table->string('url')->nullable();
+            $table->string('project_url')->nullable();
             $table->string('video_url')->nullable();
-
             $table->unsignedBigInteger('cat_id')->nullable();
             $table->foreign('cat_id')->references('id')->on('catogeries');
             $table->timestamps();

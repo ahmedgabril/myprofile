@@ -129,17 +129,20 @@
 
                                     <img src="{{$img->temporaryUrl() }}" width="100%" height="250">
 
-                                    @else
-                                    <img src="{{ asset('storage/'.$realimage)}}" width="100%" height="250">
-
-
                                    @endif
                                   </div>
+                               @if (!$img)
+                        <img src="{{ asset('storage/'.$realimage)}}" width="100%" height="250">
 
+                               @endif
                                     <div class="mb-3 col-sm-12">
                                     <label for="{{$imageid++}}" class="form-label">اختر صوره المقدمه</label>
-                                    <input  class="form-control @error("img")  is-invalid @enderror" wire:model="img" accept="image/*" type="file" id="{{$imageid++}}">
-                                    <div wire:loading wire:target="img"><span class="text-success" >جارى  تحميل الصوره</span></div>
+                                    <input  class="form-control @error("img")  is-invalid @enderror"
+                                     wire:model="img" accept="image/*"
+
+                                    type="file" id="{{$imageid++}}"/>
+                                    <div wire:loading wire:target="img">
+                                        <span class="text-success" >جارى  تحميل الصوره</span></div>
 
                                     @error('img')
                                     <div class="invalid-feedback">
@@ -213,7 +216,7 @@ $(function(){
 
 Toast.fire({
 icon: 'success',
-title: 'تم اضافه تحديث البيانات بنجاح'
+title: 'تم تحديث البيانات بنجاح'
 })
 
 
@@ -258,7 +261,7 @@ window.addEventListener('updateurl',function(event){
 
 Toast.fire({
 icon: 'success',
-title: 'تم  تحديث الصوره بنجاح'
+title: 'تم  تحديث بيانات الملف بنجاح'
 })
 
 

@@ -20,7 +20,7 @@ class aboutme extends Seeder
       'title'=> 'Im a professional web develper',
       'img'=> '../img/hero-bg.jpg',
       'dec'=> 'Im a professional web develper in egypt from 6 manth ago',
-      'url'=> '../img/hero-bg.jpg',
+      'url'=> 'images/iCwQIpLPrySpKoZIaWem67fqNv4WIKUPUrInR1MF.png',
 
 
         ];
