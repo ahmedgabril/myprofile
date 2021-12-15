@@ -128,7 +128,7 @@
                          <td style="width: 40px">{{ $data->firstItem() + $index}}</td>
                          <td>{{ $getdata->name }}</td>
 
-                         <td >{{ $getdata->date }}</td>
+                         <td >{{ $getdata->date?$getdata->date:'UnKnowen' }}</td>
 
 
 
@@ -257,11 +257,11 @@
 
 
 
-          <div class="col-sm-6 form-group">
+          <div class="col-sm-6 form-group" >
              <label >القسم التابع له</label>
-                <div class="@error("form.cat_id")  is-invalid @enderror">
+                <div class="@error("form.cat_id")  is-invalid @enderror" >
 
-                 <select class="form-control"style="padding-top:1px"
+                 <select class="form-control" id="proseed" style="padding-top:1px"
                   wire:model="form.cat_id">
                   <option>اختر قسم</option>
                    @foreach ($catogry as $item)
@@ -272,14 +272,13 @@
                  </select>
                 </div>
 
-               @error('form.cat_id')
-              <div class="invalid-feedback">
-               {{$message}}
+                @error('form.cat_id')
+                <div class="invalid-feedback">
+                 {{$message}}
+               </div>
+
+                @enderror
              </div>
-
-              @enderror
-
-          </div>
 
           <div class="col-sm-6 form-group">
             <label for="">اسم العميل</label>
@@ -353,7 +352,7 @@
             @foreach ($images as $img)
 
             <div class="col-sm-3">
-                <a href="#" wire:click.prevent="removeimages({{$loop->index}})">
+                <a href="#" wire:click.prevent="removeimages({{$loop->index}})" style="color:crimson">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
                         <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                       </svg>
@@ -369,7 +368,29 @@
 
             @endforeach
         </div>
-            @endif
+        @else
+
+        @if ($showmodelf)
+        <div class="row">
+        @foreach ($rusaltforimage as $getimg)
+
+        <div class="col-sm-3">
+
+                  <div>
+                    <img src="{{asset('storage/'.$getimg)}}" width="150" height="150"/>
+
+                  </div>
+
+            </a>
+
+        </div>
+
+
+        @endforeach
+        </div>
+        @endif
+
+         @endif
 
           </div>
          <div class="col-sm-6 form-group">
@@ -391,7 +412,7 @@
 
          <div class="col-sm-6 form-group">
             <label for="">رفع صور المشروع</label>
-              <input class="form-control @error("images.*")  is-invalid
+              <input class="form-control @error("images")  is-invalid
 
              @enderror" type="file" multiple accept="image/*"
               wire:model="images"
@@ -410,7 +431,7 @@
                  </div>
                </div>
 
-             @error('images.*')
+             @error('images')
              <div class="invalid-feedback">
               {{$message}}
             </div>
@@ -473,9 +494,13 @@
 
 <script>
 
-
 $(function(){
-    $("#dateField").val(new Date().toISOString().substring(0, 10));
+    /*
+    Livewire.hook('message.processed', (message, component) => {
+        $('#proseed').val();
+
+       });*/
+
  $('#modal-role,#modal-showdes').on('hidden.bs.modal',function () {
      livewire.emit('getval');
 

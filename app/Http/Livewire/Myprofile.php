@@ -19,7 +19,7 @@ class Myprofile extends Component
     protected $queryStringWithSorting = [
         'sortByany' => ['except' => 'id'],
         'sortDirections' => ['except' => 'asc'],
-        'pagenate' => ['except' => '5'],
+        'pagenate' => ['except' => ''],
 
 
     ];
@@ -38,7 +38,7 @@ class Myprofile extends Component
 
         'name' => '',
         'title' => '',
-        'clint_name	' => '',
+        'clint_name' => '',
         'date' => null,
        'dec' => '',
 
@@ -76,6 +76,7 @@ class Myprofile extends Component
  }
  public function updatedpagenate(){
     $this->resetPage();
+
  }
 
 
@@ -86,11 +87,16 @@ class Myprofile extends Component
  {
      $this->validateOnly($propertyName, [
 
-        'form.name' => 'required|string|max:255|unique:portfolios,name',
-        'form.title' => 'required',
-        'form.cat_id' => 'required|alpha_num',
-        //'form.project_url' => 'required|url',
 
+        'form.name' => 'required|string|max:255|unique:portfolios,name',
+        'form.title' => 'required|string|max:350',
+        'form.project_url' => 'sometimes|url',
+        'form.video_url' => 'sometimes|url',
+        'form.clint_name' => 'sometimes|nullable|alpha_dash',
+        'form.dec' => 'sometimes|nullable',
+        'form.cat_id' => 'required|alpha_num',
+        'images' =>     'required|array',
+        'images.*' =>       'image|max:2048',
 
 
     ],[
@@ -98,39 +104,39 @@ class Myprofile extends Component
         'form.cat_id.alpha_num'  => "هذا الحقل ارقام فقط",
 
     ]);
-
 
 
 
  }
  public function showmodel(){
-    $this->showmodelf=false;
+
 
  if($this->showmodelf==false){
 
-
+  $this->reset();
     $this->dispatchBrowserEvent("show-model");
- //$this->modeltitle = true;
 
-
-
- }
+  }
 }
 public function removeimages($ides)
 {
 
-
    array_splice($this->images,$ides,1);
 }
+
  public function add(){
 
     $this->validate([
 
         'form.name' => 'required|string|max:255|unique:portfolios,name',
-        'form.title' => 'required',
+        'form.title' => 'required|string|max:350',
+        'form.project_url' => 'sometimes|url',
+        'form.video_url' => 'sometimes|url',
+        'form.clint_name' => 'sometimes|nullable|string',
+        'form.dec' => 'sometimes|nullable',
         'form.cat_id' => 'required|alpha_num',
-        //'form.project_url' => 'required|url',
-
+        'images' =>     'required|array',
+        'images.*' =>       'image|max:2048',
 
 
     ],[
@@ -139,13 +145,14 @@ public function removeimages($ides)
 
     ]);
 
+
     if(!empty($this->images)){
         foreach($this->images as $key=>$img){
-            $this->images[$key]= $img->storeAs($this->form['name'],$img->getClientOriginalName());
+            $this->images[$key]= $img->storeAs('images/'.$this->form['name'],$img->getClientOriginalName(),'public');
 
            }
 
-       $this->rusaltforimage = portfolio::create([
+        portfolio::create([
         'name' => $this->form['name'],
         'title'   => $this->form['title'],
         'clint_name' => $this->form['clint_name'],
@@ -157,12 +164,13 @@ public function removeimages($ides)
          'img'   => $this->images
 
     ]);
+    $this->images = "";
 
-        $this->reset();
-        $this->dispatchBrowserEvent("add",['message'=> "تمت  اضافه البيانات بنجاح 🙂"]);
+
+      $this->dispatchBrowserEvent("add",['message'=> "تمت  اضافه البيانات بنجاح 🙂"]);
     }
 
-
+return;
 
 
 /*
@@ -175,49 +183,63 @@ public function removeimages($ides)
 
 */
 }
+///edit data//
 public function edit($bid){
+
     $this->showmodelf= true;
+
     if($this->showmodelf){
         $this->dispatchBrowserEvent("show-model");
         $this->globalids = $bid;
-         $getportfolio = portfolio::findOrFail($bid);
-         $getportfolio->name = $this->form['name'];
-         $getportfolio->title = $this->form['title'];
-         $getportfolio->clint_name = $this->form['clint_name'];
-         $getportfolio->date = $this->form['date'];
-         $getportfolio->dec = $this->form['dec'];
-         $getportfolio->project_url = $this->form['project_url'];
-         $getportfolio->video_url = $this->form['video_url'];
-         $getportfolio->cat_id = $this->form['cat_id'];
+     $getportfolio = portfolio::findOrFail( $this->globalids);
 
+   $this->form['name']        = $getportfolio->name;
+   $this->form['title']        = $getportfolio->title;
+   $this->form['clint_name']   = $getportfolio->clint_name;
+   $this->form['date']          = $getportfolio->date ;
+   $this->form['dec']          =  $getportfolio->dec;
+   $this->form['project_url']  = $getportfolio->project_url;
+   $this->form['video_url']    = $getportfolio->video_url ;
+   $this->form['cat_id']       = $getportfolio->cat_id;
+   $this->rusaltforimage       = $getportfolio->img;
+  // $this->images       = $getportfolio->img;
     }
     //
 
 }
+///show all data in the model//
 
 public function showdes($bid){
 
-
     $getportfolio = portfolio::findOrFail($bid);
-    $getportfolio->name = $this->form['name'];
-    $getportfolio->title = $this->form['title'];
-    $getportfolio->clint_name = $this->form['clint_name'];
-    $getportfolio->date = $this->form['date'];
-    $getportfolio->dec = $this->form['dec'];
-    $getportfolio->project_url = $this->form['project_url'];
-    $getportfolio->video_url = $this->form['video_url'];
-    $getportfolio->cat_id = $this->form['cat_id'];
+
+    $this->form['name']         = $getportfolio->name;
+    $this->form['title']        = $getportfolio->title;
+    $this->form['clint_name']   = $getportfolio->clint_name;
+    $this->form['date']         = $getportfolio->date ;
+    $this->form['dec']          =  $getportfolio->dec;
+    $this->form['project_url']  = $getportfolio->project_url;
+    $this->form['video_url']    = $getportfolio->video_url ;
+    $this->form['cat_id']       = $getportfolio->cat_id;
+
 
 }
+///update data//
+
 public function updateone(){
 
     $this->validate([
 
-        'form.name' => 'required|string|max:255|unique:portfolios,name',
-        'form.title' => 'required',
-        'form.cat_id' => 'required|alpha_num',
-        //'form.project_url' => 'required|url',
 
+        'form.name' => 'required|string|max:255|unique:portfolios,name,'.$this->globalids,
+        'form.title' => 'required|string|max:350',
+        'form.project_url' => 'sometimes|url',
+        'form.video_url' => 'sometimes|url',
+        'form.clint_name' => 'sometimes|nullable|string',
+        'form.dec' => 'sometimes|nullable',
+        'form.cat_id' => 'required|alpha_num',
+        'images' =>     'sometimes|nullable',
+        'images.*' =>       'image|max:2048',
 
 
     ],[
@@ -226,7 +248,14 @@ public function updateone(){
 
     ]);
 
+       if(!empty($this->images)){
+        foreach($this->images as $key=>$img){
+            $this->images[$key]= $img->storeAs('images/'.$this->form['name'],$img->getClientOriginalName(),'public');
 
+           }
+        }else{
+            $this->images = $this->rusaltforimage;
+           }
 
     $updateportfolio = portfolio::findOrFail($this->globalids);
     $updateportfolio->name = $this->form['name'];
@@ -237,11 +266,12 @@ public function updateone(){
     $updateportfolio->project_url = $this->form['project_url'];
     $updateportfolio->video_url = $this->form['video_url'];
     $updateportfolio->cat_id = $this->form['cat_id'];
-
+    $updateportfolio->img =     $this->images;
     $updateportfolio->save();
+
   $this->dispatchBrowserEvent("add",['message'=> "تمت  تحديث البيانات بنجاح 🙂"]);
   // session()->flash("message", "تم اضافه بيانات الفرع  بنجاح ");
-  $this->reset();
+
   /*
    $getlog = new loge();
    $getlog->loges_action_id =  $updatedata->id;
