@@ -15,5 +15,9 @@ class portfolio extends Model
     'img' => 'array'
 
     ];
+    public function catogery()
+    {
+        return $this->belongsTo(catogery::class,'cat_id');
+    }
 
 }

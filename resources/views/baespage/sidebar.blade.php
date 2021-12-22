@@ -118,7 +118,7 @@
                 @can('المستخدمين والصلاحيات')
                 <li class="nav-item has-submenu">
                     <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                    <a class="nav-link submenu-toggle" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-1" aria-expanded="false" aria-controls="submenu-1">
+                    <a class="nav-link submenu-toggle" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-2" aria-expanded="false" aria-controls="submenu-1">
                         <span class="nav-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check" viewBox="0 0 16 16">
                                 <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
@@ -130,9 +130,9 @@
                              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path>
                             </svg>
-                                                    </span><!--//submenu-arrow-->
+                       </span><!--//submenu-arrow-->
                        </a><!--//nav-link-->
-                    <div id="submenu-1" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
+                    <div id="submenu-2" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
                         <ul class="submenu-list list-unstyled">
 
                            @can('اداره المستخدمين')
@@ -167,7 +167,7 @@
 
                 <li class="nav-item has-submenu">
                     <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                    <a class="nav-link submenu-toggle" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-2" aria-expanded="false" aria-controls="submenu-2">
+                    <a class="nav-link submenu-toggle" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-3" aria-expanded="false" aria-controls="submenu-2">
                         <span class="nav-icon">
                         <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-gear icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -183,7 +183,7 @@
                      </span><!--//submenu-arrow-->
                     </a><!--//nav-link-->
 
-                    <div id="submenu-2" class="collapse submenu submenu-2" data-bs-parent="#menu-accordion">
+                    <div id="submenu-3" class="collapse submenu submenu-2" data-bs-parent="#menu-accordion">
                         <ul class="submenu-list list-unstyled">
                             @can('لوحه التحكم')
                             <li class="nav-item">

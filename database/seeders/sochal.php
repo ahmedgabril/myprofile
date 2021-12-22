@@ -22,7 +22,7 @@ class sochal extends Seeder
       'youtube'=> 'https://www.youtube.com/channel/UCFYaKZmc1BBEdA1Xrwe5PJg',
       'twitter'=> 'not yet',
       'gmail'=> 'ajbryl110@gmail.com',
-      'status'=> '1',
+      'setstatus'=> '1',
         ];
         DB::table('sochails')->insert($data);
 

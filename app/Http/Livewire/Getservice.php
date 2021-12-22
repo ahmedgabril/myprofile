@@ -3,12 +3,15 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use Livewire\WithPagination;
-use App\Http\mytraits\WithSorting;
 use App\Models\services;
+use Illuminate\Support\Str;
+use Livewire\WithPagination;
+use Livewire\WithFileUploads;
+use App\Http\mytraits\WithSorting;
 
 class Getservice extends Component
 {
+    use WithFileUploads;
     use WithSorting;
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
@@ -30,6 +33,8 @@ class Getservice extends Component
     public $sortDirections = 'asc';
     public $sortByany = 'id';
     public $searsh;
+    public $realimage;
+    public $icon;
 
 
 
@@ -37,7 +42,7 @@ class Getservice extends Component
     public $form = [
         'name' =>'',
         'title' =>'',
-        'icon' =>'',
+         'status'=> 1,
         'dec' =>'',
        'img' =>'',
        'price' =>'',
@@ -46,7 +51,10 @@ class Getservice extends Component
 
     ];
 
-
+public function removeimage()
+{
+  $this->icon="";
+}
     public function render()
     {
 
@@ -85,6 +93,11 @@ class Getservice extends Component
 
         'form.name' => 'required|string|unique:services,name|max:255',
         'form.title' => 'required|string',
+        'form.title' => 'required|string|max:360',
+        'icon' => 'sometimes|nullable|image|max:1024',
+        'form.status' => 'sometimes|nullable|alpha_num',
+        'form.url' => 'sometimes|nullable|url',
+        'form.img' => 'sometimes|nullable|url',
 
 
 
@@ -93,7 +106,7 @@ class Getservice extends Component
   "form.name.required" => "اسم الخدمه مطلوب",
   "form.name.unique" => "اسم الخدمه مسجل من قبل",
   "form.name.string" => "اسم المهاره حروف  فقط",
-  "form.name.max" => "الحد المسموح به 255 حرف فقط",
+  "form.title.max" => "الحد المسموح به 360 حرف فقط",
 
     ]);
 
@@ -117,18 +130,20 @@ class Getservice extends Component
  public function add(){
 
     $this->validate([
-
         'form.name' => 'required|string|unique:services,name|max:255',
         'form.title' => 'required|string',
-
-
+        'form.title' => 'required|string|max:360',
+        'icon' => 'sometimes|nullable|image|max:1024',
+        'form.status' => 'sometimes|nullable|alpha_num',
+        'form.url' => 'sometimes|nullable|url',
+        'form.img' => 'sometimes|nullable|url',
 
     ],[
 
   "form.name.required" => "اسم الخدمه مطلوب",
   "form.name.unique" => "اسم الخدمه مسجل من قبل",
   "form.name.string" => "اسم المهاره حروف  فقط",
-  "form.name.max" => "الحد المسموح به 255 حرف فقط",
+  "form.title.max" => "الحد المسموح به 360 حرف فقط",
 
     ]);
 
@@ -140,11 +155,12 @@ class Getservice extends Component
 
    'name'=> $this->form['name'],
    'title'=> $this->form['title'],
-   'icon'=> $this->form['icon'],
+   'icon'=> $this->icon,
    'dec'=> $this->form['dec'],
    'img'=> $this->form['img'],
    'url'=> $this->form['url'],
    'price'=> $this->form['price'],
+   'status'=> $this->form['status']
 
 
 
@@ -176,11 +192,12 @@ public function edit($bid){
 
         $this->form["name"] = $services->name;
          $this->form['title'] =$services->title;
-         $this->form['icon']= $services->icon;
+         $this->realimage =   $services->icon;
          $this->form['dec']=  $services->dec;
          $this->form['img']=  $services->img;
          $this->form['url']=  $services->url;
          $this->form['price']=  $services->price;
+         $this->form['status']=  $services->status;
 
 
 
@@ -198,13 +215,13 @@ public function showdes($bid)
 
     $this->form["name"] = $services->name;
      $this->form['title'] =$services->title;
-     $this->form['icon']= $services->icon;
+     $this->realimage  =   $services->icon;
      $this->form['dec']=  $services->dec;
      $this->form['img']=  $services->img;
      $this->form['url']=  $services->url;
      $this->form['price']=  $services->price;
      $this->form['created_at']=  $services->created_at->format('Y-m-d');
-
+     $this->form['status']=  $services->status;
 
 }
 
@@ -214,8 +231,11 @@ public function updateone(){
 
 
         'form.name' => 'required|string|unique:services,name,'.$this->globalids,
-        'form.title' => 'required|string',
-
+        'form.title' => 'required|string|max:360',
+        'icon' => 'sometimes|nullable|image|max:1024',
+        'form.status' => 'sometimes|nullable|alpha_num',
+        'form.url' => 'sometimes|nullable|url',
+        'form.img' => 'sometimes|nullable|url',
 
 
     ],[
@@ -223,7 +243,7 @@ public function updateone(){
   "form.name.required" => "اسم الخدمه مطلوب",
   "form.name.unique" => "اسم الخدمه مسجل من قبل",
   "form.name.string" => "اسم المهاره حروف  فقط",
-  "form.name.max" => "الحد المسموح به 255 حرف فقط",
+  "form.title.max" => "الحد المسموح به 360 حرف فقط",
 
     ]);
 
@@ -234,11 +254,17 @@ public function updateone(){
 
   $updateservices->name = $this->form['name'];
   $updateservices->title = $this->form['title'];
-  $updateservices->icon = $this->form['icon'];
+  if($this->icon){
+    $updateservices->icon = $this->icon->storeAs('images/'.$this->form['name'],$this->icon->getClientOriginalName(),'public');
+  }else{
+    $updateservices->icon = $this->realimage;
+  }
+
   $updateservices->dec = $this->form['dec'];
   $updateservices->img = $this->form['img'];
   $updateservices->url = $this->form['url'];
   $updateservices->price = $this->form['price'];
+  $updateservices->status = $this->form['status'];
   $updateservices->save();
 
 

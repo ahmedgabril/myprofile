@@ -29,23 +29,25 @@
 
                 <div class="app-card app-card-settings shadow-sm p-4">
 
-                    <div class="app-card-body">
+                       <div class="app-card-body" x-data="{tab : 0}">
                         <ul class="nav nav-pills mb-5" id="pills-tab" role="tablist">
-                            <li class="nav-item " role="presentation">
-                              <button class="nav-link {{$tapid == 0 ?'active':''}}" id="pills-home-tab"  data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">بيانتى الشخصيه </button>
+                            <li class="nav-item ">
+                              <button class="nav-link":class="tab === 0 ?'active':''" x-on:click.prevent="tab = 0"  >بيانتى الشخصيه </button>
                             </li>
-                            <li class="nav-item" role="presentation">
-                              <button class="nav-link {{$tapid == 1 ?'active':''}}" wire:click.prevent="$set('tapid','1')" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false"> رفع صوره </button>
+                            <li class="nav-item">
+                              <button class="nav-link" :class="tab === 1 ?'active':''" x-on:click.prevent="tab = 1"   type="button"   > صوره الموقع الرئيسه </button>
                             </li>
-                            <li class="nav-item" role="presentation">
-                              <button class="nav-link {{$tapid == 2 ?'active':''}}" wire:click.prevent="$set('tapid','2')" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">رفع ملف السره الذاتيه</button>
+                            <li class="nav-item" >
+                              <button class="nav-link" :class="tab === 2 ?'active':''" x-on:click.prevent="tab = 2"  type="button"   >رفع ملف السره الذاتيه</button>
                             </li>
+                            <li class="nav-item" >
+                                <button class="nav-link" :class="tab === 3 ?'active':''" x-on:click.prevent="tab =3"  type="button"   > روابط التواصل الاجتماعى</button>
+                              </li>
                           </ul>
-                          <div class="tab-content" id="pills-tabContent">
-                            <div class="tab-pane fade show {{$tapid== 0?'active':''}}" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                          <div class="">
+                            <div class="" x-show="tab === 0" >
 
-
-                                <form class="settings-form" wire:submit.prevent="updateabout()">
+                                <form  wire:submit.prevent="updateabout()">
                                     <div class="row">
                                         <div class="col-sm-6 form-group">
                                             <label for="">اسم المستخدم</label>
@@ -120,21 +122,34 @@
                                 </form>
 
                             </div>
-                            <div class="tab-pane fade show {{$tapid== 1 ?'active':''}}" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+
+
+                            <div class=" " x-show="tab === 1"  >
 
                                 <form wire:submit.prevent="uploadimg">
-
-                                <div class=" col-sm-12 mb-4">
                                     @if ($img)
+                                <div class=" col-sm-12 mb-4">
 
-                                    <img src="{{$img->temporaryUrl() }}" width="100%" height="250">
 
-                                   @endif
+                                        <a wire:click.prevent="removeimage()" style="cursor: pointer" class="text-danger">
+                                        x
+                                            <img src="{{$img->temporaryUrl() }}" width="100%" height="250">
+
+                                        </a>
+
+
+
                                   </div>
-                               @if (!$img)
-                        <img src="{{ asset('storage/'.$realimage)}}" width="100%" height="250">
 
-                               @endif
+                                  @else
+
+                                  <div class=" col-sm-12 mb-4">
+                                  <img ssrc="{{$realimage!==null? asset('storage/'.$realimage):'assets/images/No_image.jpg'}}" width="100%" height="250">
+
+                              </div>
+                                  @endif
+
+
                                     <div class="mb-3 col-sm-12">
                                     <label for="{{$imageid++}}" class="form-label">اختر صوره المقدمه</label>
                                     <input  class="form-control @error("img")  is-invalid @enderror"
@@ -160,7 +175,7 @@
 
 
                             </div>
-                            <div class="tab-pane fade show {{$tapid==2 ?'active':''}}" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                            <div class=" " x-show="tab === 2" >
 
 
                                 <form wire:submit.prevent="uploadurl">
@@ -179,6 +194,147 @@
                                 </div>
                                 <button type="submit" class="btn app-btn-primary ptn-center">حفظ التغيرات</button>
 
+                                </form>
+                            </div>
+
+
+                            <div class=" " x-show="tab === 3" >
+
+
+                                <form class="" wire:submit.prevent="updatesoshal()" novalidate>
+                                    <div class="row">
+                                        <div class="col-sm-12 form-group">
+                                            <label for="">facebook</label>
+                                              <input class="form-control @error("formsochail.facebook")  is-invalid
+
+                                             @enderror"  type="url"
+                                              wire:model="formsochail.facebook"
+
+                                             />
+                                              @error('formsochail.facebook')
+                                             <div class="invalid-feedback">
+                                              {{$message}}
+                                            </div>
+
+                                             @enderror
+
+                                         </div>
+                                         <div class="col-sm-12 form-group">
+                                            <label for=""> instgram</label>
+                                              <input class="form-control @error("formsochail.instgram")  is-invalid
+
+                                             @enderror"  type="url"
+                                              wire:model="formsochail.instgram"
+
+                                             />
+                                              @error('formsochail.instgram')
+                                             <div class="invalid-feedback">
+                                              {{$message}}
+                                            </div>
+
+                                             @enderror
+
+                                         </div>
+                                         <div class="col-sm-12 form-group">
+                                            <label > حاله الحساب </label>
+                                               <div class="@error("formsochail.setstatus")  is-invalid @enderror">
+
+                                                <select class="form-control"style="padding-top:1px"
+                                                 wire:model="formsochail.setstatus">
+                                                    <option >اختر حاله الحساب</option>
+
+                                                    <option value="1">
+
+                                                        مفعل
+                                                    </option>
+                                                    <option value="0">
+                                                      غير مفعل
+
+                                                </option>
+
+
+                                                </select>
+                                               </div>
+
+                                              @error('formsochail.setstatus')
+                                             <div class="invalid-feedback">
+                                              {{$message}}
+                                            </div>
+
+                                             @enderror
+
+                                         </div>
+                                         <div class="col-sm-12 form-group">
+                                            <label for=""> linkedin</label>
+                                              <input class="form-control @error("formsochail.linkedin")  is-invalid
+
+                                             @enderror"  type="url"
+                                              wire:model="formsochail.linkedin"
+
+                                             />
+                                              @error('formsochail.linkedin')
+                                             <div class="invalid-feedback">
+                                              {{$message}}
+                                            </div>
+
+                                             @enderror
+
+                                         </div>
+                                         <div class="col-sm-12 form-group">
+                                            <label for=""> youtube</label>
+                                              <input class="form-control @error("formsochail.youtube")  is-invalid
+
+                                             @enderror"  type="url"
+                                              wire:model="formsochail.youtube"
+
+                                             />
+                                              @error('formsochail.youtube')
+                                             <div class="invalid-feedback">
+                                              {{$message}}
+                                            </div>
+
+                                             @enderror
+
+                                         </div>
+                                         <div class="col-sm-12 form-group">
+                                            <label for=""> twitter</label>
+                                              <input class="form-control @error("formsochail.twitter")  is-invalid
+
+                                             @enderror"  type="url"
+                                              wire:model="formsochail.twitter"
+
+                                             />
+                                              @error('formsochail.twitter')
+                                             <div class="invalid-feedback">
+                                              {{$message}}
+                                            </div>
+
+                                             @enderror
+
+                                         </div>
+                                         <div class="col-sm-12 form-group">
+                                            <label for=""> gmail</label>
+                                              <input class="form-control @error("formsochail.gmail")  is-invalid
+
+                                             @enderror"  type="email"
+                                              wire:model="formsochail.gmail"
+
+                                             />
+                                              @error('formsochail.gmail')
+                                             <div class="invalid-feedback">
+                                              {{$message}}
+                                            </div>
+
+                                             @enderror
+
+                                         </div>
+
+
+
+
+
+                                    <button type="submit" class="btn app-btn-primary ptn-center mt-4">حفظ التغيرات</button>
+                                </div>
                                 </form>
                             </div>
                           </div>
@@ -265,7 +421,27 @@ title: 'تم  تحديث بيانات الملف بنجاح'
 })
 
 
-})///endfunction
+})///sochal
+window.addEventListener('sochal',function(event){
+  const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 4500,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
+
+Toast.fire({
+icon: 'success',
+title: 'تم  تحديث بيانات الروابط بنجاح'
+})
+
+
+})///endfunctionsochal
 
 
 });///end minfunction

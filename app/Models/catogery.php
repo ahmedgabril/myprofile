@@ -12,4 +12,8 @@ class catogery extends Model
     protected $fillable =[
         'name',
     ];
+    public function portfolios()
+    {
+        return $this->hasMany(portfolio::class,'cat_id');
+    }
 }

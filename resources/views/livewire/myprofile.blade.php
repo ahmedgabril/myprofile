@@ -217,7 +217,7 @@
        </div>
       </div><!--end col-12-->
          <!--model add -->
-<div class=" modal fade " wire:ignore.self id="modal-role"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" wire:ignore.self id="modal-role"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
  <div class=" modal-dialog modal-lg modal-fullscreen-sm-down">
    <div class="modal-content">
      <div class="modal-header">
@@ -347,7 +347,29 @@
          </div>
 
          <div class="col-sm-12 form-group mt-4 mb-4">
-            @if ($images)
+            @if ($showmodelf && !$images)
+
+            <div class="row">
+            @foreach ($rusaltforimage as $getimg)
+
+            <div class="col-sm-3">
+
+                      <div>
+                        <img src="{{asset('storage/'.$getimg)}}" width="150" height="150"/>
+
+                      </div>
+
+                </a>
+
+            </div>
+
+
+            @endforeach
+            </div>
+            @else
+
+
+
             <div class="row">
             @foreach ($images as $img)
 
@@ -368,29 +390,11 @@
 
             @endforeach
         </div>
-        @else
 
-        @if ($showmodelf)
-        <div class="row">
-        @foreach ($rusaltforimage as $getimg)
-
-        <div class="col-sm-3">
-
-                  <div>
-                    <img src="{{asset('storage/'.$getimg)}}" width="150" height="150"/>
-
-                  </div>
-
-            </a>
-
-        </div>
+            @endif
 
 
-        @endforeach
-        </div>
-        @endif
 
-         @endif
 
           </div>
          <div class="col-sm-6 form-group">
@@ -478,7 +482,153 @@
 </div>
 <!--end model add-->
 
+ <!--model add -->
+ <div class="modal fade" wire:ignore.self id="modal-showdes"  tabindex="-2" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class=" modal-dialog modal-lg modal-fullscreen-sm-down">
+      <div class="modal-content">
 
+        <div class="modal-body">
+
+           <div class="row">
+                 <div class="col-sm-6 form-group">
+                 <label for="">اسم المشروع</label>
+                   <input class="form-control " readonly  type="text"
+                   wire:model="form.name"
+
+                   />
+
+
+              </div>
+
+
+
+             <div class="col-sm-6 form-group" >
+                <label >القسم التابع له</label>
+                   <div class="" >
+
+                    <select class="form-control" disabled id="proseed" style="padding-top:1px"
+                     wire:model="form.cat_id">
+                     <option>{{$form['cat_id']}}</option>
+
+
+                    </select>
+                   </div>
+
+
+                </div>
+
+             <div class="col-sm-6 form-group">
+               <label for="">اسم العميل</label>
+                 <input class="form-control " readonly  type="text"
+                 wire:model="form.clint_name"
+
+                 />
+
+
+            </div>
+                @if ($form['date'])
+                <div class="col-sm-6 form-group">
+                    <label for="">تاريخ الانشاء</label>
+                    <input class="form-control" readonly type="text" id="dateField"
+
+                    wire:model="form.date"
+
+                    />
+
+
+                </div>
+                @else
+                <div class="col-sm-6 form-group">
+                    <label for="">تاريخ الانشاء</label>
+                    <input class="form-control" readonly type="text" id="dateField"
+
+                    wire:model="form.date" value="UNknowen"
+
+                    />
+
+
+                </div>
+
+                @endif
+            <div class="col-sm-6 form-group">
+               <label for="">رابط المشروع</label>
+                 <input class="form-control" readonly type="url"
+                 wire:model="form.project_url"
+
+                 />
+
+
+            </div>
+            <div class="col-sm-6 form-group">
+               <label for="">رابط فيديو يوتيوب</label>
+                 <input class="form-control" readonly type="url"
+                 wire:model="form.video_url"
+
+                 />
+
+
+            </div>
+
+            <div class="col-sm-12 form-group mt-4 mb-4">
+
+               @if ($rusaltforimage)
+
+
+               <div class="row">
+               @foreach ($rusaltforimage as $getimg)
+
+               <div class="col-sm-3">
+
+                         <div>
+                           <img src="{{asset('storage/'.$getimg)}}" width="150" height="150"/>
+
+                         </div>
+
+                   </a>
+
+               </div>
+
+
+               @endforeach
+               </div>
+               @endif
+             </div>
+
+            <div class="col-sm-6 form-group">
+               <label for="">عنوان اوصف صغير </label>
+                 <textarea class="form-control"readonly rows="2"
+                 wire:model="form.title"
+
+                 ></textarea>
+
+
+            </div>
+
+
+            <div class="col-sm-12 form-group">
+               <label for="">شرح تفاصيل المشروع باستفاضه</label>
+                 <textarea class="form-control " readonly rows="4"
+                 wire:model="form.dec"
+
+                 ></textarea>
+
+            </div>
+
+
+            <div class="justify-content-sm-center modal-footer">
+
+                <button type="button" class="btn-danger" data-dismiss="modal"><svg class="svg-inline--fa fa-times fa-w-11 ml-2" aria-hidden="true" focusable="false" data-prefix="fa" data-icon="times" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512" data-fa-i2svg=""><path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path></svg><!-- <i class="ml-2 fa fa-times"></i> Font Awesome fontawesome.com --> الغاء</button>
+              </div>
+
+      </div><!--endrow-->
+
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+   </div>
+   </div>
+   <!--end model add-->
 
      </div><!--end mainrow-->
     </div> <!--end container-->

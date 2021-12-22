@@ -47,10 +47,11 @@
 
     @include('fornt.assest.header')
 
-      {{$slot}}
 
 
+      @yield('content')
 
+ {{$slot}}
 
     @include('fornt.assest.footer')
     <div id="preloader"></div>

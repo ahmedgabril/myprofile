@@ -7,11 +7,11 @@
 
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
-          <li><a class="active" href="index.html">الرئيسه</a></li>
-          <li><a href="about.html">عنى</a></li>
-          <li><a href="resume.html">السيره الذاتيه</a></li>
-          <li><a href="services.html">الخدمات</a></li>
-          <li><a href="portfolio.html">سابقه اعمالى </a></li>
+          <li><a class="active" href="#hero">الرئيسه</a></li>
+          <li><a href="#about">عنى</a></li>
+          <li><a href="#skills">المهارات</a></li>
+          <li><a href="#services">الخدمات</a></li>
+          <li><a href="#portfolio">سابقه اعمالى </a></li>
           <li><a href="contact.html">تواصل معى </a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>

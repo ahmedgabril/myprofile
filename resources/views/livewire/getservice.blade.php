@@ -112,6 +112,7 @@
                          <th>ID</th>
                          <th>اسم الخدمه</th>
                          <th>وصف الخدمه المختصر</th>
+                         <th>حاله الظهور</th>
 
                          <th><i class="fas fa-wrench"></i></th>
 
@@ -126,6 +127,13 @@
                          <td>{{ $getdata->name }}</td>
 
                          <td>{{ Str::substr($getdata->title, 0, 35) }}...</td>
+                         <td>
+                         <span class="{{$getdata->status ===1 ? 'badge bg-success':'badge bg-danger'}}">
+                            {{$getdata->status ===1 ? 'مفعل':'غير مفعل'}}
+                        </span>
+
+                         </td>
+
                          <td style="display: none">{{ $getpaginateindex = $index }}</td>
                           <td>
 
@@ -247,7 +255,7 @@
            </div>
            <div class="col-sm-6 form-group">
              <label >السعر</label>
-               <input type="number"  class="form-control @error("form.price") is-invalid @enderror"
+               <input type="text"  class="form-control @error("form.price") is-invalid @enderror"
 
                 wire:model="form.price"/>
 
@@ -261,20 +269,48 @@
 
           </div>
 
-          <div class="col-sm-6 form-group">
-            <label >ايفونه //<span class="text-danger"style="font-size: 9px">(only bootstrab-icon or font-awesome)</span></label>
-              <input type="text"  class="form-control @error("form.icon") is-invalid @enderror"
+          @if ($icon)
+          <div class=" col-sm-12 mb-4">
 
 
-               wire:model="form.icon"/>
+                  <a wire:click.prevent="removeimage()" style="cursor: pointer" class="text-danger">
+                  x
+                      <img src="{{$icon->temporaryUrl() }}" width="100%" height="250">
+
+                  </a>
 
 
-              @error('form.icon')
-             <div class="invalid-feedback">
-              {{$message}}
+
             </div>
 
-             @enderror
+            @else
+            @if ($showmodelf && !$icon)
+            <div class=" col-sm-12 mb-4 mt-4 ">
+            <img src="{{$realimage!==null? asset('storage/'.$realimage):'assets/images/No_image.jpg'}}" width="100%" height="250">
+
+        </div>
+            @endif
+            @endif
+          <div class="col-sm-6 form-group ">
+            <label >صوره الخدمه</label>
+              <input type="file"
+               class="form-control @error("icon") is-invalid @enderror"
+
+              accept="image/*"
+               wire:model="icon"/>
+
+
+               <div wire:loading wire:target="icon">
+                <span class="text-success" >جارى  تحميل الصوره</span></div>
+
+            @error('icon')
+            <div class="invalid-feedback">
+             {{$message}}
+           </div>
+
+            @enderror
+
+
 
          </div>
 
@@ -295,8 +331,8 @@
 
          </div>
 
-         <div class="col-sm-12 form-group">
-            <label >صور للخدمه</label>
+         <div class="col-sm-6 form-group">
+            <label >رابط صوره</label>
               <input type="text"  class="form-control @error("form.img") is-invalid @enderror"
 
 
@@ -311,6 +347,25 @@
              @enderror
 
          </div>
+         <div class="col-sm-6 form-group">
+            <label>حاله الظهور فى الموقع</label>
+               <div class=" @error("form.status") is-invalid @enderror">
+
+                <select class="form-control"
+                 style="padding-top:1px" wire:model="form.status">
+                <option value="1" selected> مفعل</option>
+               <option value="2">غير مفعل</option>
+
+
+                </select>
+               </div>
+               @error('form.status')
+               <div class="invalid-feedback">
+                {{$message}}
+              </div>
+
+               @enderror
+             </div>
          <div class="mb-3 col-sm-12">
             <label for="setting-input-3" class="form-label">وصف قصير للخدمه </label>
             <textarea wire:model="form.title" rows="2"
@@ -383,18 +438,11 @@
               </div>
               <div class="col-sm-6 form-group">
                 <label >السعر</label>
-                  <input type="number" disabled class="form-control"
+                  <input type="text" readonly class="form-control"
 
                    wire:model="form.price"/>
              </div>
 
-             <div class="col-sm-6 form-group">
-               <label >ايفونه</label>
-                 <input type="text" disabled class="form-control"
-
-
-                  wire:model="form.icon"/>
-            </div>
 
             <div class="col-sm-6 form-group">
                <label >رابط فيديو</label>
@@ -406,18 +454,38 @@
             </div>
             <div class="col-sm-6 form-group">
                 <label >تاريخ الانساء</label>
-                  <input type="text"  class="form-control"
+                  <input type="text" readonly class="form-control"
 
 
                    wire:model="form.created_at"/>
 
              </div>
 
-            <div class="col-sm-12 form-group">
-               <label >صور للخدمه</label>
+            <div class="col-sm-6 form-group">
+               <label >رابط صوره الخدمه</label>
                  <input type="text" disabled class="form-control"
 
                   wire:model="form.img"/>
+
+            </div>
+            <div class="col-sm-6 form-group">
+                <label>حاله الظهور فى الموقع</label>
+
+
+                    <select class="form-control"
+                     style="padding-top:1px"   wire:model="form.status" disabled>
+
+                    <option value="1"> مفعل</option>
+
+                   <option value="2">غير مفعل</option>
+
+
+                    </select>
+
+                 </div>
+            <div class=" col-sm-12 mb-4 mt-4 ">
+                <label > صوره الخدمه</label>
+                <img src="{{ asset('storage/'.$realimage)}}" width="100%" height="250">
 
             </div>
             <div class="mb-3 col-sm-12">

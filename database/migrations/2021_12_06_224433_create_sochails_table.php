@@ -14,13 +14,14 @@ class CreateSochailsTable extends Migration
     public function up()
     {
         Schema::create('sochails', function (Blueprint $table) {
+            $table->id();
             $table->string('facebook')->nullable();
             $table->string('instgram')->nullable();
             $table->text('linkedin')->nullable();
             $table->string('youtube')->nullable();
             $table->string('twitter')->nullable();
             $table->string('gmail')->nullable();
-            $table->tinyInteger('status')->default(1);
+            $table->tinyInteger('setstatus')->default(1)->nullable();
             $table->timestamps();
 
         });

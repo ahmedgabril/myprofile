@@ -33,6 +33,8 @@ class Myprofile extends Component
     public $sortByany = 'id';
     public $searsh;
     public $rusaltforimage;
+    public $getfinalrusaltforimage=[];
+
     public $images =[];
     public $form = [
 
@@ -148,7 +150,7 @@ public function removeimages($ides)
 
     if(!empty($this->images)){
         foreach($this->images as $key=>$img){
-            $this->images[$key]= $img->storeAs('images/'.$this->form['name'],$img->getClientOriginalName(),'public');
+            $this->getfinalrusaltforimage[$key]= $img->storeAs('images/'.$this->form['name'],$img->getClientOriginalName(),'public');
 
            }
 
@@ -161,16 +163,16 @@ public function removeimages($ides)
         'project_url'=> $this->form['project_url'],
         'video_url'=> $this->form['video_url'],
         'cat_id' => $this->form['cat_id'],
-         'img'   => $this->images
+         'img'   => $this->getfinalrusaltforimage
 
     ]);
-    $this->images = "";
 
+    $this->getfinalrusaltforimage = "";
 
       $this->dispatchBrowserEvent("add",['message'=> "تمت  اضافه البيانات بنجاح 🙂"]);
     }
 
-return;
+
 
 
 /*
@@ -211,7 +213,7 @@ public function edit($bid){
 
 public function showdes($bid){
 
-    $getportfolio = portfolio::findOrFail($bid);
+    $getportfolio = portfolio::with('catogery')->whereId($bid)->first();
 
     $this->form['name']         = $getportfolio->name;
     $this->form['title']        = $getportfolio->title;
@@ -220,8 +222,8 @@ public function showdes($bid){
     $this->form['dec']          =  $getportfolio->dec;
     $this->form['project_url']  = $getportfolio->project_url;
     $this->form['video_url']    = $getportfolio->video_url ;
-    $this->form['cat_id']       = $getportfolio->cat_id;
-
+    $this->form['cat_id']       = $getportfolio->catogery->name;
+    $this->rusaltforimage       = $getportfolio->img;
 
 }
 ///update data//
@@ -250,11 +252,11 @@ public function updateone(){
 
        if(!empty($this->images)){
         foreach($this->images as $key=>$img){
-            $this->images[$key]= $img->storeAs('images/'.$this->form['name'],$img->getClientOriginalName(),'public');
+        $this->getfinalrusaltforimage[$key]= $img->storeAs('images/'.$this->form['name'],$img->getClientOriginalName(),'public');
 
            }
         }else{
-            $this->images = $this->rusaltforimage;
+            $this->getfinalrusaltforimage = $this->rusaltforimage;
            }
 
     $updateportfolio = portfolio::findOrFail($this->globalids);
@@ -266,7 +268,7 @@ public function updateone(){
     $updateportfolio->project_url = $this->form['project_url'];
     $updateportfolio->video_url = $this->form['video_url'];
     $updateportfolio->cat_id = $this->form['cat_id'];
-    $updateportfolio->img =     $this->images;
+    $updateportfolio->img =    $this->getfinalrusaltforimage;
     $updateportfolio->save();
 
   $this->dispatchBrowserEvent("add",['message'=> "تمت  تحديث البيانات بنجاح 🙂"]);

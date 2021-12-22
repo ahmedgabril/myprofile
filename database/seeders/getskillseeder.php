@@ -19,7 +19,7 @@ class getskillseeder extends Seeder
      $faker = faker::create();
         DB::table('skills')->delete();
 
-        $count=100;
+        $count=15;
 
         for($i=1;$i<=$count;$i++){
             $data=[

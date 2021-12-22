@@ -3,11 +3,12 @@
 namespace App\Http\Livewire;
 
 use App\Models\about;
+use App\Models\sochail;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
-use function PHPSTORM_META\type;
+
 
 class Getstting extends Component
 {
@@ -16,37 +17,59 @@ public $form=[
 'name'=>'',
 'title'=>'',
 'status'=>'',
-
 'dec'=>'',
 
 ];
+public $formsochail=[
+    'facebook'=>'',
+    'instgram'=>'',
+    'linkedin'=>'',
+    'youtube'=>'',
+    'twitter'=>'',
+    'gmail'=>'',
+    'setstatus'=>'',
+];
+
 public $imageid=1;
-public $tapid=0;
+
 public $img;
 public $url;
 public $realimage;
 
-public function mount(){
-    $this->getdata();
+public  function mount()
+{
 
+    $this->getdata();
 }
 
     public function render()
     {
 
+       $this->getrealimage();
         return view('livewire.getstting');
     }
 
 
+    public function getrealimage()
+    {
+        $about = about::select('id','img')->first();
+        $this->realimage    =  $about->img;
 
+    }
 
             public function updated($propertyName)
             {
                 $this->validateOnly($propertyName, [
                     'form.name' => 'required|max:30',
-                    'img' => 'image|max:1024',
+                    'img' => 'sometimes|image|max:1024',
 
                     'url' => 'file|mimes:docx,pdf|max:5120',
+                   'formsochail.facebook' => 'sometimes|nullable|url',
+                    'formsochail.instgram' => 'sometimes|nullable|url',
+                    'formsochail.linkedin' => 'sometimes|nullable|url',
+                    'formsochail.youtube' => 'sometimes|nullable|url',
+                    'formsochail.twitter' => 'sometimes|nullable|url',
+                    'formsochail.gmail' => 'sometimes|email',
                 ],[
 
                 'form.name' => 'اسم المستخدم مطلوب',
@@ -63,30 +86,36 @@ public function mount(){
                 ]);
 
             }
+            public function removeimage()
+            {
 
+                $this->img = "";
+            }
 
             public function getdata(){
 
-
-
              $about = about::first();
+             $soshal = sochail::first();
               $this->form['name']   =    $about->name;
               $this->form['status'] =   $about->status;
+              $this->formsochail['setstatus'] =$soshal->setstatus;
               $this->form['title']  =   $about->title;
               $this->form['dec']  =     $about->dec;
-              $this->realimage    =    $about->img;
+              $this->formsochail['facebook']  =$soshal->facebook;
+              $this->formsochail['instgram']  =$soshal->instgram;
+              $this->formsochail['linkedin']  =$soshal->linkedin;
+              $this->formsochail['youtube']  =$soshal->youtube;
+              $this->formsochail['twitter']  =$soshal->twitter;
+              $this->formsochail['gmail']    =   $soshal->gmail;
               $this->url  =            $about->url;
-
-
 
             }
         public function uploadimg()
         {
 
 
-            $this->tabid = 1;
             $this->validate([
-                'img' => 'image|max:1024', // 1MB Max
+                'img' => 'sometimes|image|max:1024', // 1MB Max
             ],[
 
                 'img.max' => 'حجم الصوره المسموح به 1ميجا',
@@ -101,19 +130,17 @@ public function mount(){
 
 
             $getimg->save();
+            $this->img="";
             $this->dispatchBrowserEvent('updateimg');
             //$this->restimagetemprorayurl();
 
             }
 
         }
-        public function restimagetemprorayurl()
-        {
-          $this->img= null;
-        }
+
         public function uploadurl()
         {
-            $this->tabid = 2;
+
 
 
             $this->validate([
@@ -146,10 +173,6 @@ public function mount(){
 
             'form.name' => 'اسم المستخدم مطلوب',
 
-
-
-
-
             ]);
 
 
@@ -162,6 +185,34 @@ public function mount(){
                  $about->save();
                  $this->dispatchBrowserEvent('aboutupdated');
 
+
+            }
+            public function updatesoshal()
+            {
+
+
+                $this->validate([
+
+                   'formsochail.facebook' => 'sometimes|nullable|url',
+                    'formsochail.instgram' => 'sometimes|nullable|url',
+                    'formsochail.linkedin' => 'sometimes|nullable|url',
+                    'formsochail.youtube' => 'sometimes|nullable|url',
+                    'formsochail.twitter' => 'sometimes|nullable|url',
+                    'formsochail.gmail' => 'sometimes|email',
+
+
+                ]);
+
+                    $soshal = sochail::first();
+                    $soshal->facebook =  $this->formsochail['facebook']  ;
+                    $soshal->instgram =  $this->formsochail['instgram']  ;
+                    $soshal->linkedin =  $this->formsochail['linkedin']  ;
+                    $soshal->youtube  =  $this->formsochail['youtube']  ;
+                    $soshal->twitter =   $this->formsochail['twitter']  ;
+                    $soshal->gmail   =   $this->formsochail['gmail']     ;
+                    $soshal->setstatus   =   $this->formsochail['setstatus'] ;
+                    $soshal->save();
+                     $this->dispatchBrowserEvent('sochal');
 
 
             }

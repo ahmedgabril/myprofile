@@ -22,6 +22,7 @@ class CreateServicesTable extends Migration
             $table->string('img')->nullable();
             $table->string('price')->nullable();
             $table->string('url')->nullable();
+            $table->tinyInteger('status')->default(1)->nullable();
             $table->timestamps();
         });
     }

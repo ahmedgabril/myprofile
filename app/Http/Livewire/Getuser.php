@@ -48,7 +48,7 @@ class Getuser extends Component
 
     public function render()
     {
-       //app()[PermissionRegistrar::class]->forgetCachedPermissions();
+       app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
         $user = User::query()
 
