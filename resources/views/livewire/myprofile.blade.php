@@ -393,9 +393,6 @@
 
             @endif
 
-
-
-
           </div>
          <div class="col-sm-6 form-group">
             <label for="">عنوان اوصف صغير </label>

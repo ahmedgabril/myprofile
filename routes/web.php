@@ -13,6 +13,10 @@ use App\Http\Livewire\Getstting;
 use App\Http\Livewire\Myprofile;
 use App\Http\Livewire\Getservice;
 use App\Http\Controllers\Getalldata;
+use App\Http\Livewire\Front\Aboutme;
+use App\Http\Livewire\Front\Getservicesdec;
+use App\Http\Livewire\Front\Portfolio;
+use App\Http\Livewire\Front\Skills as FrontSkills;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Livewire\Front\Welecome;
 use Illuminate\Support\Facades\Route;
@@ -27,13 +31,18 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Auth::routes();
 Route::get('/', function () {
     return view('livewire.front.welecome');
 });
 Route::get('/',Welecome::class)->name('home');
+Route::get('/aboutme',Aboutme::class)->name('aboutme');
+Route::get('/portfolio',Portfolio::class)->name('portfolio');
+Route::get('/skills',FrontSkills::class)->name('skills');
+Route::get('/services',Getservicesdec::class)->name('services');
 
-Auth::routes();
+/**dashbord route from here */
+
 Route::get('/logout', [App\Http\Controllers\HomeController::class, 'logout'])->name('logout');
 //Route::get('/', [Getalldata::class, 'home'])->name('home');
 //Route::get('/about', [Getalldata::class, 'about'])->name('about');

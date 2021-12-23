@@ -33,9 +33,12 @@ class Getservice extends Component
     public $sortDirections = 'asc';
     public $sortByany = 'id';
     public $searsh;
-    public $realimage;
-    public $icon;
+    public $realimage,
+    $rusaltforimage,
+    $getfinalrusaltforimage=[];
 
+    public $icon;
+    public $img = [];
 
 
 
@@ -44,7 +47,6 @@ class Getservice extends Component
         'title' =>'',
          'status'=> 1,
         'dec' =>'',
-       'img' =>'',
        'price' =>'',
        'url' =>'',
        'created_at'=> '',
@@ -84,7 +86,11 @@ public function removeimage()
  }
 
 
+public function removeimages($imgid)
+{
+    array_splice($this->img,$imgid,1);
 
+}
 
 
  public function updated($propertyName)
@@ -97,8 +103,9 @@ public function removeimage()
         'icon' => 'sometimes|nullable|image|max:1024',
         'form.status' => 'sometimes|nullable|alpha_num',
         'form.url' => 'sometimes|nullable|url',
-        'form.img' => 'sometimes|nullable|url',
-
+        'img' => 'sometimes|nullable',
+        'img.*' => 'image|max:3072',
+        'form.price' => 'required|string',
 
 
     ],[
@@ -128,7 +135,6 @@ public function removeimage()
  }
 }
  public function add(){
-
     $this->validate([
         'form.name' => 'required|string|unique:services,name|max:255',
         'form.title' => 'required|string',
@@ -136,7 +142,9 @@ public function removeimage()
         'icon' => 'sometimes|nullable|image|max:1024',
         'form.status' => 'sometimes|nullable|alpha_num',
         'form.url' => 'sometimes|nullable|url',
-        'form.img' => 'sometimes|nullable|url',
+        'form.price' => 'required|string',
+        'img' => 'sometimes|nullable',
+        'img.*' => 'image|max:3072',
 
     ],[
 
@@ -148,43 +156,30 @@ public function removeimage()
     ]);
 
 
+    if(!empty($this->img)){
+        foreach($this->img as $key=>$getimg){
+        $this->getfinalrusaltforimage[$key]= $getimg->storeAs('service_image/'.$this->form['name'],$getimg->getClientOriginalName(),'public');
 
+           }
+        }
+        services::create([
+            'name' => $this->form['name'],
+            'title'   => $this->form['title'],
+            'dec' => nl2br($this->form['dec']),
+            'url'=> $this->form['url'],
+            'price'=> $this->form['price'],
+            'status' => $this->form['status'],
+             'img'   => $this->getfinalrusaltforimage
 
-
-   $setuser =  services::create([
-
-   'name'=> $this->form['name'],
-   'title'=> $this->form['title'],
-   'icon'=> $this->icon,
-   'dec'=> $this->form['dec'],
-   'img'=> $this->form['img'],
-   'url'=> $this->form['url'],
-   'price'=> $this->form['price'],
-   'status'=> $this->form['status']
-
-
-
-    ]);
-
-
+        ]);
 
 
    $this->reset();
     $this->dispatchBrowserEvent("add",['message'=> "تمت  اضافه البيانات بنجاح 🙂"]);
 
-
-/*
-    $getlog = new loge();
-    $getlog->loges_action_id =  $addrole->id;
-    $getlog->loges_action_type =  "اضافه وظيفه";
-    $getlog->loges_action_by = auth()->user()->name;
-    $getlog->loges_action_des = "تم اضافه وظيفه من قبل ".auth()->user()->name;
-    $getlog->save();
-
-*/
 }
-public function edit($bid){
-    $this->showmodelf= true;
+      public function edit($bid){
+      $this->showmodelf= true;
     if($this->showmodelf){
         $this->dispatchBrowserEvent("show-model");
         $this->globalids = $bid;
@@ -194,7 +189,7 @@ public function edit($bid){
          $this->form['title'] =$services->title;
          $this->realimage =   $services->icon;
          $this->form['dec']=  $services->dec;
-         $this->form['img']=  $services->img;
+         $this->rusaltforimage = $services->img;
          $this->form['url']=  $services->url;
          $this->form['price']=  $services->price;
          $this->form['status']=  $services->status;
@@ -235,8 +230,9 @@ public function updateone(){
         'icon' => 'sometimes|nullable|image|max:1024',
         'form.status' => 'sometimes|nullable|alpha_num',
         'form.url' => 'sometimes|nullable|url',
-        'form.img' => 'sometimes|nullable|url',
-
+        'img' => 'sometimes|nullable',
+        'img.*' => 'image|max:3072',
+        'form.price' => 'required|string',
 
     ],[
 
@@ -259,9 +255,16 @@ public function updateone(){
   }else{
     $updateservices->icon = $this->realimage;
   }
+  if(!empty($this->img)){
+    foreach($this->img as $key=>$getimg){
+    $this->getfinalrusaltforimage[$key]= $getimg->storeAs('images/'.$this->form['name'],$getimg->getClientOriginalName(),'public');
 
-  $updateservices->dec = $this->form['dec'];
-  $updateservices->img = $this->form['img'];
+       }
+    }else{
+        $this->getfinalrusaltforimage = $this->rusaltforimage;
+    }
+  $updateservices->dec = nl2br($this->form['dec']);
+  $updateservices->img = $this->getfinalrusaltforimage;
   $updateservices->url = $this->form['url'];
   $updateservices->price = $this->form['price'];
   $updateservices->status = $this->form['status'];
@@ -269,16 +272,8 @@ public function updateone(){
 
 
   $this->dispatchBrowserEvent("add",['message'=> "تمت  تحديث البيانات بنجاح 🙂"]);
-  // session()->flash("message", "تم اضافه بيانات الفرع  بنجاح ");
   $this->reset();
-  /*
-   $getlog = new loge();
-   $getlog->loges_action_id =  $updatedata->id;
-   $getlog->loges_action_type =  "تعديل بيانات  رحله";
-   $getlog->loges_action_by = auth()->user();
-   $getlog->loges_action_des = "تم اضافه التعديل  من قبل ".auth()->user();
-   $getlog->save();
-*/
+
 }
 public function getcurantid($getcurantid){
 $this->idfordelete = $getcurantid;

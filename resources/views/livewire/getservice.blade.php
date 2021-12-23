@@ -219,7 +219,7 @@
       </div><!--end col-12-->
          <!--model add -->
 <div class=" modal fade " wire:ignore.self id="modal-role"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
- <div class=" modal-dialog modal-fullscreen-sm-down">
+ <div class=" modal-dialog modal-lg modal-fullscreen-md-down">
    <div class="modal-content">
      <div class="modal-header">
        @if (!$showmodelf)
@@ -291,8 +291,78 @@
         </div>
             @endif
             @endif
+            <div class="col-sm-12 form-group mt-4 mb-4">
+                @if ($showmodelf && !$img && $rusaltforimage)
+
+                <div class="row">
+                @foreach ($rusaltforimage as $getimg)
+
+                <div class="col-sm-3">
+
+                          <div>
+                            <img src="{{asset('storage/'.$getimg)}}" width="150" height="150"/>
+
+                          </div>
+
+                    </a>
+
+                </div>
+
+
+                @endforeach
+                </div>
+                @else
+
+
+
+                <div class="row">
+                @foreach ($img as $getimg)
+
+                <div class="col-sm-3">
+                    <a href="#" wire:click.prevent="removeimages({{$loop->index}})" style="color:crimson">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                          </svg>
+                          <div>
+                            <img src="{{ $getimg->temporaryUrl() }}" width="100%" height="100%"/>
+
+                          </div>
+
+                    </a>
+
+                </div>
+
+
+                @endforeach
+            </div>
+
+                @endif
+
+              </div>
+             <div class="col-sm-6 form-group">
+                <label for="">رفع مجموعه صور للخدمه</label>
+                  <input class="form-control " type="file"
+                   multiple="" accept="image/*" wire:model="img">
+
+
+                   <div wire:loading="" wire:target="img">
+
+                    <div class="d-flex justify-content: center mt-4">
+                        <div class="d-flex align-items-center">
+                            <strong class="ms-4 text-success">جارى التحميل</strong>
+                            <div class="spinner-border ml-auto text-success" role="status" aria-hidden="true"></div>
+                          </div>
+
+                     </div>
+                   </div>
+
+               </div>
+
+
+
+
           <div class="col-sm-6 form-group ">
-            <label >صوره الخدمه</label>
+            <label >صوره الخدمه الرئيسه</label>
               <input type="file"
                class="form-control @error("icon") is-invalid @enderror"
 
@@ -314,7 +384,9 @@
 
          </div>
 
-         <div class="col-sm-6 form-group">
+
+
+           <div class="col-sm-6 form-group">
             <label >فيديو //<span class="text-danger" style="font-size: 11px">رابط فيديو يوتيوب</span></label>
               <input type="text"  class="form-control @error("form.url") is-invalid @enderror"
 
@@ -331,22 +403,6 @@
 
          </div>
 
-         <div class="col-sm-6 form-group">
-            <label >رابط صوره</label>
-              <input type="text"  class="form-control @error("form.img") is-invalid @enderror"
-
-
-               wire:model="form.img"/>
-
-
-              @error('form.img')
-             <div class="invalid-feedback">
-              {{$message}}
-            </div>
-
-             @enderror
-
-         </div>
          <div class="col-sm-6 form-group">
             <label>حاله الظهور فى الموقع</label>
                <div class=" @error("form.status") is-invalid @enderror">

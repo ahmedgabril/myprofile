@@ -121,9 +121,10 @@ body {
   --------------------------------------------------------------*/
   #header {
     background: #000;
-    box-shadow: 0px 0px 25px 0 rgba(238, 224, 224, 0.08);
+    box-shadow: 0px 0px 25px 0 rgb(0 0 0 / 91%);
     z-index: 997;
-    padding: 15px 0;
+    padding: 15px 35px;
+    /* margin-right: 40px; */
   }
   #header .logo {
     font-size: 32px;
@@ -153,12 +154,12 @@ body {
     padding-right: 15px;
   }
   .header-social-links a {
-    color: #d2d0cf;
+    color: #0832ff;
     padding-left: 6px;
     display: inline-block;
     line-height: 0px;
     transition: 0.3s;
-    font-size: 16px;
+    font-size: 20px;
     margin-top: 8px;
   }
   .header-social-links a:hover {
@@ -395,7 +396,7 @@ body {
     color: #ce2222;
   }
   #hero h2 {
-    color: #34b7a7;
+    color: #240218;
     margin: 10px 0 0 0;
     font-size: 22px;
     font-family: bold;
@@ -1133,4 +1134,39 @@ body {
         .card{
 
             width: 100%!important;
+           box-shadow:  0 0.125rem 0.25rem rgb(0 0 0 / 8%) !important;
+            border: 1px solid rgb(191 186 186 / 13%)!important;
         }
+        .carousel-control-next-icon {
+            background-color: #b50505!important;}
+      .carousel-control-prev-icon {
+                background-color: #b50505!important;
+            }
+            .spinner-border {
+
+                width: 4rem;
+                height: 4rem;
+
+                border: 0.5em solid currentColor;
+                border-right-color: transparent;
+                margin-top: 200px;
+
+                color: #089f67;}
+                .list-group {
+
+                    padding-left: 0;
+                    margin-bottom: 0;
+                    border-radius: 0.50rem!important;
+                    padding-right: 0px!important;
+                    margin-right: auto!important;
+                    margin-left: auto!important;
+                    width: 700px!important;
+                    margin-top: 50px!important;}
+
+                    .list-group-item{
+
+                        border: 2px solid rgb(243 238 238 / 13%)!important;
+                        background-color: #000!important;
+                        color: #fff!important;
+                        padding: 15px!important;
+                    }

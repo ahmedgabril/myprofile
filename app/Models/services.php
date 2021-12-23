@@ -9,5 +9,8 @@ class services extends Model
 {
     use HasFactory;
 protected $guarded =[];
+protected $casts =[
+    'img' => 'array'
 
+    ];
 }

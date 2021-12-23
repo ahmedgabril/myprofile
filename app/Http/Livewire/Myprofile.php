@@ -204,7 +204,7 @@ public function edit($bid){
    $this->form['video_url']    = $getportfolio->video_url ;
    $this->form['cat_id']       = $getportfolio->cat_id;
    $this->rusaltforimage       = $getportfolio->img;
-  // $this->images       = $getportfolio->img;
+
     }
     //
 

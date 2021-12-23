@@ -7,22 +7,16 @@
 
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
-          <li><a class="active" href="#hero">الرئيسه</a></li>
-          <li><a href="#about">عنى</a></li>
-          <li><a href="#skills">المهارات</a></li>
-          <li><a href="#services">الخدمات</a></li>
-          <li><a href="#portfolio">سابقه اعمالى </a></li>
-          <li><a href="contact.html">تواصل معى </a></li>
+          <li><a class="{{request()->is('/')?'active':''}}" href="{{route('home')}}">الرئيسه</a></li>
+          <li><a class="{{request()->is('aboutme')?'active':''}}" href="{{route('aboutme')}}">عنى</a></li>
+          <li><a class="{{request()->is('services')?'active':''}}" href="{{route('services')}}">الخدمات</a></li>
+          <li><a class="{{request()->is('portfolio')?'active':''}}" href="{{route('portfolio')}}">سابقه اعمالى </a></li>
+          <li><a class="{{request()->is('contactme')?'active':''}}" href="contact.html">تواصل معى </a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
-      <div class="header-social-links">
-        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
-      </div>
+
 
     </div>
 
