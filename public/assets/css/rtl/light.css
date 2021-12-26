@@ -6530,7 +6530,7 @@ fieldset:disabled .btn {
     width: 2rem;
     height: 2rem;
     vertical-align: -0.125em;
-    border: .25em solid currentColor;
+    border: .40em solid currentColor;
     border-right-color: transparent;
     border-radius: 50%;
     -webkit-animation: .75s linear infinite spinner-border;
@@ -12380,3 +12380,28 @@ button.close:focus {
             padding-right: 50px;
             }
 
+     .spinner-border {
+
+                width: 4rem;
+                height: 4rem;
+
+                border: 0.5em solid currentColor;
+                border-right-color: transparent;
+
+
+                  animation: .75s linear infinite spinner-border;
+                  vertical-align: -0.125em;
+                color: #089f67;}
+                .fullspaner{
+                    position: fixed;
+                    top: 0px;
+                    left: 0px;
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    z-index: 999999999;
+                    background: #fff;
+
+                }

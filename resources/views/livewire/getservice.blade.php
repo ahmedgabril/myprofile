@@ -1,6 +1,5 @@
 <div>
 
-
     <div class="container">
 
      <div class="row mb-4">
@@ -101,7 +100,7 @@
                 </div> <!-- /.end-row-card-header -->
              </div>
              <!-- /.card-header -->
-              <x-spaner/>
+             <x-spaner wire:loading wire:target="pagenate,sortDirections" />
              <div class="card-body"wire:loading.remove  wire:target="pagenate,sortDirections"  style="display: block;">
 
                <div class="row">
@@ -218,6 +217,7 @@
        </div>
       </div><!--end col-12-->
          <!--model add -->
+
 <div class=" modal fade " wire:ignore.self id="modal-role"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
  <div class=" modal-dialog modal-lg modal-fullscreen-md-down">
    <div class="modal-content">
@@ -233,9 +233,13 @@
          <span aria-hidden="true">×</span>
        </button>
      </div>
-     <div class="modal-body">
-         <form  wire:submit.prevent="{{!$showmodelf ? 'add' :'updateone'}}" novalidate="novalidate">
 
+     <div class="modal-body">
+
+        <x-modelspaner wire:loading wire:target="add,updateone" />
+
+
+         <form  wire:submit.prevent="{{!$showmodelf ? 'add' :'updateone'}}" novalidate="novalidate">
         <div class="row">
               <div class="col-sm-6 form-group">
               <label for="">اسم الخدمه</label>
@@ -345,7 +349,7 @@
                    multiple="" accept="image/*" wire:model="img">
 
 
-                   <div wire:loading="" wire:target="img">
+                   <div wire:loading wire:target="img">
 
                     <div class="d-flex justify-content: center mt-4">
                         <div class="d-flex align-items-center">
@@ -361,7 +365,7 @@
 
 
 
-          <div class="col-sm-6 form-group ">
+          <div class="col-sm-6 form-group mb-4 ">
             <label >صوره الخدمه الرئيسه</label>
               <input type="file"
                class="form-control @error("icon") is-invalid @enderror"
@@ -371,8 +375,15 @@
 
 
                <div wire:loading wire:target="icon">
-                <span class="text-success" >جارى  تحميل الصوره</span></div>
 
+                <div class="d-flex justify-content: center mt-4 mb-4">
+                    <div class="d-flex align-items-center">
+                        <strong class="ms-4 text-success">جارى التحميل</strong>
+                        <div class="spinner-border ml-auto text-success" role="status" aria-hidden="true"></div>
+                      </div>
+
+                 </div>
+               </div>
             @error('icon')
             <div class="invalid-feedback">
              {{$message}}
@@ -453,9 +464,15 @@
 
      <div class="modal-footer mt-4">
        @if (!$showmodelf)
-       <button type="submit"  class="btn btn-primary"> <i class="ml-2 fa fa-save"></i> حفظ</button>
+       <button type="submit"  class="btn btn-primary">
+            <i class="ml-2 fa fa-save"></i>
+
+             حفظ</button>
        @else
-       <button type="submit"  class="btn btn-primary"> <i class="ml-2 fa fa-save"></i>    حفظ التغيرات</button>
+       <button type="submit"  class="btn btn-primary">
+           <i class="ml-2 fa fa-save"></i>
+
+             حفظ التغيرات</button>
 
        @endif
 
@@ -517,14 +534,8 @@
 
              </div>
 
-            <div class="col-sm-6 form-group">
-               <label >رابط صوره الخدمه</label>
-                 <input type="text" disabled class="form-control"
 
-                  wire:model="form.img"/>
-
-            </div>
-            <div class="col-sm-6 form-group">
+            <div class="col-sm-12 form-group">
                 <label>حاله الظهور فى الموقع</label>
 
 
@@ -544,6 +555,30 @@
                 <img src="{{ asset('storage/'.$realimage)}}" width="100%" height="250">
 
             </div>
+
+
+            <div class="row">
+                <label > صور الخدمه</label>
+                @if ($rusaltforimage)
+
+
+                @foreach ($rusaltforimage as $getimg)
+
+                <div class="col-sm-3">
+
+                          <div>
+                            <img src="{{asset('storage/'.$getimg)}}" width="150" height="150"/>
+
+                          </div>
+
+                    </a>
+
+                </div>
+
+
+                @endforeach
+                </div>
+                @endif
             <div class="mb-3 col-sm-12">
                <label for="setting-input-3" class="form-label">وصف قصير للخدمه </label>
                <textarea disabled wire:model="form.title" rows="2"
@@ -553,12 +588,10 @@
 
            </div>
 
+
            <div class="mb-3 col-sm-12">
-               <label for="setting-input-3" class="form-label">تحدث عن الخدمه باستفاضه</label>
-
-               <textarea class="form-control"
-                wire:model="form.dec" rows="4" disabled></textarea>
-
+               <label for="setting-input-3" class="form-label">تحدث عن الخدمه باستفاضه</label><br/>
+                  {!!$form['dec']!!}
 
 
            </div>

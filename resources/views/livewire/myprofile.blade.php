@@ -102,7 +102,7 @@
                 </div> <!-- /.end-row-card-header -->
              </div>
              <!-- /.card-header -->
-        <x-spaner />
+        <x-spaner wire:loading  wire:target="pagenate,sortDirections" />
              <div class="card-body" wire:loading.remove wire:target="pagenate,sortDirections" style="display: block;">
                <div class="row" >
 

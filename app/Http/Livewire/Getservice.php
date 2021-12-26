@@ -36,7 +36,7 @@ class Getservice extends Component
     public $realimage,
     $rusaltforimage,
     $getfinalrusaltforimage=[];
-
+    public $filename = 'services';
     public $icon;
     public $img = [];
 
@@ -154,11 +154,13 @@ public function removeimages($imgid)
   "form.title.max" => "الحد المسموح به 360 حرف فقط",
 
     ]);
-
+    if($this->icon){
+        $this->icon = $this->icon->storeAs('images/'.$this->filename,$this->icon->getClientOriginalName(),'public');
+      }
 
     if(!empty($this->img)){
         foreach($this->img as $key=>$getimg){
-        $this->getfinalrusaltforimage[$key]= $getimg->storeAs('service_image/'.$this->form['name'],$getimg->getClientOriginalName(),'public');
+        $this->getfinalrusaltforimage[$key]= $getimg->storeAs('service_image/'.$this->filename,$getimg->getClientOriginalName(),'public');
 
            }
         }
@@ -169,6 +171,7 @@ public function removeimages($imgid)
             'url'=> $this->form['url'],
             'price'=> $this->form['price'],
             'status' => $this->form['status'],
+            'icon'   => $this->icon,
              'img'   => $this->getfinalrusaltforimage
 
         ]);
@@ -212,7 +215,7 @@ public function showdes($bid)
      $this->form['title'] =$services->title;
      $this->realimage  =   $services->icon;
      $this->form['dec']=  $services->dec;
-     $this->form['img']=  $services->img;
+     $this->rusaltforimage =  $services->img;
      $this->form['url']=  $services->url;
      $this->form['price']=  $services->price;
      $this->form['created_at']=  $services->created_at->format('Y-m-d');
@@ -251,13 +254,13 @@ public function updateone(){
   $updateservices->name = $this->form['name'];
   $updateservices->title = $this->form['title'];
   if($this->icon){
-    $updateservices->icon = $this->icon->storeAs('images/'.$this->form['name'],$this->icon->getClientOriginalName(),'public');
+    $updateservices->icon = $this->icon->storeAs('images/'.$this->filename,$this->icon->getClientOriginalName(),'public');
   }else{
     $updateservices->icon = $this->realimage;
   }
   if(!empty($this->img)){
     foreach($this->img as $key=>$getimg){
-    $this->getfinalrusaltforimage[$key]= $getimg->storeAs('images/'.$this->form['name'],$getimg->getClientOriginalName(),'public');
+    $this->getfinalrusaltforimage[$key]= $getimg->storeAs('images/'.$this->filename,$getimg->getClientOriginalName(),'public');
 
        }
     }else{

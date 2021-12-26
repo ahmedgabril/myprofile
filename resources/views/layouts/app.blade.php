@@ -91,12 +91,17 @@
 </head>
 
 <body class="app">
-
+    <div  class="fullspaner newspaner">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden"></span>
+        </div>
+      </div>
+      {{--}}
      	 <div class="loader disaper flex-column justify-content-center align-items-center">
         <img  src="assets/img/pre3.gif" alt="ahmedgabril" height="170" width="170" >
 
      </div>
-
+{{--}}
 
 
 
@@ -158,7 +163,7 @@
    $(function(){
 
 
-    $('.loader').addClass("disaper");
+    $('.newspaner').addClass("disaper");
      window.Livewire.on("update-darkmode",function(){
 
      const Toast = Swal.mixin({

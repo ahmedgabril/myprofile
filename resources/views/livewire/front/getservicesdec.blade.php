@@ -48,7 +48,14 @@
             </div>
 
               @endforeach
+               <div class="row mt-5 mb-5">
+                   <div class="col-sm-8 me-auto ms-auto d-flex justify-content-center">
+                    {{$getserives->links()}}
+                   </div>
+
+                </div>
               @endif
+
           </div>
 
         </div>
@@ -128,6 +135,9 @@
                     padding: 23px;">
                         {{$item->title}}
                     </p>
+                    @if ($item->dec)
+
+
                     <div class="col-12 card-text" style="line-height: normal;
                     background-color: black;
                     color: #fff;
@@ -137,7 +147,7 @@
                        {!!$item->dec!!}
 
                     </div>
-
+                     @endif
 
                     <ul class="list-group">
                         <li class="list-group-item">

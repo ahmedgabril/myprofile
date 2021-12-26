@@ -989,6 +989,8 @@ body {
   .contact .info {
     width: 100%;
     background: #fff;
+    padding: 16px;
+    height: 366px;
   }
   .contact .info i {
     font-size: 20px;
@@ -1026,6 +1028,7 @@ body {
   .contact .php-email-form {
     width: 100%;
     background: #fff;
+    padding: 16px;
   }
   .contact .php-email-form .form-group {
     padding-bottom: 8px;

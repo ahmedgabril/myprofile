@@ -14,7 +14,9 @@ use App\Http\Livewire\Myprofile;
 use App\Http\Livewire\Getservice;
 use App\Http\Controllers\Getalldata;
 use App\Http\Livewire\Front\Aboutme;
+use App\Http\Livewire\Front\ContactMe;
 use App\Http\Livewire\Front\Getservicesdec;
+use App\Http\Livewire\Front\Portfdec;
 use App\Http\Livewire\Front\Portfolio;
 use App\Http\Livewire\Front\Skills as FrontSkills;
 use Illuminate\Support\Facades\Auth;
@@ -40,6 +42,9 @@ Route::get('/aboutme',Aboutme::class)->name('aboutme');
 Route::get('/portfolio',Portfolio::class)->name('portfolio');
 Route::get('/skills',FrontSkills::class)->name('skills');
 Route::get('/services',Getservicesdec::class)->name('services');
+Route::get('/contactme',ContactMe::class)->name('contactme');
+Route::get('/portfdec',Portfdec::class)->name('portfdec');
+
 
 /**dashbord route from here */
 
