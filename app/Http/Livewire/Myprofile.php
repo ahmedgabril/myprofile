@@ -29,12 +29,14 @@ class Myprofile extends Component
     public $getpaginateindex;
      public $globalids;
     public $showmodelf = false;
-    public $sortDirections = 'asc';
+    public $sortDirections = 'desc';
     public $sortByany = 'id';
     public $searsh;
     public $rusaltforimage;
     public $getfinalrusaltforimage=[];
-
+    public $icon;
+    public $gettempimg;
+    public $realimage;
     public $images =[];
     public $form = [
 
@@ -81,7 +83,10 @@ class Myprofile extends Component
 
  }
 
-
+public function removeimage()
+{
+   $this->icon = "";
+}
 
 
 
@@ -94,12 +99,12 @@ class Myprofile extends Component
         'form.title' => 'required|string|max:350',
         'form.project_url' => 'sometimes|url',
         'form.video_url' => 'sometimes|url',
-        'form.clint_name' => 'sometimes|nullable|alpha_dash',
+        'form.clint_name' => 'sometimes|nullable|string',
         'form.dec' => 'sometimes|nullable',
         'form.cat_id' => 'required|alpha_num',
         'images' =>     'required|array',
         'images.*' =>       'image|max:2048',
-
+        'icon' =>       'required|image|max:2048',
 
     ],[
         "form.name.unique" => "اسم المشروع مسجل من قبل",
@@ -115,9 +120,9 @@ class Myprofile extends Component
 
  if($this->showmodelf==false){
 
-  $this->reset();
-    $this->dispatchBrowserEvent("show-model");
 
+    $this->dispatchBrowserEvent("show-model");
+     $this->reset();
   }
 }
 public function removeimages($ides)
@@ -139,14 +144,16 @@ public function removeimages($ides)
         'form.cat_id' => 'required|alpha_num',
         'images' =>     'required|array',
         'images.*' =>       'image|max:2048',
-
+        'icon' =>       'required|image|max:2048',
 
     ],[
         "form.name.unique" => "اسم المشروع مسجل من قبل",
         'form.cat_id.alpha_num'  => "هذا الحقل ارقام فقط",
 
     ]);
-
+    if($this->icon){
+    $this->gettempimg = $this->icon->storeAs('images/'.$this->form['name'],$this->icon->getClientOriginalName(),'public');
+      }
 
     if(!empty($this->images)){
         foreach($this->images as $key=>$img){
@@ -159,10 +166,11 @@ public function removeimages($ides)
         'title'   => $this->form['title'],
         'clint_name' => $this->form['clint_name'],
         'date'=> $this->form['date'],
-        'dec' => $this->form['dec'],
+        'dec' => nl2br($this->form['dec']),
         'project_url'=> $this->form['project_url'],
         'video_url'=> $this->form['video_url'],
         'cat_id' => $this->form['cat_id'],
+         'icon'   => $this->gettempimg,
          'img'   => $this->getfinalrusaltforimage
 
     ]);
@@ -175,15 +183,6 @@ public function removeimages($ides)
 
 
 
-/*
-    $getlog = new loge();
-    $getlog->loges_action_id =  $addrole->id;
-    $getlog->loges_action_type =  "اضافه وظيفه";
-    $getlog->loges_action_by = auth()->portfolio()->name;
-    $getlog->loges_action_des = "تم اضافه وظيفه من قبل ".auth()->portfolio()->name;
-    $getlog->save();
-
-*/
 }
 ///edit data//
 public function edit($bid){
@@ -203,6 +202,7 @@ public function edit($bid){
    $this->form['project_url']  = $getportfolio->project_url;
    $this->form['video_url']    = $getportfolio->video_url ;
    $this->form['cat_id']       = $getportfolio->cat_id;
+   $this->realimage           = $getportfolio->icon;
    $this->rusaltforimage       = $getportfolio->img;
 
     }
@@ -223,6 +223,7 @@ public function showdes($bid){
     $this->form['project_url']  = $getportfolio->project_url;
     $this->form['video_url']    = $getportfolio->video_url ;
     $this->form['cat_id']       = $getportfolio->catogery->name;
+    $this->realimage            = $getportfolio->icon;
     $this->rusaltforimage       = $getportfolio->img;
 
 }
@@ -242,7 +243,7 @@ public function updateone(){
         'form.cat_id' => 'required|alpha_num',
         'images' =>     'sometimes|nullable',
         'images.*' =>       'image|max:2048',
-
+        'icon' =>       'required|image|max:2048',
 
     ],[
         "form.name.unique" => "اسم المشروع مسجل من قبل",
@@ -260,28 +261,24 @@ public function updateone(){
            }
 
     $updateportfolio = portfolio::findOrFail($this->globalids);
+    if($this->icon){
+        $updateportfolio->icon = $this->icon->storeAs('images/'.$this->form['name'],$this->icon->getClientOriginalName(),'public');
+      }else{
+        $updateportfolio->icon = $this->realimage;
+      }
     $updateportfolio->name = $this->form['name'];
     $updateportfolio->title = $this->form['title'];
     $updateportfolio->clint_name = $this->form['clint_name'];
     $updateportfolio->date = $this->form['date'];
-    $updateportfolio->dec = $this->form['dec'];
+    $updateportfolio->dec =nl2br($this->form['dec']);
     $updateportfolio->project_url = $this->form['project_url'];
     $updateportfolio->video_url = $this->form['video_url'];
     $updateportfolio->cat_id = $this->form['cat_id'];
     $updateportfolio->img =    $this->getfinalrusaltforimage;
     $updateportfolio->save();
-
+    $this->reset();
   $this->dispatchBrowserEvent("add",['message'=> "تمت  تحديث البيانات بنجاح 🙂"]);
-  // session()->flash("message", "تم اضافه بيانات الفرع  بنجاح ");
 
-  /*
-   $getlog = new loge();
-   $getlog->loges_action_id =  $updatedata->id;
-   $getlog->loges_action_type =  "تعديل بيانات  رحله";
-   $getlog->loges_action_by = auth()->portfolio();
-   $getlog->loges_action_des = "تم اضافه التعديل  من قبل ".auth()->portfolio();
-   $getlog->save();
-*/
 }
 public function getcurantid($getcurantid){
 $this->idfordelete = $getcurantid;
@@ -294,14 +291,7 @@ public function delete(){
 
     portfolio::destroy($this->idfordelete);
     $this->dispatchBrowserEvent("getdel",['message'=> "تمت  حذف  البيانات بنجاح 🙂"]);
-    /*
-    $getlog = new loge();
-    $getlog->loges_action_id =  $this->realidfordelete;
-    $getlog->loges_action_type =  "حذف  بيانات رحله";
-    $getlog->loges_action_by = auth()->portfolio();
-    $getlog->loges_action_des = "تمت عمليه الحذف من قبل ".auth()->portfolio();
-    $getlog->save();
-    */
+
 }
 
 public function getval()

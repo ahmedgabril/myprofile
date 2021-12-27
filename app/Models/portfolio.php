@@ -12,7 +12,7 @@ class portfolio extends Model
 
     public $timestamps = false;
     protected $casts =[
-    'img' => 'array'
+    'img' => 'array',
 
     ];
     public function catogery()

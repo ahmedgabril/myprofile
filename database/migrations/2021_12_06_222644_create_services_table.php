@@ -19,7 +19,7 @@ class CreateServicesTable extends Migration
             $table->string('name')->nullable();
             $table->string('icon')->nullable();
             $table->text('dec')->nullable();
-            $table->string('img')->nullable();
+            $table->text('img')->nullable();
             $table->string('price')->nullable();
             $table->string('url')->nullable();
             $table->tinyInteger('status')->default(1)->nullable();

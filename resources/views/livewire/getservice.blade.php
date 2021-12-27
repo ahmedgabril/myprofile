@@ -217,7 +217,7 @@
        </div>
       </div><!--end col-12-->
          <!--model add -->
-
+         <x-modelspaner wire:loading wire:target="add,updateone" />
 <div class=" modal fade " wire:ignore.self id="modal-role"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
  <div class=" modal-dialog modal-lg modal-fullscreen-md-down">
    <div class="modal-content">
@@ -236,7 +236,7 @@
 
      <div class="modal-body">
 
-        <x-modelspaner wire:loading wire:target="add,updateone" />
+
 
 
          <form  wire:submit.prevent="{{!$showmodelf ? 'add' :'updateone'}}" novalidate="novalidate">
@@ -279,7 +279,7 @@
 
                   <a wire:click.prevent="removeimage()" style="cursor: pointer" class="text-danger">
                   x
-                      <img src="{{$icon->temporaryUrl() }}" width="100%" height="250">
+                      <img src="{{$icon->temporaryUrl()}}" width="100%" height="250">
 
                   </a>
 

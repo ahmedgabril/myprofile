@@ -828,6 +828,8 @@ body {
   --------------------------------------------------------------*/
   .portfolio .portfolio-item {
     margin-bottom: 30px;
+    /* left: 0px!important; */
+    /* right: 0px!important; */
   }
   .portfolio #portfolio-flters {
     padding: 0;
@@ -1145,16 +1147,7 @@ body {
       .carousel-control-prev-icon {
                 background-color: #b50505!important;
             }
-            .spinner-border {
-
-                width: 4rem;
-                height: 4rem;
-
-                border: 0.5em solid currentColor;
-                border-right-color: transparent;
-                margin-top: 200px;
-
-                color: #089f67;}
+            .spinner-border {width: 4rem;height: 4rem;border: 0.5em solid currentColor;border-right-color: transparent;color: #089f67;}
                 .list-group {
 
                     padding-left: 0;
@@ -1173,3 +1166,24 @@ body {
                         color: #fff!important;
                         padding: 15px!important;
                     }
+                    .row{
+
+                        margin-left: auto;
+                        margin-right: auto;
+                    }
+
+            .portfilo{
+                position: fixed;
+                z-index: 99999;
+                right: 0px;
+                top: 0px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                height: 100%;
+                padding-top: 250px;
+              background-color: #fff;
+              transition: 1s ease-in-out;
+            }
+

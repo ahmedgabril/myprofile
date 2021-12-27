@@ -30,7 +30,7 @@ class Getservice extends Component
     public $getpaginateindex;
      public $globalids;
     public $showmodelf = false;
-    public $sortDirections = 'asc';
+    public $sortDirections = 'desc';
     public $sortByany = 'id';
     public $searsh;
     public $realimage,
@@ -97,9 +97,8 @@ public function removeimages($imgid)
  {
      $this->validateOnly($propertyName, [
 
-        'form.name' => 'required|string|unique:services,name|max:255',
-        'form.title' => 'required|string',
-        'form.title' => 'required|string|max:360',
+        'form.name' => 'required|string|unique:services,name|max:100|min:30',
+        'form.title' => 'required|string|min:100|max:360',
         'icon' => 'sometimes|nullable|image|max:1024',
         'form.status' => 'sometimes|nullable|alpha_num',
         'form.url' => 'sometimes|nullable|url',
@@ -136,9 +135,9 @@ public function removeimages($imgid)
 }
  public function add(){
     $this->validate([
-        'form.name' => 'required|string|unique:services,name|max:255',
-        'form.title' => 'required|string',
-        'form.title' => 'required|string|max:360',
+        'form.name' => 'required|string|unique:services,name|max:100|min:30',
+        'form.title' => 'required|string|min:100|max:360',
+
         'icon' => 'sometimes|nullable|image|max:1024',
         'form.status' => 'sometimes|nullable|alpha_num',
         'form.url' => 'sometimes|nullable|url',
@@ -228,8 +227,8 @@ public function updateone(){
     $this->validate([
 
 
-        'form.name' => 'required|string|unique:services,name,'.$this->globalids,
-        'form.title' => 'required|string|max:360',
+        'form.name' => 'required|string|max:100|min:30|unique:services,name,'.$this->globalids,
+        'form.title' => 'required|string|max:360|min:100',
         'icon' => 'sometimes|nullable|image|max:1024',
         'form.status' => 'sometimes|nullable|alpha_num',
         'form.url' => 'sometimes|nullable|url',

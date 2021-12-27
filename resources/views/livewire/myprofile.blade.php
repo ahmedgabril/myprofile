@@ -217,6 +217,7 @@
        </div>
       </div><!--end col-12-->
          <!--model add -->
+         <x-modelspaner wire:loading wire:target="add,updateone" />
 <div class="modal fade" wire:ignore.self id="modal-role"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
  <div class=" modal-dialog modal-lg modal-fullscreen-sm-down">
    <div class="modal-content">
@@ -345,7 +346,27 @@
              @enderror
 
          </div>
+         @if ($icon)
+         <div class="col-sm-12 mb-4">
 
+
+                 <a wire:click.prevent="removeimage()" style="cursor: pointer" class="text-danger">
+                 x
+                     <img src="{{ $icon->temporaryUrl()}}"  width="100%" height="250">
+
+                 </a>
+
+
+
+           </div>
+
+           @else
+           @if ($showmodelf && !$icon)
+           <div class=" col-sm-12 mb-4 mt-4 ">
+           <img src="{{$realimage!==null? asset('storage/'.$realimage):'assets/images/No_image.jpg'}}" width="100%" height="250">
+           </div>
+           @endif
+           @endif
          <div class="col-sm-12 form-group mt-4 mb-4">
             @if ($showmodelf && !$images)
 
@@ -379,7 +400,7 @@
                         <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                       </svg>
                       <div>
-                        <img src="{{ $img->temporaryUrl() }}" width="100%" height="100%"/>
+                        <img src="{{$img->temporaryUrl()}}" width="100%" height="100%"/>
 
                       </div>
 
@@ -394,23 +415,36 @@
             @endif
 
           </div>
-         <div class="col-sm-6 form-group">
-            <label for="">عنوان اوصف صغير </label>
-              <textarea class="form-control @error("form.title")  is-invalid
 
-             @enderror" rows="2"
-              wire:model="form.title"
+         <div class="col-sm-6 form-group mb-4 ">
+            <label >صوره الخدمه الرئيسه</label>
+              <input type="file"
+               class="form-control @error("icon") is-invalid @enderror"
 
-              ></textarea>
-              @error('form.title')
-             <div class="invalid-feedback">
-              {{$message}}
-            </div>
+              accept="image/*"
+               wire:model="icon"/>
 
-             @enderror
+
+               <div wire:loading wire:target="icon">
+
+                <div class="d-flex justify-content: center mt-4 mb-4">
+                    <div class="d-flex align-items-center">
+                        <strong class="ms-4 text-success">جارى التحميل</strong>
+                        <div class="spinner-border ml-auto text-success" role="status" aria-hidden="true"></div>
+                      </div>
+
+                 </div>
+               </div>
+            @error('icon')
+            <div class="invalid-feedback">
+             {{$message}}
+           </div>
+
+            @enderror
+
+
 
          </div>
-
          <div class="col-sm-6 form-group">
             <label for="">رفع صور المشروع</label>
               <input class="form-control @error("images")  is-invalid
@@ -419,7 +453,6 @@
               wire:model="images"
 
               />
-
 
                <div wire:loading wire:target="images">
 
@@ -438,6 +471,22 @@
             </div>
 
              @enderror
+         </div>
+         <div class="col-sm-12 form-group">
+            <label for="">عنوان اوصف صغير </label>
+              <textarea class="form-control @error("form.title")  is-invalid
+
+             @enderror" rows="2"
+              wire:model="form.title"
+
+              ></textarea>
+              @error('form.title')
+             <div class="invalid-feedback">
+              {{$message}}
+            </div>
+
+             @enderror
+
          </div>
          <div class="col-sm-12 form-group">
             <label for="">شرح تفاصيل المشروع باستفاضه</label>
@@ -565,7 +614,12 @@
 
 
             </div>
+            <div class="col-sm-12 form-group mt-4 mb-4">
+                <div>
+                    <img src="{{$realimage!==null? asset('storage/'.$realimage):'assets/images/No_image.jpg'}}" width="100%" height="250">
 
+                  </div>
+            </div>
             <div class="col-sm-12 form-group mt-4 mb-4">
 
                @if ($rusaltforimage)
@@ -591,7 +645,8 @@
                @endif
              </div>
 
-            <div class="col-sm-6 form-group">
+
+            <div class="col-sm-12 form-group">
                <label for="">عنوان اوصف صغير </label>
                  <textarea class="form-control"readonly rows="2"
                  wire:model="form.title"
@@ -603,11 +658,8 @@
 
 
             <div class="col-sm-12 form-group">
-               <label for="">شرح تفاصيل المشروع باستفاضه</label>
-                 <textarea class="form-control " readonly rows="4"
-                 wire:model="form.dec"
-
-                 ></textarea>
+               <label for="">شرح تفاصيل المشروع باستفاضه</label><br/>
+                {!!$form['dec']!!}
 
             </div>
 
