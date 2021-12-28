@@ -70,7 +70,7 @@
                   <h5 class="modal-title" id="showdec">تفاصيل الخدمه</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="text-center" wire:loading>
+                <div class="text-center" wire:loading style="margin-top:175px">
                     <div class="spinner-border" role="status">
                       <span class="visually-hidden">Loading...</span>
                     </div>
@@ -82,7 +82,12 @@
                       @if ($getserdata)
                  @foreach ($getserdata as $item )
                  <div class="card mb-3">
-                    <h2 class=" mb-4 mt-4 text-center"><a href="#services">{{ $item->name}}</a></h2>
+                    <div class="contianer" style="    background-color: #212328;">
+                        <div class="row">
+                            <h2 class=" mb-4 mt-4 text-center"><a href="#services">{{ $item->name}}</a></h2>
+
+                        </div>
+                       </div>
 
 
                     @if ($item->img)
@@ -176,8 +181,8 @@
 
 
 
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">الغاء</button>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-danger btn-lg" data-bs-dismiss="modal">الغاء</button>
                 </div>
                  </div>
 

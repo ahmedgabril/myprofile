@@ -13,7 +13,7 @@ class Getservicesdec extends Component
     public $getserdata;
     public function render()
     {
-        $getserives = services::where('status',1)->orderBy ('id','desc')->paginate(6);
+        $getserives = services::where('status',1)->orderBy('id','desc')->paginate(6);
 
         return view('livewire.front.getservicesdec',['getserives'=>$getserives])->layout('layouts.front');
     }

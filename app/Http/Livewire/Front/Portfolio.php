@@ -15,12 +15,18 @@ class Portfolio extends Component
     public $getdata;
     public $getserdata;
     public $isactive;
+    public $paginate=9;
+    public $page=1;
+    protected $queryString = [
 
+        'page' => ['except' => 1],
+        'paginate' => ['except' => 2],
+    ];
     public function render()
     {
         $cat=catogery::paginate();
-        $get = $this->getdata ==0 ? ModelsPortfolio::with('catogery')->orderBy('id','desc')->paginate(9):
-         ModelsPortfolio::with('catogery')->orderBy('id','desc')->where('cat_id',$this->getdata)->paginate(9);
+        $get = $this->getdata ==0 ? ModelsPortfolio::with('catogery')->orderBy('id','desc')->paginate($this->paginate):
+         ModelsPortfolio::with('catogery')->orderBy('id','desc')->where('cat_id',$this->getdata)->paginate($this->paginate);
 
         return view('livewire.front.portfolio',['cat'=>$cat,
          'getalldata'=>$get
@@ -34,6 +40,12 @@ class Portfolio extends Component
 
 
     }
+    public function getall()
+    {
+
+        $this->getdata = 0;
+
+    }
     public function getserdec($getid)
     {
 
@@ -41,4 +53,8 @@ class Portfolio extends Component
 
 
     }
+    public function updatedpaginate(){
+        $this->resetPage();
+     }
+
 }

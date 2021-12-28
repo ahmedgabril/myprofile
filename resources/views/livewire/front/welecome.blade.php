@@ -8,7 +8,7 @@
             <div class="container d-flex flex-column align-items-center" data-aos="zoom-in" data-aos-delay="100">
               <h1>{{$data->name}}</h1>
               <h2>{{$data->title}}</h2>
-              <a class="btn btn-success mt-5" href="#">
+              <a class="btn btn-success mt-5" rel="download" href="{{asset('storage/'.$data->url)}}">
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-download me-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"></path>
                 <path fill-rule="evenodd" d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"></path>
@@ -16,11 +16,13 @@
                 Download CSV
             </a>
               <div class="header-social-links mt-5">
-                <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
-              </div>
+                <a href="{{$sochal->twitter}}" class="twitter"><i class="bi bi-twitter"></i></a>
+                <a href="{{$sochal->facebook}}" class="facebook"><i class="bi bi-facebook"></i></a>
+                <a href="{{$sochal->instagram}}" class="instagram text-danger"><i class="bi bi-instagram"></i></a>
+                <a href="{{$sochal->linkedin}}" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
+                <a href="{{$sochal->youtube}}" class="youtube text-danger"><i class="bi bi-youtube"></i></i></a>
+
+            </div>
             </div>
           </section><!-- End Hero -->
 

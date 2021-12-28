@@ -37,7 +37,7 @@ body {
   }
   @media (max-width: 992px) {
     #main {
-      margin-top: 30px;
+      margin-top: -25px;
     }
   }
 
@@ -60,11 +60,11 @@ body {
     position: fixed;
     top: calc(50% - 30px);
     left: calc(50% - 30px);
-    border: 6px solid #34b7a7;
+    border: 10px solid #34b7a7;
     border-top-color: #dcf5f2;
     border-radius: 50%;
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
     -webkit-animation: animate-preloader 1s linear infinite;
     animation: animate-preloader 1s linear infinite;
   }
@@ -396,7 +396,7 @@ body {
     color: #ce2222;
   }
   #hero h2 {
-    color: #240218;
+    color: #1512d9;
     margin: 10px 0 0 0;
     font-size: 22px;
     font-family: bold;
@@ -426,7 +426,7 @@ body {
   @media (max-width: 992px) {
     #hero:before {
       content: "";
-      background: rgba(0, 0, 0, 0.8);
+      background: rgb(0 0 0 / 82%);
       position: absolute;
       bottom: 0;
       top: 0;
@@ -440,6 +440,7 @@ body {
     #hero h2 {
       font-size: 18px;
       line-height: 24px;
+      color: #f5b6b6;
     }
   }
 
@@ -836,6 +837,7 @@ body {
     margin: 0 auto 20px auto;
     list-style: none;
     text-align: center;
+    direction: rtl;
   }
   .portfolio #portfolio-flters li {
     cursor: pointer;
@@ -853,6 +855,8 @@ body {
   .portfolio #portfolio-flters li:hover, .portfolio #portfolio-flters li.filter-active {
     color: #fff;
     background: #34b7a7;
+    /* direction: rtl; */
+    /* right: auto; */
   }
   .portfolio #portfolio-flters li:last-child {
     margin-right: 0;
@@ -1133,9 +1137,7 @@ body {
 .modal-header .btn-close {
 
     margin: -0.5rem auto -0.5rem -0.5rem!important;}
-    .modal-footer {
-
-        justify-content: flex-start!important;}
+    .modal-footer {justify-content: flex-center!important;}
         .card{
 
             width: 100%!important;
@@ -1148,16 +1150,7 @@ body {
                 background-color: #b50505!important;
             }
             .spinner-border {width: 4rem;height: 4rem;border: 0.5em solid currentColor;border-right-color: transparent;color: #089f67;}
-                .list-group {
-
-                    padding-left: 0;
-                    margin-bottom: 0;
-                    border-radius: 0.50rem!important;
-                    padding-right: 0px!important;
-                    margin-right: auto!important;
-                    margin-left: auto!important;
-                    width: 700px!important;
-                    margin-top: 50px!important;}
+                .list-group {padding-left: 0;margin-bottom: 0;border-radius: 0.50rem!important;padding-right: 0px!important;margin-right: auto!important;margin-left: auto!important;/* width: 700px!important; */margin-top: 50px!important;}
 
                     .list-group-item{
 
@@ -1167,9 +1160,7 @@ body {
                         padding: 15px!important;
                     }
                     .row{
-
-                        margin-left: auto;
-                        margin-right: auto;
+                padding: 20px;
                     }
 
             .portfilo{
@@ -1184,6 +1175,13 @@ body {
                 height: 100%;
                 padding-top: 250px;
               background-color: #fff;
-              transition: 1s ease-in-out;
+              transition: 1s all;
+              overflow: hidden;
+            }
+
+            .card:hover{
+                background-color: #000000;
+                color: #fff;
+                box-shadow: 8px 17px 17px 0px #706868 !important;
             }
 
