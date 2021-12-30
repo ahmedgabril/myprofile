@@ -9,8 +9,6 @@
         <ul>
           <li><a class="{{request()->is('/')?'active':''}}" href="{{route('home')}}">الرئيسه</a></li>
           <li><a class="{{request()->is('aboutme')?'active':''}}" href="{{route('aboutme')}}">عنى</a></li>
-          <li><a class="{{request()->is('skills')?'active':''}}" href="{{route('skills')}}">المهارات</a></li>
-
           <li><a class="{{request()->is('services')?'active':''}}" href="{{route('services')}}">الخدمات</a></li>
           <li><a class="{{request()->is('portfolio')?'active':''}}" href="{{route('portfolio')}}">سابقه اعمالى </a></li>
           <li><a class="{{request()->is('contactme')?'active':''}}" href="{{route('contactme')}}">تواصل معى </a></li>

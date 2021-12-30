@@ -25,8 +25,126 @@
             </div>
             </div>
           </section><!-- End Hero -->
+   <!-- ======= About Section ======= -->
+   <section id="about" class="about">
+    <div class="container" data-aos="fade-up">
+      <div class="section-title">
+          <h2>عنى </h2>
+          <p></p>
+        </div>
+
+      <div class="card mb-3" style="max-width: 1190px;">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img src="{{ $data->img !==null ? asset('storage/'.$data->img):'assets/images/no-image-en.png'}}" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title text-center mb-4">{{$data->name}}</h5>
+                <p class="card-text  text-center text-wrap text-primary mb-4">
+                  {{$data->title}}
+                </p>
+                <div class="text-center text-wrap">
+                  {{$data->dec}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+  </section><!-- End About Section -->
+
+      <!-- ======= Services Section ======= -->
+      <section id="services" class="services">
+        <div class="container" data-aos="fade-up" dir="rtl">
+
+          <div class="section-title">
+            <h2>الخدمات وسابقه  الاعمال الخاصه</h2>
+            <p></p>
+          </div>
+
+          <div class="row">
 
 
+            <div class="col-md-4 col-sm-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="300">
+                <div class="card" style="width: 18rem;">
+                    <img src="{{asset('front/assets/img/serv.svg')}}"
+                    style="height: 250px" class="card-img-top" alt="...">
+                    <div class="card-body" >
+
+
+                            <a href="{{route('services')}}" class="btn btn-outline-success d-block"
+                            style="margin-top:35px">الخدمات</a>
+
+
+                     </div>
+                  </div>
+            </div>
+
+            <div class="col-md-4 col-sm-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="300">
+                <div class="card" style="width: 18rem;">
+                    <img src="{{asset('front/assets/img/port.svg')}}"
+                    style="height: 250px" class="card-img-top" alt="...">
+                    <div class="card-body" >
+
+                        <a href="{{route('portfolio')}}" class="btn btn-outline-danger d-block"
+                        style="margin-top:32px">سابقه الاعمال</a>
+
+
+                     </div>
+                  </div>
+            </div>
+
+            <div class="col-md-4 col-sm-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="300">
+                <div class="card" style="width: 18rem;">
+                    <img src="{{asset('front/assets/img/contactme.svg')}}"
+                    style="height: 250px;" class="card-img-top" alt="...">
+                    <div class="card-body" >
+
+                        <a href="{{route('contactme')}}" class="btn btn-outline-primary d-block"
+                        style="margin-top:31px">تواصل معنا </a>
+
+
+                     </div>
+                  </div>
+            </div>
+
+
+
+          </div>
+
+        </div>
+      </section><!-- End Services Section -->
+
+ <section id="skills" class="skills">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-title">
+        <h2>المهارات</h2>
+        <p></p>
+      </div>
+
+      <div class="row skills-content">
+
+
+          @foreach ($getskills as $skill )
+          <div class="col-lg-6">
+          <div class="progress">
+             <span class="skill">{{$skill->name}} <i class="val {{ $skill->rate < 50 ?'text-danger':'text-success'}}">{{$skill->rate}}%</i></span>
+             <div class="progress-bar-wrap">
+               <div class="progress-bar" role="progressbar" aria-valuenow="{{$skill->rate}}" aria-valuemin="0" aria-valuemax="100"></div>
+             </div>
+           </div>
+          </div>
+          @endforeach
+
+
+
+        </div>
+
+
+    </div>
+  </section><!-- End Skills Section -->
 
         <!-- ======= Facts Section ======= -->
         <section id="facts" class="facts">

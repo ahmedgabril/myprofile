@@ -16,14 +16,13 @@
               @foreach ($getserives as $key => $services )
               <div class="col-md-4 col-sm-6 d-flex  aos-init aos-animate mb-4" data-aos="zoom-in" data-aos-delay="100">
 
-              <div class="card" style="border: 1px solid rgb(255 250 250 / 13%)!important;">
-                <div>
+              <div class="card" style="border: 1px solid rgb(255 250 250 / 13%)!important; width:18rem">
+
                   <img src="{{$services->icon!== null? asset('storage/'.$services->icon):'assets/images/no-image-en.png'}}" style="height: 160px;" class="card-img-top" alt="...">
 
-                </div>
                 <div class="card-body">
-                <h4><a href="#services">{{ $services->name}}</a></h4>
-                  <p class="card-text" style="height: 165px;">{{Str::substr($services->title,0,200)}}<a href="#" class="text-danger"> المزيد..</a></p>
+                <h5><a href="#services">{{Str::substr($services->name,0,30)}}...</a></h5>
+                  <p class="card-text" style="height: 140;">{{Str::substr($services->title,0,130)}}<a href="#" class="text-danger"> المزيد..</a></p>
                   <div class="d-flex justify-content-between" >
                     <span>
                         <button class="btn btn-outline-success btn-sm" type="button"
@@ -31,7 +30,7 @@
                         data-bs-toggle="modal" wire:click.prevent="getserdec({{$services->id}})">تفاصيل الخدمه</button>
 
                       </span>
-                      <button type="button" class="btn btn-outline-danger  btn-sm text-bold">
+                      <button type="button" class="btn btn-outline-danger  btn-sm text-bold" style="margin-right:7px">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cash-coin" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0z"></path>
                                 <path d="M9.438 11.944c.047.596.518 1.06 1.363 1.116v.44h.375v-.443c.875-.061 1.386-.529 1.386-1.207 0-.618-.39-.936-1.09-1.1l-.296-.07v-1.2c.376.043.614.248.671.532h.658c-.047-.575-.54-1.024-1.329-1.073V8.5h-.375v.45c-.747.073-1.255.522-1.255 1.158 0 .562.378.92 1.007 1.066l.248.061v1.272c-.384-.058-.639-.27-.696-.563h-.668zm1.36-1.354c-.369-.085-.569-.26-.569-.522 0-.294.216-.514.572-.578v1.1h-.003zm.432.746c.449.104.655.272.655.569 0 .339-.257.571-.709.614v-1.195l.054.012z"></path>
