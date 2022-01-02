@@ -24,7 +24,7 @@
         <hr class="mb-4">
         <div class="container-xl">
         <div class="row mb-4">
-              <div class="col-12 text-center mb-5 text-success text-bold" style="font-size: 25px">اضافه قسم عنى  bout me or</div>
+              <div class="col-12 text-center mb-5 text-success text-bold" style="font-size: 25px">اعدادت وبيانات الموقع</div>
             <div class="col-12 col-md-8 ms-auto me-auto">
 
                 <div class="app-card app-card-settings shadow-sm p-4">
@@ -42,6 +42,9 @@
                             </li>
                             <li class="nav-item" >
                                 <button class="nav-link" :class="tab === 3 ?'active':''" x-on:click.prevent="tab =3"  type="button"   > روابط التواصل الاجتماعى</button>
+                              </li>
+                            <li class="nav-item" >
+                                <button class="nav-link" :class="tab === 4 ?'active':''" x-on:click.prevent="tab =4"  type="button"   >لوجو الموقع الرئيسى</button>
                               </li>
                           </ul>
                           <div class="">
@@ -337,6 +340,65 @@
                                 </div>
                                 </form>
                             </div>
+                            <div class=" " x-show="tab === 4" >
+
+
+                                <form wire:submit.prevent="uploadelogo">
+                                    @if ($logo)
+                                    <div class=" col-sm-12 mb-4">
+
+
+                                            <a wire:click.prevent="removelogo()" style="cursor: pointer" class="text-danger">
+                                            x
+                                                <img src="{{$logo->temporaryUrl()}}" width="100%" height="250">
+
+                                            </a>
+
+
+
+                                      </div>
+                                      @else
+
+                                      <div class=" col-sm-12 mb-4 mt-4 ">
+                                        <img src="{{$getlogo!==null? asset('storage/'.$getlogo):'assets/images/No_image.jpg'}}" width="100%" height="250">
+
+                                    </div>
+
+                                       @endif
+                                    <div class="col-sm-12 form-group mb-4 ">
+                                        <label >لوجو الموقع الرئيسى </label>
+                                          <input type="file"
+                                           class="form-control @error("logo") is-invalid @enderror"
+
+                                          accept="image/*"
+                                           wire:model="logo"/>
+
+
+                                           <div wire:loading wire:target="logo">
+
+                                            <div class="d-flex justify-content: center mt-4 mb-4">
+                                                <div class="d-flex align-items-center">
+                                                    <strong class="ms-4 text-success">جارى التحميل</strong>
+                                                    <div class="spinner-border ml-auto text-success" role="status" aria-hidden="true"></div>
+                                                  </div>
+
+                                             </div>
+                                           </div>
+                                        @error('icon')
+                                        <div class="invalid-feedback">
+                                         {{$message}}
+                                       </div>
+
+                                        @enderror
+
+
+
+                                     </div>
+
+                                <button type="submit" class="btn app-btn-primary ptn-center">حفظ التغيرات</button>
+
+                                </form>
+                            </div>
                           </div>
 
 
@@ -357,7 +419,7 @@
 <script>
 
 $(function(){
-    window.addEventListener('aboutupdated',function(event){
+    window.addEventListener('update',function(event){
   const Toast = Swal.mixin({
   toast: true,
   position: 'top-end',
@@ -372,76 +434,14 @@ $(function(){
 
 Toast.fire({
 icon: 'success',
-title: 'تم تحديث البيانات بنجاح'
+title: event.detail.message
 })
 
 
 })
 ////imageupdate////
 
-window.addEventListener('updateimg',function(event){
-  const Toast = Swal.mixin({
-  toast: true,
-  position: 'top-end',
-  showConfirmButton: false,
-  timer: 4500,
-  timerProgressBar: true,
-  didOpen: (toast) => {
-    toast.addEventListener('mouseenter', Swal.stopTimer)
-    toast.addEventListener('mouseleave', Swal.resumeTimer)
-  }
-})
 
-Toast.fire({
-icon: 'success',
-title: 'تم  تحديث بيانات الملف بنجاح'
-})
-
-
-})///endfunction
-
-////url update////
-
-window.addEventListener('updateurl',function(event){
-  const Toast = Swal.mixin({
-  toast: true,
-  position: 'top-end',
-  showConfirmButton: false,
-  timer: 4500,
-  timerProgressBar: true,
-  didOpen: (toast) => {
-    toast.addEventListener('mouseenter', Swal.stopTimer)
-    toast.addEventListener('mouseleave', Swal.resumeTimer)
-  }
-})
-
-Toast.fire({
-icon: 'success',
-title: 'تم  تحديث بيانات الملف بنجاح'
-})
-
-
-})///sochal
-window.addEventListener('sochal',function(event){
-  const Toast = Swal.mixin({
-  toast: true,
-  position: 'top-end',
-  showConfirmButton: false,
-  timer: 4500,
-  timerProgressBar: true,
-  didOpen: (toast) => {
-    toast.addEventListener('mouseenter', Swal.stopTimer)
-    toast.addEventListener('mouseleave', Swal.resumeTimer)
-  }
-})
-
-Toast.fire({
-icon: 'success',
-title: 'تم  تحديث بيانات الروابط بنجاح'
-})
-
-
-})///endfunctionsochal
 
 
 });///end minfunction

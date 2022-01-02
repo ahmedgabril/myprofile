@@ -21,7 +21,7 @@
                   <img src="{{$services->icon!== null? asset('storage/'.$services->icon):'assets/images/no-image-en.png'}}" style="height: 160px;" class="card-img-top" alt="...">
 
                 <div class="card-body">
-                <h5><a href="#services">{{Str::substr($services->name,0,30)}}...</a></h5>
+                <h5><a href="#services">{{Str::substr($services->name,0,45)}}...</a></h5>
                   <p class="card-text" style="height: 140;">{{Str::substr($services->title,0,130)}}<a href="#" class="text-danger"> المزيد..</a></p>
                   <div class="d-flex justify-content-between" >
                     <span>

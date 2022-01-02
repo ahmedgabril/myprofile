@@ -45,7 +45,7 @@
                   {{$data->title}}
                 </p>
                 <div class="text-center text-wrap">
-                  {{$data->dec}}
+                    {!!$data->dec!!}
                 </div>
               </div>
             </div>

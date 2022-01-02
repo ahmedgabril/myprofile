@@ -139,7 +139,8 @@ body {
     color: #fff;
   }
   #header .logo img {
-    max-height: 40px;
+    max-height: 43px;
+    /*! max-width: 150px; */
   }
   @media (max-width: 992px) {
     #header .logo {
@@ -579,7 +580,7 @@ body {
   }
   .skills .progress-bar {
     width: 1px;
-    height: 10px;
+    height: 20px;
     transition: 0.9s;
     background-color: #34b7a7;
   }
@@ -997,12 +998,13 @@ body {
     width: 100%;
     background: #fff;
     padding: 16px;
-    height: 366px;
+    height: 340px;
+    direction: rtl;
   }
   .contact .info i {
     font-size: 20px;
     color: #34b7a7;
-    float: left;
+    float: right;
     width: 44px;
     height: 44px;
     background: #effbf9;
@@ -1013,14 +1015,14 @@ body {
     transition: all 0.3s ease-in-out;
   }
   .contact .info h4 {
-    padding: 0 0 0 60px;
+    padding: 0 60px 0 0px;
     font-size: 22px;
     font-weight: 600;
     margin-bottom: 5px;
     color: #222222;
   }
   .contact .info p {
-    padding: 0 0 0 60px;
+    padding: 0 60px 0 0px;
     margin-bottom: 0;
     font-size: 14px;
     color: #555555;
@@ -1135,7 +1137,7 @@ body {
   }
 
 
-.modal-header .btn-close {
+  .modal-header .btn-close {
 
     margin: -0.5rem auto -0.5rem -0.5rem!important;}
     .modal-footer {justify-content: flex-center!important;}
@@ -1185,5 +1187,6 @@ body {
                 color: #fff;
                 box-shadow: 8px 17px 17px 0px #706868 !important;
                 transition: 0.5s ease-in-out;
+                transform: translateY(20PX);
             }
 

@@ -294,7 +294,7 @@ figure {
 img,
 svg {
     vertical-align: middle;
-    margin-left: 5px;
+    /*! margin-left: 5px; */
 }
 
 table {
@@ -7688,7 +7688,7 @@ fieldset:disabled .btn {
 }
 
 .p-3 {
-    padding: 1rem !important
+    padding: 1rem !important;
 }
 
 .p-4 {
@@ -7985,7 +7985,7 @@ fieldset:disabled .btn {
 }
 
 .text-success {
-    color: #5cb377 !important
+    color: #5cb377 !important;
 }
 
 .text-danger {
@@ -10920,7 +10920,7 @@ fieldset:disabled .btn {
 body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: #5d6778;
+    color: #3e3c3c;
 }
 
 h1,
@@ -11460,8 +11460,8 @@ button.close:focus {
 }
 
 .app-branding .logo-icon {
-    width: 36px;
-    height: 36px
+    width: 50px;
+    height: 38px;
 }
 
 .app-branding .logo-text {
@@ -11657,7 +11657,7 @@ button.close:focus {
     min-height: 100vh;
     height: 100%;
     width: 100%;
-    background: #f5f6fe;
+    background: #eee;
     padding-top: 56px;
     overflow-x: hidden
 }
@@ -11685,7 +11685,8 @@ button.close:focus {
 .app-card {
     position: relative;
     background: #fff;
-    border-radius: .25rem
+    border-radius: .25rem;
+    /*! margin-right: 20px; */
 }
 
 .app-card.border-left-decoration {
@@ -11832,7 +11833,7 @@ button.close:focus {
 
 .app-card .app-card-body.has-card-actions {
     position: relative;
-    padding-right: 1rem !important
+    padding-right: 1rem !important;
 }
 
 .app-card .app-card-body .app-card-actions {
@@ -11856,14 +11857,18 @@ button.close:focus {
 }
 
 .app-card-doc:hover {
-    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
+    transform:   translateY(20px) !important;
+    transition: 0.60s ease-in-out;
+    overflow: hidden;
 }
 
 .app-card-doc .app-card-thumb-holder {
-    background: #e9eaf1;
+    background: #02061e;
     text-align: center;
     position: relative;
-    height: 112px
+    height: 90px;
+    /*! margin-right: 20px; */
 }
 
 .app-card-doc .app-card-thumb-holder .app-card-thumb {
@@ -11885,7 +11890,7 @@ button.close:focus {
 }
 
 .app-card-doc .app-card-thumb-holder:hover {
-    background: #fafbff
+    background: #66a0fd;
 }
 
 .app-card-doc .app-card-thumb-holder:hover .thumb-image {
@@ -11903,12 +11908,12 @@ button.close:focus {
 .app-card-doc .app-card-thumb-holder .icon-holder {
     font-size: 40px;
     display: inline-block;
-    margin: 0 auto;
-    width: 80px;
-    height: 80px;
+    margin: -7px auto;
+    width: 75px;
+    height: 75px;
     border-radius: 50%;
     background: #fff;
-    padding-top: 10px
+    padding-top: 5px;
 }
 
 .app-card-doc .app-card-thumb-holder .icon-holder .pdf-file {
@@ -12259,7 +12264,7 @@ button.close:focus {
 }
 
 .app-auth-wrapper {
-    background: #fff;
+    background: #d8d8db;
     height: 100vh
 }
 

@@ -97,7 +97,7 @@ public function removeimages($imgid)
  {
      $this->validateOnly($propertyName, [
 
-        'form.name' => 'required|string|unique:services,name|max:100|min:30',
+        'form.name' => 'required|string|unique:services,name|max:45|min:30',
         'form.title' => 'required|string|min:100|max:360',
         'icon' => 'sometimes|nullable|image|max:1024',
         'form.status' => 'sometimes|nullable|alpha_num',
@@ -135,7 +135,7 @@ public function removeimages($imgid)
 }
  public function add(){
     $this->validate([
-        'form.name' => 'required|string|unique:services,name|max:100|min:30',
+        'form.name' => 'required|string|unique:services,name|max:45|min:30',
         'form.title' => 'required|string|min:100|max:360',
 
         'icon' => 'sometimes|nullable|image|max:1024',
@@ -197,10 +197,6 @@ public function removeimages($imgid)
          $this->form['status']=  $services->status;
 
 
-
-
-
-
     }
     //
 
@@ -215,7 +211,7 @@ public function showdes($bid)
      $this->realimage  =   $services->icon;
      $this->form['dec']=  $services->dec;
      $this->rusaltforimage =  $services->img;
-     $this->form['url']=  $services->url;
+     $this->form['url'] =  $services->url;
      $this->form['price']=  $services->price;
      $this->form['created_at']=  $services->created_at->format('Y-m-d');
      $this->form['status']=  $services->status;
@@ -227,7 +223,7 @@ public function updateone(){
     $this->validate([
 
 
-        'form.name' => 'required|string|max:100|min:30|unique:services,name,'.$this->globalids,
+        'form.name' => 'required|string|max:45|min:30|unique:services,name,'.$this->globalids,
         'form.title' => 'required|string|max:360|min:100',
         'icon' => 'sometimes|nullable|image|max:1024',
         'form.status' => 'sometimes|nullable|alpha_num',

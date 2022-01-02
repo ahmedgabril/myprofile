@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Kelly Bootstrap Template - Index</title>
+  <title>My Profile</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -55,6 +55,10 @@
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 @livewireScripts
     <!-- Vendor JS Files -->
+    <script src="{{asset('assets/plugins/jquery/jquery.min.js')}}"></script>
+
+    <script type="text/javascript" src="{{asset('js/app.js')}}"></script>
+
     <script src="{{asset('front/assets/vendor/purecounter/purecounter.js')}}"></script>
     <script src="{{asset('front/assets/vendor/aos/aos.js')}}"></script>
     <script src="{{asset('front/assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>

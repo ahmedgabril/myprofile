@@ -9,8 +9,8 @@
               </div>
 
               </div>
-              <div class="row aos-init aos-animate"  data-aos="fade-up" data-aos-delay="100">
-                <div class="col-lg-12 d-flex justify-content-center">
+              <div class="row ">
+                <div class="col-lg-12 d-flex justify-content-center aos-init aos-animate"  data-aos="fade-up" data-aos-delay="100">
                   <ul id="portfolio-flters">
                 <li class="{{$getdata == 0?'filter-active':''}}" wire:click="getall()" >الكل</li>
 
@@ -49,7 +49,7 @@
 
                     </div>
                     <div class="card-body">
-                    <h4><a href="#services">{{ $services->name}}</a></h4>
+                    <h5><a href="#services">{{Str::substr( $services->name,0,45)}}..</a></h5>
                       <p class="card-text" style="height: 95px;">{{Str::substr($services->title,0,130)}}<a href="#" class="text-danger"   data-bs-target="#showdec"
                         data-bs-toggle="modal" wire:click.prevent="getserdec({{$services->id}})"> {{ $services->title < Str::substr($services->title,0,70)?'اكمل القراءه':''}}</a></p>
                       <div class="d-flex justify-content-between" >

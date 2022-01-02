@@ -35,6 +35,8 @@ public $imageid=1;
 public $img;
 public $url;
 public $realimage;
+public $logo;
+public $getlogo;
 
 public  function mount()
 {
@@ -50,10 +52,39 @@ public  function mount()
     }
 
 
+    public function removelogo()
+    {
+    $this->logo = "";
+    }
+
+public function uploadelogo()
+{
+    $this->validate([
+        'logo' => 'sometimes|image|max:1024', // 1MB Max
+    ],[
+
+        'logo.max' => 'حجم الصوره المسموح به 1ميجا',
+
+    ]);
+
+    if($this->logo){
+        $getlogo = about::select('id','logo')->first();
+        $getlogo->logo  = $this->logo->store("images",'public');
+
+
+
+        $getlogo->save();
+        $this->logo="";
+        $this->dispatchBrowserEvent('update',['message'=>'تم تحميل لوجو الموقع الرئيسى بنجاح ']);
+
+    }
+
+}
     public function getrealimage()
     {
-        $about = about::select('id','img')->first();
+        $about = about::select('id','img','logo')->first();
         $this->realimage    =  $about->img;
+        $this->getlogo    =  $about->logo;
 
     }
 
@@ -62,6 +93,8 @@ public  function mount()
                 $this->validateOnly($propertyName, [
                     'form.name' => 'required|max:30',
                     'img' => 'sometimes|image|max:1024',
+                    'logo' => 'sometimes|image|max:1024',
+
 
                     'url' => 'file|mimes:docx,pdf|max:5120',
                    'formsochail.facebook' => 'sometimes|nullable|url',
@@ -131,7 +164,8 @@ public  function mount()
 
             $getimg->save();
             $this->img="";
-            $this->dispatchBrowserEvent('updateimg');
+            $this->dispatchBrowserEvent('update',['message'=>'تم تحميل الصوره الرئيسه بنجاح ']);
+
             //$this->restimagetemprorayurl();
 
             }
@@ -159,7 +193,8 @@ public  function mount()
             $geturl->url =  $url;
 
             $geturl->save();
-            $this->dispatchBrowserEvent('updateurl');
+            $this->dispatchBrowserEvent('update',['message'=>'تم تحميل رابط السره الذاتيه بنجاح ']);
+
 
 
         }
@@ -183,7 +218,7 @@ public  function mount()
                 $about->dec =  $this->form['dec'] ;
 
                  $about->save();
-                 $this->dispatchBrowserEvent('aboutupdated');
+                 $this->dispatchBrowserEvent('update',['message'=>'تم تحديث البيانات بنجاح ']);
 
 
             }
@@ -212,7 +247,7 @@ public  function mount()
                     $soshal->gmail   =   $this->formsochail['gmail']     ;
                     $soshal->setstatus   =   $this->formsochail['setstatus'] ;
                     $soshal->save();
-                     $this->dispatchBrowserEvent('sochal');
+                     $this->dispatchBrowserEvent('update',['message'=>'تم تحديث بيانات روابط السوشيال ميديا بنجاح']);
 
 
             }

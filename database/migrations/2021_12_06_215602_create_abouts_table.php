@@ -20,6 +20,7 @@ class CreateAboutsTable extends Migration
             $table->string('img')->nullable();
             $table->longText('dec')->nullable();
             $table->tinyInteger('status')->default('1');
+            $table->string('logo')->nullable();
             $table->string('url')->nullable();
 
             $table->timestamps();

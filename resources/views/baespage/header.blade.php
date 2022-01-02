@@ -10,17 +10,21 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" role="img"><title>Menu</title><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg>
                     </a>
                 </div><!--//col-->
+                 {{--}}
                 <div class="search-mobile-trigger d-sm-none col">
                     <i class="search-mobile-trigger-icon fas fa-search"></i>
                 </div><!--//col-->
+
                 <div class="app-search-box col-sm-5">
                     <form class="app-search-form">
                         <input type="text" placeholder="بحث..." name="search" class="form-control search-input">
                         <button type="submit" class="btn search-btn btn-primary" value="Search"><i class="fas fa-search"></i></button>
                     </form>
                 </div><!--//app-search-box-->
+                {{--}}
 
                 <div class="app-utilities col-auto">
+                    {{--}}
                     <div class="app-utility-item app-notifications-dropdown dropdown">
                         <a class="dropdown-toggle no-toggle-arrow" id="notifications-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" title="Notifications">
                             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
@@ -110,6 +114,7 @@
 
                         </div><!--//dropdown-menu-->
                     </div><!--//app-utility-item-->
+                    {{--}}
                     {{--}}
                     <div class="app-utility-item">
                         <a href="settings.html" title="Settings">

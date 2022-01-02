@@ -95,7 +95,7 @@ public function removeimage()
      $this->validateOnly($propertyName, [
 
 
-        'form.name' => 'required|string|max:255|unique:portfolios,name',
+        'form.name' => 'required|string|max:50|unique:portfolios,name',
         'form.title' => 'required|string|max:350',
         'form.project_url' => 'sometimes|url',
         'form.video_url' => 'sometimes|url',
@@ -135,7 +135,7 @@ public function removeimages($ides)
 
     $this->validate([
 
-        'form.name' => 'required|string|max:255|unique:portfolios,name',
+        'form.name' => 'required|string|max:50|unique:portfolios,name',
         'form.title' => 'required|string|max:350',
         'form.project_url' => 'sometimes|url',
         'form.video_url' => 'sometimes|url',
@@ -234,7 +234,7 @@ public function updateone(){
     $this->validate([
 
 
-        'form.name' => 'required|string|max:255|unique:portfolios,name,'.$this->globalids,
+        'form.name' => 'required|string|max:50|unique:portfolios,name,'.$this->globalids,
         'form.title' => 'required|string|max:350',
         'form.project_url' => 'sometimes|url',
         'form.video_url' => 'sometimes|url',
