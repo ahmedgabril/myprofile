@@ -31,21 +31,32 @@
 
                        <div class="app-card-body" x-data="{tab : 0}">
                         <ul class="nav nav-pills mb-5" id="pills-tab" role="tablist">
+                            @can('بياناتى الشخصيه')
                             <li class="nav-item ">
-                              <button class="nav-link":class="tab === 0 ?'active':''" x-on:click.prevent="tab = 0"  >بيانتى الشخصيه </button>
-                            </li>
+                                <button class="nav-link":class="tab === 0 ?'active':''" x-on:click.prevent="tab = 0"  >بيانتى الشخصيه </button>
+                              </li>
+                            @endcan
+                            @can('صوره الموقع الرئيسه')
+
                             <li class="nav-item">
                               <button class="nav-link" :class="tab === 1 ?'active':''" x-on:click.prevent="tab = 1"   type="button"   > صوره الموقع الرئيسه </button>
                             </li>
+                            @endcan
+                            @can('رفع ملف السيره الذاتيه')
                             <li class="nav-item" >
                               <button class="nav-link" :class="tab === 2 ?'active':''" x-on:click.prevent="tab = 2"  type="button"   >رفع ملف السره الذاتيه</button>
                             </li>
+                            @endcan
+                            @can('روابط التواصل الاجتماعى')
                             <li class="nav-item" >
                                 <button class="nav-link" :class="tab === 3 ?'active':''" x-on:click.prevent="tab =3"  type="button"   > روابط التواصل الاجتماعى</button>
                               </li>
+                              @endcan
+                              @can('لوجو الموقع الرئيسى')
                             <li class="nav-item" >
                                 <button class="nav-link" :class="tab === 4 ?'active':''" x-on:click.prevent="tab =4"  type="button"   >لوجو الموقع الرئيسى</button>
                               </li>
+                              @endcan
                           </ul>
                           <div class="">
                             <div class="" x-show="tab === 0" >
@@ -111,17 +122,31 @@
 
                                     </div>
 
+                                    <div class="mb-4" x-data="{ description: @entangle('description').defer }"
+
+                                    x-init="$watch('description', function (value) {
+                                               $refs.trix.editor.loadHTML(value)
+                                               var length = $refs.trix.editor.getDocument().toString().length
+                                               $refs.trix.editor.setSelectedRange(length - 1)
+                                               }
+                                           )" wire:ignore>
+
+                                           <label for="setting-input-3" class="form-label">تحدث عنك نفسك باستفاضه</label>
+                                   @error('description')
+                                   <span class="error d-inline-block"><i class="mdi mdi-alert-circle"> </i> {{$message}}</span>
+                                   @enderror
+                                   <input name="description" id="description" type="hidden" x-model="description">
+                                   <div x-on:trix-change.debounce.1000ms="description = $refs.trix.value">
+                                       <trix-editor x-ref="trix" input="description" class="overflow-y-scroll"
+                                                    style="height: 20rem; "></trix-editor>
+                                   </div>
 
 
 
-                                    <div class="mb-3 col-sm-12">
-                                    <label for="setting-input-3" class="form-label">تحدث عنك نفسك باستفاضه</label>
-
-                                    <textarea class="form-control" wire:model="form.dec" rows="4"></textarea>
-                                    </div>
-
-                                    <button type="submit" class="btn app-btn-primary ptn-center">حفظ التغيرات</button>
+                                    <button type="submit" class="btn app-btn-primary ptn-center mt-4">حفظ التغيرات</button>
                                 </div>
+
+                                    </div>
                                 </form>
 
                             </div>

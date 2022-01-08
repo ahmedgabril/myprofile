@@ -21,6 +21,7 @@ use App\Http\Livewire\Front\Portfolio;
 use App\Http\Livewire\Front\Skills as FrontSkills;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Livewire\Front\Welecome;
+use App\Http\Livewire\Handelusers;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -106,6 +107,12 @@ Route::group(['middleware' =>['auth','permission:المستخدمين والصل
 
 
                     Route::get('/myprofile',Myprofile::class)->name('myprofile');
+
+                });
+                Route::group(['middleware' =>['auth','permission: حسابى']],function () {
+
+
+                    Route::get('/myaccount',Handelusers::class)->name('myaccount');
 
                 });
 

@@ -23,6 +23,7 @@
 
    <!-- <link id="lightm" rel="stylesheet" media="(prefers-color-scheme:light)"
      href="assets/css/rtl/light.css">-->
+     <link rel="stylesheet" type="text/css" href="{{asset('trix/trix.css')}}">
 
             @if(auth()->user()->name == auth()->user()->name && auth()->user()->darkmode !== 0)
             <link id="" rel="stylesheet"
@@ -31,6 +32,7 @@
             <link id="" rel="stylesheet"
             href="assets/css/rtl/light.css">
             @endif
+
   @stack('styles')
 
 
@@ -152,6 +154,9 @@
    <script src="/assets/plugins/jquery/jquery.min.js"></script>
 
    <script type="text/javascript" src="{{asset('/js/app.js')}}"></script>
+   <script type="text/javascript" src="{{asset('trix/trix.js')}}"></script>
+
+
 
 <!-- jQuery -->
 

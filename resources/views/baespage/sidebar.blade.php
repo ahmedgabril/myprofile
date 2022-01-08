@@ -202,23 +202,11 @@
 
 
 
-                            @can('اعدادت الموقع')
-                            <li class="nav-item">
-                                <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                                <a class="nav-link" href="{{route('getsetting')}}">
-                                    <span class="nav-icon">
-                                        <i class="fas fa-user-cog"></i>
-                                     </span>
-                                    <span class="nav-link-text"> اعدادت الموقع</span>
-                                </a><!--//nav-link-->
-                            </li><!--//nav-item-->
-                            @endcan
-
                         </ul>
                     </div>
                 </li><!--//nav-item-->
                 @endcan
-
+                {{--}}
                 @can('الاحصائات')
                 <li class="nav-item">
                     <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
@@ -249,6 +237,7 @@
                     </a><!--//nav-link-->
                 </li><!--//nav-item-->
                 @endcan
+                {{--}}
 
             </ul><!--//app-menu-->
         </nav><!--//app-nav-->
@@ -256,7 +245,7 @@
             <nav class="app-nav app-nav-footer">
                 <ul class="app-menu footer-menu list-unstyled">
 
-
+                        {{--}}
                     <li class="nav-item">
                         <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
                         <a class="nav-link" href="https://themes.3rdwavemedia.com/bootstrap-templates/admin-dashboard/portal-free-bootstrap-admin-dashboard-template-for-developers/">
@@ -269,9 +258,10 @@
                             <span class="nav-link-text">التراخيص</span>
                         </a><!--//nav-link-->
                     </li><!--//nav-item-->
+                    {{--}}
                     <li class="nav-item">
                         <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                        <a class="nav-link" href="https://themes.3rdwavemedia.com/bootstrap-templates/admin-dashboard/portal-free-bootstrap-admin-dashboard-template-for-developers/">
+                        <a class="nav-link" href="https://magdy2020.com">
                             <span class="nav-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
                                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>

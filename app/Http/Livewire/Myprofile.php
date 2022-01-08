@@ -36,6 +36,7 @@ class Myprofile extends Component
     public $getfinalrusaltforimage=[];
     public $icon;
     public $gettempimg;
+    public $description;
     public $realimage;
     public $images =[];
     public $form = [
@@ -44,7 +45,6 @@ class Myprofile extends Component
         'title' => '',
         'clint_name' => '',
         'date' => null,
-       'dec' => '',
 
        'project_url' => '',
        'video_url' => '',
@@ -166,7 +166,7 @@ public function removeimages($ides)
         'title'   => $this->form['title'],
         'clint_name' => $this->form['clint_name'],
         'date'=> $this->form['date'],
-        'dec' => nl2br($this->form['dec']),
+        'dec' => nl2br($this->description),
         'project_url'=> $this->form['project_url'],
         'video_url'=> $this->form['video_url'],
         'cat_id' => $this->form['cat_id'],
@@ -198,7 +198,7 @@ public function edit($bid){
    $this->form['title']        = $getportfolio->title;
    $this->form['clint_name']   = $getportfolio->clint_name;
    $this->form['date']          = $getportfolio->date ;
-   $this->form['dec']          =  $getportfolio->dec;
+   $this->description          =  $getportfolio->dec;
    $this->form['project_url']  = $getportfolio->project_url;
    $this->form['video_url']    = $getportfolio->video_url ;
    $this->form['cat_id']       = $getportfolio->cat_id;
@@ -219,7 +219,7 @@ public function showdes($bid){
     $this->form['title']        = $getportfolio->title;
     $this->form['clint_name']   = $getportfolio->clint_name;
     $this->form['date']         = $getportfolio->date ;
-    $this->form['dec']          =  $getportfolio->dec;
+    $this->description          =  $getportfolio->dec;
     $this->form['project_url']  = $getportfolio->project_url;
     $this->form['video_url']    = $getportfolio->video_url ;
     $this->form['cat_id']       = $getportfolio->catogery->name;
@@ -243,7 +243,7 @@ public function updateone(){
         'form.cat_id' => 'required|alpha_num',
         'images' =>     'sometimes|nullable',
         'images.*' =>       'image|max:2048',
-        'icon' =>       'required|image|max:2048',
+        'icon' =>       'sometimes|nullable|image|max:2048',
 
     ],[
         "form.name.unique" => "اسم المشروع مسجل من قبل",
@@ -270,7 +270,7 @@ public function updateone(){
     $updateportfolio->title = $this->form['title'];
     $updateportfolio->clint_name = $this->form['clint_name'];
     $updateportfolio->date = $this->form['date'];
-    $updateportfolio->dec =nl2br($this->form['dec']);
+    $updateportfolio->dec =nl2br($this->description);
     $updateportfolio->project_url = $this->form['project_url'];
     $updateportfolio->video_url = $this->form['video_url'];
     $updateportfolio->cat_id = $this->form['cat_id'];

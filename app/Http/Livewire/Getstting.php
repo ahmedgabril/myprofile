@@ -17,7 +17,7 @@ public $form=[
 'name'=>'',
 'title'=>'',
 'status'=>'',
-'dec'=>'',
+
 
 ];
 public $formsochail=[
@@ -37,6 +37,7 @@ public $url;
 public $realimage;
 public $logo;
 public $getlogo;
+public $description;
 
 public  function mount()
 {
@@ -133,7 +134,7 @@ public function uploadelogo()
               $this->form['status'] =   $about->status;
               $this->formsochail['setstatus'] =$soshal->setstatus;
               $this->form['title']  =   $about->title;
-              $this->form['dec']  =     $about->dec;
+              $this->description =     $about->dec;
               $this->formsochail['facebook']  =$soshal->facebook;
               $this->formsochail['instgram']  =$soshal->instgram;
               $this->formsochail['linkedin']  =$soshal->linkedin;
@@ -210,12 +211,11 @@ public function uploadelogo()
 
             ]);
 
-
                 $about = about::first();
                 $about->name  = $this->form['name']   ;
                 $about->status =$this->form['status']  ;
                 $about->title= $this->form['title'];
-                $about->dec =  $this->form['dec'] ;
+                $about->dec =  $this->description ;
 
                  $about->save();
                  $this->dispatchBrowserEvent('update',['message'=>'تم تحديث البيانات بنجاح ']);

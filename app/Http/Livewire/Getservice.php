@@ -38,6 +38,7 @@ class Getservice extends Component
     $getfinalrusaltforimage=[];
     public $filename = 'services';
     public $icon;
+    public $description;
     public $img = [];
 
 
@@ -46,7 +47,7 @@ class Getservice extends Component
         'name' =>'',
         'title' =>'',
          'status'=> 1,
-        'dec' =>'',
+
        'price' =>'',
        'url' =>'',
        'created_at'=> '',
@@ -166,7 +167,7 @@ public function removeimages($imgid)
         services::create([
             'name' => $this->form['name'],
             'title'   => $this->form['title'],
-            'dec' => nl2br($this->form['dec']),
+            'dec' => nl2br($this->description),
             'url'=> $this->form['url'],
             'price'=> $this->form['price'],
             'status' => $this->form['status'],
@@ -190,7 +191,7 @@ public function removeimages($imgid)
         $this->form["name"] = $services->name;
          $this->form['title'] =$services->title;
          $this->realimage =   $services->icon;
-         $this->form['dec']=  $services->dec;
+         $this->description=  $services->dec;
          $this->rusaltforimage = $services->img;
          $this->form['url']=  $services->url;
          $this->form['price']=  $services->price;
@@ -209,7 +210,7 @@ public function showdes($bid)
     $this->form["name"] = $services->name;
      $this->form['title'] =$services->title;
      $this->realimage  =   $services->icon;
-     $this->form['dec']=  $services->dec;
+     $this->description=  $services->dec;
      $this->rusaltforimage =  $services->img;
      $this->form['url'] =  $services->url;
      $this->form['price']=  $services->price;
@@ -261,7 +262,7 @@ public function updateone(){
     }else{
         $this->getfinalrusaltforimage = $this->rusaltforimage;
     }
-  $updateservices->dec = nl2br($this->form['dec']);
+  $updateservices->dec = nl2br($this->description);
   $updateservices->img = $this->getfinalrusaltforimage;
   $updateservices->url = $this->form['url'];
   $updateservices->price = $this->form['price'];

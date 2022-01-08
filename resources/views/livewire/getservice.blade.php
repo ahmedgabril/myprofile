@@ -50,14 +50,15 @@
 
                        </div><!--enddivclassaction-->
                    </div>
+                     @can('اضافه خدمه')
+                     <div class=" col-sm-2 form-group" style="margin-top:29px;padding:4px">
+                        <button type="button"  wire:click.prevent="showmodel"
+                        class="btn btn-block btn-outline-success text-white"><i class="fas fa-plus-circle"></i>
+                         اضافه خدمه </button>
+                    </div>
 
-                 <div class=" col-sm-2 form-group" style="margin-top:29px;padding:4px">
-                     <button type="button"  wire:click.prevent="showmodel"
-                     class="btn btn-block btn-outline-success text-white"><i class="fas fa-plus-circle"></i>
-                      اضافه خدمه </button>
-                 </div>
-
-
+                     @endcan
+                     @can('خدمه كنترول')
 
                      <div class=" col-sm-4"
                      style="margin-top:32px; border-right: 1px !important;">
@@ -96,7 +97,7 @@
 
                    </select>
                  </div>
-
+                 @endcan
                 </div> <!-- /.end-row-card-header -->
              </div>
              <!-- /.card-header -->
@@ -152,15 +153,22 @@
                                             <i  class="fa fa-eye text-primary"></i>
                                              استعراض البيانات
                                         </a>
-                                         <a href="#"  class="dropdown-item" wire:click.prevent="edit({{$getdata->id}})" >
-                                             <i style="margin-left: 4px;" class="fa fa-edit text-success">
-                                                 </i>
-                                             تعديل البيانات
-                                             </a>
-                                         <a href="#" class="dropdown-item" wire:click.prevent="getcurantid({{ $getdata->id }})">
-                                             <i style="margin-left: 4px;" class="fas fa-trash text-danger"></i>
-                                         حذف البيانات
-                                         </a>
+                                        @can('تعديل خدمه')
+                                        <a href="#"  class="dropdown-item" wire:click.prevent="edit({{$getdata->id}})" >
+                                            <i style="margin-left: 4px;" class="fa fa-edit text-success">
+                                                </i>
+                                            تعديل البيانات
+                                            </a>
+                                        @endcan
+                                        @can('حذف خدمه')
+
+                                        <a href="#" class="dropdown-item" wire:click.prevent="getcurantid({{ $getdata->id }})">
+                                            <i style="margin-left: 4px;" class="fas fa-trash text-danger"></i>
+                                        حذف البيانات
+                                        </a>
+
+                                        @endcan
+
 
                                          <a class="dropdown-divider"></a>
                                          <a href="#" class="dropdown-item"> ......</a>
@@ -446,21 +454,27 @@
 
         </div>
 
-        <div class="mb-3 col-sm-12">
-            <label for="setting-input-3" class="form-label">تحدث عن الخدمه باستفاضه</label>
 
-            <textarea class="form-control @error("form.dec") is-invalid @enderror"
-             wire:model="form.dec" rows="4"></textarea>
-            @error('form.dec')
-            <div class="invalid-feedback">
-             {{$message}}
-           </div>
+        <div class="mb-2 col-sm-12" x-data="{ description: @entangle('description').defer }"
 
-            @enderror
+        x-init="$watch('description', function (value) {
+                   $refs.trix.editor.loadHTML(value)
+                   var length = $refs.trix.editor.getDocument().toString().length
+                   $refs.trix.editor.setSelectedRange(length - 1)
+                   }
+               )" wire:ignore>
 
+               <label for="setting-input-3" class="form-label">شرح تفاصيل الخدمه باستفاضه </label>
+               @error('description')
+       <span class="error d-inline-block"><i class="mdi mdi-alert-circle"> </i> {{$message}}</span>
+       @enderror
+       <input name="description" id="description" type="hidden" x-model="description">
+       <div x-on:trix-change.debounce.1000ms="description = $refs.trix.value">
+           <trix-editor x-ref="trix" input="description" class="overflow-y-scroll"
+                        style="height: 20rem;"></trix-editor>
+       </div>
 
-        </div>
-
+    </div>
 
      <div class="modal-footer mt-4">
        @if (!$showmodelf)
@@ -591,7 +605,7 @@
 
            <div class="mb-3 col-sm-12">
                <label for="setting-input-3" class="form-label">تحدث عن الخدمه باستفاضه</label><br/>
-                  {!!$form['dec']!!}
+                  {!!$description!!}
 
 
            </div>

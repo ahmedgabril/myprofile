@@ -51,15 +51,15 @@
 
                        </div><!--enddivclassaction-->
                    </div>
-
+                   @can('اضافه مهاره')
                  <div class=" col-sm-2 form-group" style="margin-top:29px;padding:4px">
                      <button type="button"  wire:click.prevent="showmodel"
                      class="btn btn-block btn-outline-success text-white"><i class="fas fa-plus-circle"></i>
                       اضافه مهاره </button>
                  </div>
+                   @endcan
 
-
-
+                   @can('مهاره كنترول')
                      <div class=" col-sm-4"
                      style="margin-top:32px; border-right: 1px !important;">
 
@@ -97,7 +97,7 @@
 
                    </select>
                  </div>
-
+                 @endcan
                 </div> <!-- /.end-row-card-header -->
              </div>
              <!-- /.card-header -->
@@ -146,16 +146,21 @@
                                      </button>
 
                                        <div class="dropdown-menu dropdown-menu-right" role="menu" style="">
-
+                                         @can('تعديل مهاره')
                                          <a href="#"  class="dropdown-item" wire:click.prevent="edit({{$getdata->id}})" >
-                                             <i style="margin-left: 4px;" class="fa fa-edit text-success">
-                                                 </i>
-                                             تعديل البيانات
-                                             </a>
+                                            <i style="margin-left: 4px;" class="fa fa-edit text-success">
+                                                </i>
+                                            تعديل البيانات
+                                            </a>
+                                         @endcan
+                                         @can('حذف مهاره')
                                          <a href="#" class="dropdown-item" wire:click.prevent="getcurantid({{ $getdata->id }})">
-                                             <i style="margin-left: 4px;" class="fas fa-trash text-danger"></i>
-                                         حذف البيانات
-                                         </a>
+                                            <i style="margin-left: 4px;" class="fas fa-trash text-danger"></i>
+                                        حذف البيانات
+                                        </a>
+                                         @endcan
+
+
 
                                          <a class="dropdown-divider"></a>
                                          <a href="#" class="dropdown-item"> ......</a>

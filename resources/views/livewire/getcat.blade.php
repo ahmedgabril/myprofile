@@ -44,20 +44,23 @@
                            <div class="dropdown-menu dropdown-menu-right" role="menu" style="">
                              <a href="#" class="dropdown-item">طباعه</a>
 
-                             <a class="dropdown-divider"></a>
-                             <a href="#" class="dropdown-item"> ....</a>
                            </div>
                          </div>
 
                        </div><!--enddivclassaction-->
                    </div>
+                 @can('اضافه قسم')
 
                  <div class=" col-sm-2 form-group" style="margin-top:29px;padding:4px">
-                     <button type="button"  wire:click.prevent="showmodel"
-                     class="btn btn-block btn-outline-success text-white"><i class="fas fa-plus-circle"></i>
-                      اضافه قسم </button>
-                 </div>
+                    <button type="button"  wire:click.prevent="showmodel"
+                    class="btn btn-block btn-outline-success text-white"><i class="fas fa-plus-circle"></i>
+                     اضافه قسم </button>
+                </div>
+                 @endcan
 
+
+
+                 @can('قسم كنترول')
 
 
                      <div class=" col-sm-4"
@@ -97,7 +100,7 @@
 
                    </select>
                  </div>
-
+                 @endcan
                 </div> <!-- /.end-row-card-header -->
              </div>
              <!-- /.card-header -->
@@ -144,19 +147,22 @@
                                      </button>
 
                                        <div class="dropdown-menu dropdown-menu-right" role="menu" style="">
+                                        @can('تعديل قسم')
+                                        <a href="#"  class="dropdown-item" wire:click.prevent="edit({{$getdata->id}})" >
+                                            <i style="margin-left: 4px;" class="fa fa-edit text-success">
+                                                </i>
+                                            تعديل البيانات
+                                            </a>
+                                        @endcan
+                                        @can('حذف قسم')
 
-                                         <a href="#"  class="dropdown-item" wire:click.prevent="edit({{$getdata->id}})" >
-                                             <i style="margin-left: 4px;" class="fa fa-edit text-success">
-                                                 </i>
-                                             تعديل البيانات
-                                             </a>
-                                         <a href="#" class="dropdown-item" wire:click.prevent="getcurantid({{ $getdata->id }})">
-                                             <i style="margin-left: 4px;" class="fas fa-trash text-danger"></i>
-                                         حذف البيانات
-                                         </a>
+                                        <a href="#" class="dropdown-item" wire:click.prevent="getcurantid({{ $getdata->id }})">
+                                            <i style="margin-left: 4px;" class="fas fa-trash text-danger"></i>
+                                        حذف البيانات
+                                        </a>
+                                        @endcan
 
-                                         <a class="dropdown-divider"></a>
-                                         <a href="#" class="dropdown-item"> ......</a>
+
                                        </div>
                                      </div>
 

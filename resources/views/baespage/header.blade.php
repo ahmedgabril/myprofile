@@ -6,7 +6,8 @@
                 <div class="row justify-content-between align-items-center">
 
                 <div class="col-auto">
-                    <a id="sidepanel-toggler" class="sidepanel-toggler d-inline-block d-xl-none" href="#">
+                    <a id="sidepanel-toggler" class="sidepanel-toggler
+                     d-inline-block d-xl-none" href="#">
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" role="img"><title>Menu</title><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg>
                     </a>
                 </div><!--//col-->
@@ -127,21 +128,41 @@
                     </div><!--//app-utility-item-->
                         {{--}}
                          <div class="app-utility-item app-user-dropdown dropdown">
-                        <a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><img src="assets/images/user.png" alt="user profile"></a>
+                        <a class="dropdown-toggle" id="user-dropdown-toggle"
+                         data-bs-toggle="dropdown"
+                         href="{{route('backend')}}" role="button"
+                           aria-expanded="false">
+                           @if (auth()->user()->image)
+                           <img
+                           src="{{asset('storage/'.auth()->user()->image)}}"
+                            alt="user profile" id="userprofile">
+                            @else
+                            <img
+                            src="assets/images/user.png"
+                             alt="user profile" id="userprofile">
+                           @endif
+                         </a>
                         <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
+                            <li ><a class="dropdown-item" href="{{route('home')}}"><span class="nav-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-display" viewBox="0 0 16 16">
+                                    <path d="M0 4s0-2 2-2h12s2 0 2 2v6s0 2-2 2h-4c0 .667.083 1.167.25 1.5H11a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1h.75c.167-.333.25-.833.25-1.5H2s-2 0-2-2V4zm1.398-.855a.758.758 0 0 0-.254.302A1.46 1.46 0 0 0 1 4.01V10c0 .325.078.502.145.602.07.105.17.188.302.254a1.464 1.464 0 0 0 .538.143L2.01 11H14c.325 0 .502-.078.602-.145a.758.758 0 0 0 .254-.302 1.464 1.464 0 0 0 .143-.538L15 9.99V4c0-.325-.078-.502-.145-.602a.757.757 0 0 0-.302-.254A1.46 1.46 0 0 0 13.99 3H2c-.325 0-.502.078-.602.145z"/>
+                                  </svg>
+                                 </span>الموقع</a></li>
                             <li ><a class="dropdown-item" href="{{route('backend')}}"><span class="nav-icon">
                                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-house-door" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M7.646 1.146a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 .146.354v7a.5.5 0 0 1-.5.5H9.5a.5.5 0 0 1-.5-.5v-4H7v4a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .146-.354l6-6zM2.5 7.707V14H6v-4a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v4h3.5V7.707L8 2.207l-5.5 5.5z"></path>
                                 <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"></path>
                                 </svg>
                                  </span>لوحة التحكم</a></li>
-                            <li ><a class="dropdown-item" href="#">
+
+                            <li ><a class="dropdown-item" href="/myaccount">
                                  <span class="nav-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
                                     <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
                                   </svg></span> حسابى</a></li>
+                                 {{--}}
                                   <livewire:getdarkmode/>
-
+                                 {{--}}
 
                             <li ><a class="dropdown-item" href="{{route('setting')}}"><span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
                                 <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
