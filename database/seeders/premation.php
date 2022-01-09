@@ -56,7 +56,6 @@ class premation extends Seeder
 
         'المستخدمين والصلاحيات',
         'اداره المستخدمين',
-        'اداره المستخدمين',
         'مستخدم كنترول',
         'تعديل مستخدم',
         'حذف مستخدم',
@@ -85,7 +84,8 @@ class premation extends Seeder
         $role2 = Role::create(['name' => 'admin']);
         $role2->givePermissionTo("الاعدادت");
         $role2->givePermissionTo("الصفحه الرئيسه");
-
+        $role2->givePermissionTo("الخدمات");
+        $role2->givePermissionTo("عنى");
 
         $user = \App\Models\User::factory()->create([
             'name' => 'Example Admin User',

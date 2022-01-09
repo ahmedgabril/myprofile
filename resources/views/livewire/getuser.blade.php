@@ -52,12 +52,17 @@
                           </div><!--enddivclassaction-->
                       </div>
 
+
+
+                    @can('اضافه مستخدم')
                     <div class=" col-sm-2 form-group" style="margin-top:29px;padding:4px">
                         <button type="button"  wire:click.prevent="showmodel"
                         class="btn btn-block btn-outline-success text-white"><i class="fas fa-plus-circle"></i>
                          اضافه مستخدم </button>
                     </div>
+                    @endcan
 
+                    @can('مستخدم كنترول')
 
 
                         <div class=" col-sm-4"
@@ -98,7 +103,7 @@
 
                       </select>
                     </div>
-
+                    @endcan
                    </div> <!-- /.end-row-card-header -->
                 </div>
                 <!-- /.card-header -->
@@ -151,15 +156,21 @@
                                                 <i  class="fa fa-eye text-primary"></i>
                                                  عرض جميع البيانات
                                             </a>
-                                            <a href="#"  class="dropdown-item" wire:click.prevent="edit({{$getdata->id}})" >
-                                                <i style="margin-left: 4px;" class="fa fa-edit text-success">
-                                                    </i>
-                                                تعديل البيانات
+                                                    @can('تعديل مستخدم')
+                                                    <a href="#"  class="dropdown-item" wire:click.prevent="edit({{$getdata->id}})" >
+                                                        <i style="margin-left: 4px;" class="fa fa-edit text-success">
+                                                            </i>
+                                                        تعديل البيانات
+                                                        </a>
+                                                    @endcan
+
+                                                @can('حذف مستخدم')
+                                                <a href="#" class="dropdown-item" wire:click.prevent="getcurantid({{ $getdata->id }})">
+                                                    <i style="margin-left: 4px;" class="fas fa-trash text-danger"></i>
+                                                حذف البيانات
                                                 </a>
-                                            <a href="#" class="dropdown-item" wire:click.prevent="getcurantid({{ $getdata->id }})">
-                                                <i style="margin-left: 4px;" class="fas fa-trash text-danger"></i>
-                                            حذف البيانات
-                                            </a>
+                                                @endcan
+
 
                                             <a class="dropdown-divider"></a>
                                             <a href="#" class="dropdown-item"> ......</a>

@@ -19,7 +19,7 @@ class Myprofile extends Component
     protected $queryStringWithSorting = [
         'sortByany' => ['except' => 'id'],
         'sortDirections' => ['except' => 'asc'],
-        'pagenate' => ['except' => ''],
+        'pagenate' => ['except' => '5'],
 
 
     ];
@@ -36,7 +36,7 @@ class Myprofile extends Component
     public $getfinalrusaltforimage=[];
     public $icon;
     public $gettempimg;
-    public $description;
+    public $getdescription;
     public $realimage;
     public $images =[];
     public $form = [
@@ -66,7 +66,7 @@ class Myprofile extends Component
         return view('livewire.myprofile', ['data'=> $portfolio,
 
         "counts" => portfolio::count(),
-        "catogry" => catogery::paginate(),
+        "catogry" => catogery::get(),
 
 
 
@@ -82,6 +82,7 @@ class Myprofile extends Component
     $this->resetPage();
 
  }
+
 
 public function removeimage()
 {
@@ -100,7 +101,7 @@ public function removeimage()
         'form.project_url' => 'sometimes|url',
         'form.video_url' => 'sometimes|url',
         'form.clint_name' => 'sometimes|nullable|string',
-        'form.dec' => 'sometimes|nullable',
+        'getdescription' => 'sometimes|nullable',
         'form.cat_id' => 'required|alpha_num',
         'images' =>     'required|array',
         'images.*' =>       'image|max:2048',
@@ -117,12 +118,10 @@ public function removeimage()
  }
  public function showmodel(){
 
-
  if($this->showmodelf==false){
 
-
     $this->dispatchBrowserEvent("show-model");
-     $this->reset();
+
   }
 }
 public function removeimages($ides)
@@ -140,7 +139,6 @@ public function removeimages($ides)
         'form.project_url' => 'sometimes|url',
         'form.video_url' => 'sometimes|url',
         'form.clint_name' => 'sometimes|nullable|string',
-        'form.dec' => 'sometimes|nullable',
         'form.cat_id' => 'required|alpha_num',
         'images' =>     'required|array',
         'images.*' =>       'image|max:2048',
@@ -166,7 +164,7 @@ public function removeimages($ides)
         'title'   => $this->form['title'],
         'clint_name' => $this->form['clint_name'],
         'date'=> $this->form['date'],
-        'dec' => nl2br($this->description),
+        'dec' => $this->getdescription,
         'project_url'=> $this->form['project_url'],
         'video_url'=> $this->form['video_url'],
         'cat_id' => $this->form['cat_id'],
@@ -177,7 +175,7 @@ public function removeimages($ides)
 
     $this->getfinalrusaltforimage = "";
 
-      $this->dispatchBrowserEvent("add",['message'=> "تمت  اضافه البيانات بنجاح 🙂"]);
+      $this->dispatchBrowserEvent("add",['message'=> "تمت اضافه البيانات بنجاح 🙂"]);
     }
 
 
@@ -198,7 +196,7 @@ public function edit($bid){
    $this->form['title']        = $getportfolio->title;
    $this->form['clint_name']   = $getportfolio->clint_name;
    $this->form['date']          = $getportfolio->date ;
-   $this->description          =  $getportfolio->dec;
+   $this->getdescription          =  $getportfolio->dec;
    $this->form['project_url']  = $getportfolio->project_url;
    $this->form['video_url']    = $getportfolio->video_url ;
    $this->form['cat_id']       = $getportfolio->cat_id;
@@ -219,7 +217,7 @@ public function showdes($bid){
     $this->form['title']        = $getportfolio->title;
     $this->form['clint_name']   = $getportfolio->clint_name;
     $this->form['date']         = $getportfolio->date ;
-    $this->description          =  $getportfolio->dec;
+    $this->getdescription          =  $getportfolio->dec;
     $this->form['project_url']  = $getportfolio->project_url;
     $this->form['video_url']    = $getportfolio->video_url ;
     $this->form['cat_id']       = $getportfolio->catogery->name;
@@ -239,7 +237,6 @@ public function updateone(){
         'form.project_url' => 'sometimes|url',
         'form.video_url' => 'sometimes|url',
         'form.clint_name' => 'sometimes|nullable|string',
-        'form.dec' => 'sometimes|nullable',
         'form.cat_id' => 'required|alpha_num',
         'images' =>     'sometimes|nullable',
         'images.*' =>       'image|max:2048',
@@ -270,7 +267,7 @@ public function updateone(){
     $updateportfolio->title = $this->form['title'];
     $updateportfolio->clint_name = $this->form['clint_name'];
     $updateportfolio->date = $this->form['date'];
-    $updateportfolio->dec =nl2br($this->description);
+    $updateportfolio->dec =$this->getdescription;
     $updateportfolio->project_url = $this->form['project_url'];
     $updateportfolio->video_url = $this->form['video_url'];
     $updateportfolio->cat_id = $this->form['cat_id'];
@@ -293,7 +290,19 @@ public function delete(){
     $this->dispatchBrowserEvent("getdel",['message'=> "تمت  حذف  البيانات بنجاح 🙂"]);
 
 }
+public function  restval(){
 
+$this->form['name'] = "";
+$this->form['title'] = "";
+$this->form['clint_name'] = "";
+$this->form['video_url'] = "";
+$this->form['project_url'] = "";
+$this->form['cat_id'] = "";
+$this->getdescription = "";
+$this->icon = "";
+
+
+}
 public function getval()
 {
     $this->reset();

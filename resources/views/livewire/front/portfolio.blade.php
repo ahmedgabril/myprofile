@@ -92,7 +92,7 @@
                 <div class="modal-dialog  modal-fullscreen-xxl-down">
                   <div class="modal-content" style="background-color:#eee">
                     <div class="modal-header" >
-                      <h5 class="modal-title" id="showdec">تفاصيل الخدمه</h5>
+                      <h5 class="modal-title" id="showdec">تفاصيل المشروع</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="text-center" wire:loading>

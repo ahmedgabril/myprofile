@@ -95,7 +95,7 @@
                           <input type="password"class="form-control
                           @error("password")  is-invalid
 
-                          @enderror" wire:model="password"/>
+                          @enderror" wire:model="password" autocomplete="new-password"/>
 
                           @error('password')
                           <div class="invalid-feedback">

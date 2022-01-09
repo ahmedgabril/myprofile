@@ -10,7 +10,7 @@ use Livewire\WithFileUploads;
 
 
 
-class Getstting extends Component
+class Getsetting extends Component
 {
     use WithFileUploads;
 public $form=[
@@ -49,7 +49,7 @@ public  function mount()
     {
 
        $this->getrealimage();
-        return view('livewire.getstting');
+        return view('livewire.getsetting');
     }
 
 

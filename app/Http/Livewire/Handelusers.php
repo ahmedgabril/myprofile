@@ -121,7 +121,7 @@ public function changepassword(){
     $updateuserpassword->password = Hash::make($this->password);
 
     $updateuserpassword->save();
-  $this->password = "";
+     $this->password = "";
     $this->dispatchBrowserEvent('upadetuser',['message'=>'تم تحديث كلمه السر  بنجاح']);
 }
 

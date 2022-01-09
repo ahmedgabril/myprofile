@@ -98,8 +98,8 @@ public function removeimages($imgid)
  {
      $this->validateOnly($propertyName, [
 
-        'form.name' => 'required|string|unique:services,name|max:45|min:30',
-        'form.title' => 'required|string|min:100|max:360',
+        'form.name' => 'required|string|unique:services,name|max:45|min:25',
+        'form.title' => 'required|string|min:30|max:360',
         'icon' => 'sometimes|nullable|image|max:1024',
         'form.status' => 'sometimes|nullable|alpha_num',
         'form.url' => 'sometimes|nullable|url',
@@ -128,7 +128,7 @@ public function removeimages($imgid)
 
 
     $this->dispatchBrowserEvent("show-model");
- //$this->modeltitle = true;
+
 
 
 
@@ -136,8 +136,8 @@ public function removeimages($imgid)
 }
  public function add(){
     $this->validate([
-        'form.name' => 'required|string|unique:services,name|max:45|min:30',
-        'form.title' => 'required|string|min:100|max:360',
+        'form.name' => 'required|string|unique:services,name|max:45|min:25',
+        'form.title' => 'required|string|min:30|max:360',
 
         'icon' => 'sometimes|nullable|image|max:1024',
         'form.status' => 'sometimes|nullable|alpha_num',
@@ -224,8 +224,8 @@ public function updateone(){
     $this->validate([
 
 
-        'form.name' => 'required|string|max:45|min:30|unique:services,name,'.$this->globalids,
-        'form.title' => 'required|string|max:360|min:100',
+        'form.name' => 'required|string|max:45|min:25|unique:services,name,'.$this->globalids,
+        'form.title' => 'required|string|max:360|min:30',
         'icon' => 'sometimes|nullable|image|max:1024',
         'form.status' => 'sometimes|nullable|alpha_num',
         'form.url' => 'sometimes|nullable|url',
@@ -269,9 +269,9 @@ public function updateone(){
   $updateservices->status = $this->form['status'];
   $updateservices->save();
 
+  $this->reset();
 
   $this->dispatchBrowserEvent("add",['message'=> "تمت  تحديث البيانات بنجاح 🙂"]);
-  $this->reset();
 
 }
 public function getcurantid($getcurantid){
@@ -285,14 +285,7 @@ public function delete(){
 
     services::destroy($this->idfordelete);
     $this->dispatchBrowserEvent("getdel",['message'=> "تمت  حذف  البيانات بنجاح 🙂"]);
-    /*
-    $getlog = new loge();
-    $getlog->loges_action_id =  $this->realidfordelete;
-    $getlog->loges_action_type =  "حذف  بيانات رحله";
-    $getlog->loges_action_by = auth()->user();
-    $getlog->loges_action_des = "تمت عمليه الحذف من قبل ".auth()->user();
-    $getlog->save();
-    */
+
 }
 
 public function getval()

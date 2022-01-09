@@ -20,10 +20,8 @@
     <!--<link id="theme-style" rel="stylesheet" href="assets/css/portal.css">-->
 
 
-
    <!-- <link id="lightm" rel="stylesheet" media="(prefers-color-scheme:light)"
      href="assets/css/rtl/light.css">-->
-     <link rel="stylesheet" type="text/css" href="{{asset('trix/trix.css')}}">
 
             @if(auth()->user()->name == auth()->user()->name && auth()->user()->darkmode !== 0)
             <link id="" rel="stylesheet"
@@ -36,7 +34,7 @@
   @stack('styles')
 
 
-  <!--<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>-->
+
   @livewireStyles
 
 
@@ -153,8 +151,10 @@
 
    <script src="/assets/plugins/jquery/jquery.min.js"></script>
 
+
    <script type="text/javascript" src="{{asset('/js/app.js')}}"></script>
-   <script type="text/javascript" src="{{asset('trix/trix.js')}}"></script>
+{{--}}<script type="text/javascript" src="{{asset('build/ckeditor.js')}}"></script>{{--}}
+
 
 
 
@@ -208,16 +208,7 @@ Toast.fire({
   icon: 'success',
   title: 'welecom ..{{ session('message') }} '
 })
-/*
-Swal.fire({
-  position: 'top-start',
-   toast: true,
-   timerProgressBar: true,
-  icon: 'success',
-  title: 'welecom ..{{ session('message') }} ',
-  showConfirmButton: false,
-  timer: 2500
-})*/
+
 @endif
 
   });

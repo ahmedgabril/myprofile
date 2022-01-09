@@ -15,7 +15,7 @@ class Portfolio extends Component
     public $getdata;
     public $getserdata;
     public $isactive;
-    public $paginate=9;
+    public $paginate=12;
     public $page=1;
     protected $queryString = [
 

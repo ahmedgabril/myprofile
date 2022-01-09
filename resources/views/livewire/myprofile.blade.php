@@ -1,7 +1,7 @@
 <div>
 
 
-    <div class="container">
+    <div class="container-xl">
 
      <div class="row mb-4">
          <div class="col-sm-4">
@@ -20,6 +20,8 @@
            </ol>
          </div><!-- /.col -->
        </div><!-- /.row -->
+    </div>
+
 
      <div class="row">
          <div class="col-md-12">
@@ -245,7 +247,7 @@
        </button>
      </div>
      <div class="modal-body">
-         <form  wire:submit.prevent="{{!$showmodelf ? 'add' :'updateone'}}" novalidate="novalidate">
+         <form  wire:submit.prevent="{{!$showmodelf ? 'add' :'updateone'}}" >
 
         <div class="row">
               <div class="col-sm-6 form-group">
@@ -269,11 +271,11 @@
 
 
 
-          <div class="col-sm-6 form-group" >
+          <div class="col-sm-6 form-group"  >
              <label >القسم التابع له</label>
-                <div class="@error("form.cat_id")  is-invalid @enderror" >
 
-                 <select class="form-control" id="proseed" style="padding-top:1px"
+
+                 <select class="form-control @error("form.cat_id")  is-invalid @enderror"  style="padding-top:1px"
                   wire:model="form.cat_id">
                   <option>اختر قسم</option>
                    @foreach ($catogry as $item)
@@ -282,7 +284,7 @@
                    @endforeach
 
                  </select>
-                </div>
+
 
                 @error('form.cat_id')
                 <div class="invalid-feedback">
@@ -436,12 +438,12 @@
                wire:model="icon"/>
 
 
-               <div wire:loading wire:target="icon">
+               <div wire:loading wire:target="icon" wire:key="icon1">
 
                 <div class="d-flex justify-content: center mt-4 mb-4">
                     <div class="d-flex align-items-center">
                         <strong class="ms-4 text-success">جارى التحميل</strong>
-                        <div class="spinner-border ml-auto text-success" role="status" aria-hidden="true"></div>
+                        <div class="spinner-border ml-auto text-success"></div>
                       </div>
 
                  </div>
@@ -454,8 +456,8 @@
             @enderror
 
 
-
          </div>
+
          <div class="col-sm-6 form-group">
             <label for="">رفع صور المشروع</label>
               <input class="form-control @error("images")  is-invalid
@@ -465,7 +467,7 @@
 
               />
 
-               <div wire:loading wire:target="images">
+               <div wire:loading wire:target="images" wire:key="images1">
 
                 <div class="d-flex justify-content: center mt-4">
                     <div class="d-flex align-items-center">
@@ -483,7 +485,7 @@
 
              @enderror
          </div>
-         <div class="col-sm-12 form-group">
+         <div class="mb-4 col-sm-12 form-group">
             <label for="">عنوان اوصف صغير </label>
               <textarea class="form-control @error("form.title")  is-invalid
 
@@ -499,27 +501,28 @@
              @enderror
 
          </div>
-         <div class="mb-2 col-sm-12" x-data="{ description: @entangle('description').defer }"
 
-         x-init="$watch('description', function (value) {
-                    $refs.trix.editor.loadHTML(value)
-                    var length = $refs.trix.editor.getDocument().toString().length
-                    $refs.trix.editor.setSelectedRange(length - 1)
-                    }
-                )" wire:ignore>
+         <div class="mb-2 col-sm-12" wire:ignore wire:key="1"
 
-                <label for="setting-input-3" class="form-label">شرح تفاصيل المشروع باستفاضه </label>
-        @error('description')
-        <span class="error d-inline-block"><i class="mdi mdi-alert-circle"> </i> {{$message}}</span>
-        @enderror
-        <input name="description" id="description" type="hidden" x-model="description">
-        <div x-on:trix-change.debounce.1000ms="description = $refs.trix.value">
-            <trix-editor x-ref="trix" input="description" class="overflow-y-scroll"
-                         style="height: 20rem;"></trix-editor>
-        </div>
+         x-data="{ getdescription: @entangle('getdescription').defer }"
 
-     </div>
+        x-init="$watch('getdescription', function (value) {
+                   $refs.trix.editor.loadHTML(value)
+                   var lengthd = $refs.trix.editor.getDocument().toString().length
+                   $refs.trix.editor.setSelectedRange(length - 1)
+                   }
+               )" >
 
+            <label for="" class="form-label">شرح تفاصيل المشروع باستفاضه </label>
+
+       <input  id="getdescription1" type="hidden" x-model="getdescription">
+       <div x-on:trix-change.defer="getdescription = $refs.trix.value">
+           <trix-editor x-ref="trix" input="getdescription1"
+                     style="height: 20rem" ></trix-editor>
+       </div>
+
+
+         </div>
 
      <div class="modal-footer">
        @if (!$showmodelf)
@@ -674,7 +677,7 @@
 
             <div class="col-sm-12 form-group">
                <label for="">شرح تفاصيل المشروع باستفاضه</label><br/>
-                {!!$description!!}
+                {!!$getdescription!!}
 
             </div>
 
@@ -695,7 +698,7 @@
    <!--end model add-->
 
      </div><!--end mainrow-->
-    </div> <!--end container-->
+
 
 
 
@@ -703,22 +706,40 @@
 </div>
 
 
+@push('styles')
+<link rel="stylesheet" href="{{asset('trix/trix.css')}}"/>
 
+@endpush
 @push('scripts')
+{{--}}
+<script src="https://cdn.ckeditor.com/ckeditor5/31.1.0/classic/ckeditor.js"></script>
+<script>
+
+ClassicEditor
+        .create( document.querySelector( '#getnote' ) )
+        .then(function(editor){
+            editor.model.document.on("change:data",() => {
+           @this.set("description",editor.getData())
+            })
+        })
+        .catch( error => {
+            console.error( error );
+        } );
+
+</script>
+{{--}}
+<script type="text/javascript" src="{{asset('trix/trix.js')}}"></script>
 
 <script>
 
-$(function(){
-    /*
-    Livewire.hook('message.processed', (message, component) => {
-        $('#proseed').val();
 
-       });*/
+$(function(){
 
  $('#modal-role,#modal-showdes').on('hidden.bs.modal',function () {
      livewire.emit('getval');
 
   });
+
 window.addEventListener('add',function(event){
 $("#modal-role").modal("hide");
 const Toast = Swal.mixin({
@@ -731,7 +752,7 @@ didOpen: (toast) => {
  toast.addEventListener('mouseenter', Swal.stopTimer)
  toast.addEventListener('mouseleave', Swal.resumeTimer)
 }
-})
+});
 
 Toast.fire({
 icon: 'success',
@@ -739,6 +760,7 @@ title:   event.detail.message
 })
 
 })
+
 window.addEventListener('show-model',function(){
 $("#modal-role").modal("show");
 });
@@ -777,14 +799,8 @@ Toast.fire({
 icon: 'success',
 title:   event.detail.message
 })
-/*  Swal.fire({
-position: 'top-start',
-icon: 'success',
-title: event.detail.message,
-showConfirmButton: false,
-timer: 3000
-})*/
-});
+
+ })
 });
 
 </script>

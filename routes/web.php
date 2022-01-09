@@ -9,20 +9,20 @@ use App\Http\Livewire\Backend;
 use App\Http\Livewire\Getrole;
 use App\Http\Livewire\Getuser;
 use App\Http\Livewire\Setting;
-use App\Http\Livewire\Getstting;
 use App\Http\Livewire\Myprofile;
 use App\Http\Livewire\Getservice;
+use App\Http\Livewire\Getsetting;
+use App\Http\Livewire\Handelusers;
 use App\Http\Controllers\Getalldata;
 use App\Http\Livewire\Front\Aboutme;
-use App\Http\Livewire\Front\ContactMe;
-use App\Http\Livewire\Front\Getservicesdec;
-use App\Http\Livewire\Front\Portfdec;
-use App\Http\Livewire\Front\Portfolio;
-use App\Http\Livewire\Front\Skills as FrontSkills;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Livewire\Front\Portfdec;
 use App\Http\Livewire\Front\Welecome;
-use App\Http\Livewire\Handelusers;
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Front\ContactMe;
+use App\Http\Livewire\Front\Portfolio;
+use App\Http\Livewire\Front\Getservicesdec;
+use App\Http\Livewire\Front\Skills as FrontSkills;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,13 +75,15 @@ Route::group(['middleware' =>['auth','permission:المستخدمين والصل
 
 
        });
-       Route::group(['middleware' =>['auth','permission:الاعدادت اعدادت الموقع']],function () {
+
+       Route::group(['middleware' =>['auth','permission:عنى']],function () {
 
 
-        Route::get('/getsetting',Getstting::class)->name('getsetting');
+        Route::get('/getsetting',Getsetting::class)->name('getsetting');
 
 
          });
+
          Route::group(['middleware' =>['auth','permission:المهارات']],function () {
 
 

@@ -48,13 +48,17 @@
 
                           </div><!--enddivclassaction-->
                       </div>
+                      @can('اضافه وظيفه')
+
 
                     <div class=" col-sm-2" style="margin-top:24px; padding:10px">
                         <button type="button"  wire:click.prevent="showmodel"
                         class="btn btn-block btn-outline-success"><i class="fas fa-plus-circle"></i>
                          اضافه وظيفه </button>
                     </div>
+                    @endcan
 
+                         @can('وظيفه كنترول')
 
 
                         <div class="col-sm-4"
@@ -94,7 +98,7 @@
 
                       </select>
                     </div>
-
+                    @endcan
                    </div> <!-- /.end-row-card-header -->
                 </div>
                 <!-- /.card-header -->
@@ -144,18 +148,20 @@
                                                 <i  class="fa fa-eye text-primary"></i>
                                                 صلاحيات الوظيفه
                                             </a>
+                                            @can('تعديل وظيفه')
                                             <a href="#"  class="dropdown-item" wire:click.prevent="edit({{$getdata->id}})" >
                                                 <i style="margin-left: 4px;" class="fa fa-edit text-success">
                                                     </i>
                                                 تعديل الوظيفه
                                                 </a>
+                                            @endcan
+                                            @can('حذف وظيفه')
                                             <a href="#" class="dropdown-item" wire:click.prevent="getcurantid({{ $getdata->id }})">
                                                 <i style="margin-left: 4px;" class="fas fa-trash text-danger"></i>
                                             حذف الوظيفه
                                             </a>
+                                            @endcan
 
-                                            <a class="dropdown-divider"></a>
-                                            <a href="#" class="dropdown-item"> ......</a>
                                           </div>
                                         </div>
 

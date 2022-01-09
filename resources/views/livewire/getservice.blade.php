@@ -357,7 +357,7 @@
                    multiple="" accept="image/*" wire:model="img">
 
 
-                   <div wire:loading wire:target="img">
+                   <div wire:loading wire:target="img" wire:key="img1">
 
                     <div class="d-flex justify-content: center mt-4">
                         <div class="d-flex align-items-center">
@@ -382,7 +382,7 @@
                wire:model="icon"/>
 
 
-               <div wire:loading wire:target="icon">
+               <div wire:loading wire:target="icon" wire:key="icon1">
 
                 <div class="d-flex justify-content: center mt-4 mb-4">
                     <div class="d-flex align-items-center">
@@ -441,10 +441,12 @@
 
                @enderror
              </div>
-         <div class="mb-3 col-sm-12">
+         <div class="mb-3 col-sm-12" id="toolbar-container">
             <label for="setting-input-3" class="form-label">وصف قصير للخدمه </label>
             <textarea wire:model="form.title" rows="2"
-            class="form-control @error("form.title") is-invalid @enderror"></textarea>
+            class="form-control @error("form.title") is-invalid @enderror" id="note">
+
+        </textarea>
             @error('form.title')
             <div class="invalid-feedback">
              {{$message}}
@@ -597,7 +599,7 @@
                <label for="setting-input-3" class="form-label">وصف قصير للخدمه </label>
                <textarea disabled wire:model="form.title" rows="2"
                class="form-control
-               "></textarea>
+               " ></textarea>
 
 
            </div>
@@ -634,9 +636,13 @@
 
 </div>
 
+@push('styles')
+<link rel="stylesheet" href="{{asset('trix/trix.css')}}"/>
 
+@endpush
 
 @push('scripts')
+<script type="text/javascript" src="{{asset('trix/trix.js')}}"></script>
 
 <script>
 
@@ -665,14 +671,7 @@ Toast.fire({
 icon: 'success',
 title:   event.detail.message
 })
-/*
-Swal.fire({
-position: 'top-start',
-icon: 'success',
-title: event.detail.message,
-showConfirmButton: false,
-timer: 3000
-})*/
+
 })
 window.addEventListener('show-model',function(){
 $("#modal-role").modal("show");
@@ -712,15 +711,14 @@ Toast.fire({
 icon: 'success',
 title:   event.detail.message
 })
-/*  Swal.fire({
-position: 'top-start',
-icon: 'success',
-title: event.detail.message,
-showConfirmButton: false,
-timer: 3000
-})*/
+
 });
+
+
 });
 
 </script>
+
+
+
 @endpush
