@@ -11,6 +11,6 @@ class Skills extends Component
     {
         $getskills = skill::get();
         return view('livewire.front.skills',['getskills'=> $getskills])
-        ->layout('layouts.front');
+        ->layout('layouts.front',['title'=>'المهارات']);
     }
 }

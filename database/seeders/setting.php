@@ -16,8 +16,8 @@ class setting extends Seeder
     {
       DB::table('settings')->delete();
       $data =[
-     ['key'=> 'compnyname','value'=>'go dady'],
-     ['key'=> 'faks','value'=>'25021356'],
+     ['key'=> 'compnyname','value'=>'myprofile'],
+     ['key'=> 'faks','value'=>'01092586526'],
      ['key'=> 'manger','value'=>'ahmed gabril'],
      ['key'=> 'phone','value'=>'01092586526'],
      ['key'=> 'address','value'=>'كفر الشيخ '],

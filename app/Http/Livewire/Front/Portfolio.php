@@ -31,7 +31,7 @@ class Portfolio extends Component
         return view('livewire.front.portfolio',['cat'=>$cat,
          'getalldata'=>$get
         ])
-        ->layout('layouts.front');
+        ->layout('layouts.front',['title'=>'سابقه اعمالى']);
     }
 
     public function getportf($id)

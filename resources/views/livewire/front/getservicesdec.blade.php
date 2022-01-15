@@ -22,7 +22,7 @@
 
                 <div class="card-body">
                 <h5><a href="#services">{{Str::substr($services->name,0,45)}}...</a></h5>
-                  <p class="card-text" style="height: 140;">{{Str::substr($services->title,0,130)}}<a href="#" class="text-danger"> المزيد..</a></p>
+                  <p class="card-text" style="height: 100px !important;">{{Str::substr($services->title,0,100)}}<a href="#" class="text-danger"></a></p>
                   <div class="d-flex justify-content-between" >
                     <span>
                         <button class="btn btn-outline-success btn-sm" type="button"
@@ -155,7 +155,7 @@
 
                     <ul class="list-group">
                         <li class="list-group-item">
-                     <span class="text-bold text-danger">سعر المشروع : {{$item->price}}
+                     <span class="text-bold text-success">سعر المشروع : {{$item->price}}
                     </span>
                         </li>
                         <li class="list-group-item"><p class="card-text mb-4 mt-4">
@@ -167,7 +167,7 @@
                                      <li class="list-group-item ">
             ضمان استرداد الاموال خلال 14 يوم من تاريخ الشراء طبقا للشروط والاحكام
                                     </li>
-                        <li class="list-group-item "><button class="btn btn-success">اشترى الخدمه الان </button> </li>
+                        <li class="list-group-item "><a  href="/contactme" class="btn btn-success">اشترى الخدمه الان </a> </li>
 
                       </ul>
 

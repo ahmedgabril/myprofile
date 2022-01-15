@@ -433,7 +433,15 @@
 
 
 </div>
+
+@push('styles')
+<link rel="stylesheet" href="{{asset('trix/trix.css')}}"/>
+
+@endpush
+
 @push('scripts')
+<script type="text/javascript" src="{{asset('trix/trix.js')}}"></script>
+
 <script>
 $(function(){
   window.addEventListener('update',function(event){

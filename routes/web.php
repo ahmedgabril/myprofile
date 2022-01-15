@@ -16,6 +16,7 @@ use App\Http\Livewire\Handelusers;
 use App\Http\Controllers\Getalldata;
 use App\Http\Livewire\Front\Aboutme;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Livewire\Addcustomerpre;
 use App\Http\Livewire\Front\Portfdec;
 use App\Http\Livewire\Front\Welecome;
 use Illuminate\Support\Facades\Route;
@@ -56,19 +57,15 @@ Route::get('/logout', [App\Http\Controllers\HomeController::class, 'logout'])->n
 Route::get('/login',login::class)->name('login')->middleware('guest');
 
 Route::get('/backend',Backend::class)->name('backend')->middleware(['auth','permission:الصفحه الرئيسه']);
-Route::group(['middleware' =>['auth','permission:المستخدمين والصلاحيات اداره المستخدمين']],function () {
+Route::group(['middleware' =>['auth','permission:المستخدمين والصلاحيات']],function () {
 
 
         Route::get('/user',Getuser::class)->name('getuser');
-
-        });
-        Route::group(['middleware' =>['auth','permission:المستخدمين والصلاحيات الوظائف']],function () {
-
-
         Route::get('/roles',Getrole::class)->name('role');
 
         });
-        Route::group(['middleware' =>['auth','permission:الاعدادت الاعدادت العامه']],function () {
+
+        Route::group(['middleware' =>['auth','permission:الاعدادت']],function () {
 
 
         Route::get('/setting',Setting::class)->name('setting');
@@ -80,6 +77,13 @@ Route::group(['middleware' =>['auth','permission:المستخدمين والصل
 
 
         Route::get('/getsetting',Getsetting::class)->name('getsetting');
+
+
+         });
+       Route::group(['middleware' =>['auth','permission:اراء العملاء']],function () {
+
+
+        Route::get('/feedback',Addcustomerpre::class)->name('feedback');
 
 
          });
@@ -99,19 +103,14 @@ Route::group(['middleware' =>['auth','permission:المستخدمين والصل
 
                  });
 
-                 Route::group(['middleware' =>['auth','permission:معرض الاعمال اداره الاقسام']],function () {
+                 Route::group(['middleware' =>['auth','permission:معرض الاعمال']],function () {
 
 
                     Route::get('/getcat',Getcat::class)->name('getcat');
-
-                });
-                Route::group(['middleware' =>['auth','permission:معرض الاعمال اداره المشاريع']],function () {
-
-
                     Route::get('/myprofile',Myprofile::class)->name('myprofile');
-
                 });
-                Route::group(['middleware' =>['auth','permission: حسابى']],function () {
+
+                Route::group(['middleware' =>['auth']],function () {
 
 
                     Route::get('/myaccount',Handelusers::class)->name('myaccount');

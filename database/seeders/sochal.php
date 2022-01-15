@@ -17,10 +17,10 @@ class sochal extends Seeder
         DB::table('sochails')->delete();
         $data =[
       'facebook'=> 'https://www.facebook.com/adel.gebril.5/about',
-      'instgram'=> 'Im a professional web develper',
+      'instgram'=> '',
       'linkedin'=> 'https://www.linkedin.com/in/ahmed-gabril-5648901a4/',
       'youtube'=> 'https://www.youtube.com/channel/UCFYaKZmc1BBEdA1Xrwe5PJg',
-      'twitter'=> 'not yet',
+      'twitter'=> '',
       'gmail'=> 'ajbryl110@gmail.com',
       'setstatus'=> '1',
         ];

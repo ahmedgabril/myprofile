@@ -17,7 +17,7 @@ class CreateSochailsTable extends Migration
             $table->id();
             $table->string('facebook')->nullable();
             $table->string('instgram')->nullable();
-            $table->text('linkedin')->nullable();
+            $table->string('linkedin')->nullable();
             $table->string('youtube')->nullable();
             $table->string('twitter')->nullable();
             $table->string('gmail')->nullable();

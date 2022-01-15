@@ -5,7 +5,7 @@
          style="background-color: #fff;margin-top:50px">
 
             <div class="app-auth-body mx-auto">
-                <div class="app-auth-branding mb-4"><a class="app-logo" href="index.html">
+                <div class="app-auth-branding mb-4 mt-2"><a class="app-logo" href="/login">
                     <img class="logo-icon me-2" src="{{ getlogo() ? asset('storage/'.getlogo()):'assets/images/app-logo.svg'}}" alt="logo"></a></div>
                 <h2 class="auth-heading text-center mb-5">تسجيل الدخول  فى My Porfile</h2>
                 <div class="auth-form-container text-start">
@@ -52,11 +52,13 @@
                                         </label>
                                     </div>
                                 </div><!--//col-6-->
+                                {{--}}
                                 <div class="col-6">
                                     <div class="forgot-password text-end">
                                         <a href="#">نسيت كلمه السر?</a>
                                     </div>
                                 </div><!--//col-6-->
+                                {{--}}
                             </div><!--//extra-->
 
 

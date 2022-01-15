@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title> Admin Dashboard </title>
+    <title>{{$title}}</title>
 
     <!-- Meta -->
     <meta charset="utf-8">

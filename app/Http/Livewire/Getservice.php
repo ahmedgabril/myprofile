@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use App\Http\mytraits\WithSorting;
+use Illuminate\Support\Facades\Storage;
 
 class Getservice extends Component
 {
@@ -36,7 +37,6 @@ class Getservice extends Component
     public $realimage,
     $rusaltforimage,
     $getfinalrusaltforimage=[];
-    public $filename = 'services';
     public $icon;
     public $description;
     public $img = [];
@@ -75,7 +75,7 @@ public function removeimage()
 
 
 
-    ]);
+    ])->layoutData(['title' => 'اداره الخدمات']);
 
 
  }
@@ -98,7 +98,7 @@ public function removeimages($imgid)
  {
      $this->validateOnly($propertyName, [
 
-        'form.name' => 'required|string|unique:services,name|max:45|min:25',
+        'form.name' => 'required|string|unique:services,name|max:55|min:25',
         'form.title' => 'required|string|min:30|max:360',
         'icon' => 'sometimes|nullable|image|max:1024',
         'form.status' => 'sometimes|nullable|alpha_num',
@@ -136,7 +136,7 @@ public function removeimages($imgid)
 }
  public function add(){
     $this->validate([
-        'form.name' => 'required|string|unique:services,name|max:45|min:25',
+        'form.name' => 'required|string|unique:services,name|max:55|min:25',
         'form.title' => 'required|string|min:30|max:360',
 
         'icon' => 'sometimes|nullable|image|max:1024',
@@ -155,12 +155,12 @@ public function removeimages($imgid)
 
     ]);
     if($this->icon){
-        $this->icon = $this->icon->storeAs('images/'.$this->filename,$this->icon->getClientOriginalName(),'public');
+        $this->icon = $this->icon->storeAs('images/'.$this->form['name'],$this->icon->getClientOriginalName(),'public');
       }
 
     if(!empty($this->img)){
         foreach($this->img as $key=>$getimg){
-        $this->getfinalrusaltforimage[$key]= $getimg->storeAs('service_image/'.$this->filename,$getimg->getClientOriginalName(),'public');
+        $this->getfinalrusaltforimage[$key]= $getimg->storeAs('service_image/'.$this->form['name'],$getimg->getClientOriginalName(),'public');
 
            }
         }
@@ -224,7 +224,7 @@ public function updateone(){
     $this->validate([
 
 
-        'form.name' => 'required|string|max:45|min:25|unique:services,name,'.$this->globalids,
+        'form.name' => 'required|string|max:55|min:25|unique:services,name,'.$this->globalids,
         'form.title' => 'required|string|max:360|min:30',
         'icon' => 'sometimes|nullable|image|max:1024',
         'form.status' => 'sometimes|nullable|alpha_num',
@@ -250,13 +250,17 @@ public function updateone(){
   $updateservices->name = $this->form['name'];
   $updateservices->title = $this->form['title'];
   if($this->icon){
-    $updateservices->icon = $this->icon->storeAs('images/'.$this->filename,$this->icon->getClientOriginalName(),'public');
+    Storage::deleteDirectory('public/service_image/'.$this->form['name']);
+
+    $updateservices->icon = $this->icon->storeAs('service_image/'.$this->form['name'],$this->icon->getClientOriginalName(),'public');
   }else{
     $updateservices->icon = $this->realimage;
   }
   if(!empty($this->img)){
     foreach($this->img as $key=>$getimg){
-    $this->getfinalrusaltforimage[$key]= $getimg->storeAs('images/'.$this->filename,$getimg->getClientOriginalName(),'public');
+        Storage::deleteDirectory('public/service_image/'.$this->form['name']);
+
+    $this->getfinalrusaltforimage[$key]= $getimg->storeAs('service_image/'.$this->form['name'],$getimg->getClientOriginalName(),'public');
 
        }
     }else{
@@ -274,16 +278,20 @@ public function updateone(){
   $this->dispatchBrowserEvent("add",['message'=> "تمت  تحديث البيانات بنجاح 🙂"]);
 
 }
-public function getcurantid($getcurantid){
+public function getcurantid($getcurantid,$name){
 $this->idfordelete = $getcurantid;
+$this->form['name'] = $name;
+
 $this->dispatchBrowserEvent("getconfirm",['title'=> 'هل انت متأكد ??','message'=> 'لن تتمكن من استرجاع البيانات مره اخرى !']);
 
 
 }
 public function delete(){
 
-
+    Storage::deleteDirectory('public/service_image/'.$this->form['name']);
+    Storage::deleteDirectory('public/service_image/'.$this->form['name']);
     services::destroy($this->idfordelete);
+
     $this->dispatchBrowserEvent("getdel",['message'=> "تمت  حذف  البيانات بنجاح 🙂"]);
 
 }

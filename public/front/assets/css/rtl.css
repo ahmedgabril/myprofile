@@ -37,7 +37,7 @@ body {
   }
   @media (max-width: 992px) {
     #main {
-      margin-top: -25px;
+      margin-top: 35px;
     }
   }
 
@@ -127,20 +127,33 @@ body {
     /* margin-right: 40px; */
   }
   #header .logo {
-    font-size: 32px;
+    font-size: 30px;
     margin: 0;
     padding: 0;
     line-height: 1;
     font-weight: 400;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     text-transform: uppercase;
+    /*! margin-top: 10px; */
+    color: #fff;
   }
   #header .logo a {
     color: #fff;
+    /*! padding-top: 25px; */
   }
   #header .logo img {
     max-height: 43px;
     /*! max-width: 150px; */
+    /*! width: 56px; */
+    /*! max-width: 120px; */
+    /*! margin-top: -4px; */
+    /*! padding: -6px; */
+    /*! transform: (); */
+    transform: rotateZ(20deg) scale(1.2);
+    box-shadow: 0 0 5px 3px;
+    /*! zoom: 1.2; */
+    /*! transform: scale(1.5); */
+    margin-right: 30px;
   }
   @media (max-width: 992px) {
     #header .logo {
@@ -597,7 +610,7 @@ body {
     padding: 0;
     margin: 0 0 20px 0;
     font-family: "Raleway", sans-serif;
-    font-size: 14px;
+    font-size: 18px;
   }
 
   /*--------------------------------------------------------------
@@ -997,9 +1010,10 @@ body {
   .contact .info {
     width: 100%;
     background: #fff;
-    padding: 16px;
-    height: 340px;
+    padding: 15px;
+    height: 475px;
     direction: rtl;
+    margin-top: -81px;
   }
   .contact .info i {
     font-size: 20px;
@@ -1187,6 +1201,20 @@ body {
                 color: #fff;
                 box-shadow: 8px 17px 17px 0px #706868 !important;
                 transition: 0.5s ease-in-out;
-                transform: translateY(20PX);
+                transform: translateZ(50px) scale(1);
             }
-
+            @media (min-width: 992px){
+            .container, .container-lg, .container-md, .container-sm {
+                max-width: 1004px;
+            }
+        }
+            @media (min-width: 768px){
+            .container, .container-md, .container-sm {
+                max-width: 901px!important;
+            }
+        }
+        @media (min-width: 576px){
+        .container, .container-sm {
+            max-width: 730px;
+        }
+    }

@@ -1,4 +1,5 @@
 <div>
+
     <div class="container">
         <div class="row mb-4">
             <div class="col-sm-4">
@@ -124,7 +125,269 @@
     </div>
 
 
-</div>
+        </div>
 
-</div>
+        @if ($getservices->count()> 0)
+
+        <div class="card mt-4 mb-4">
+            <div class="card-header text-center">
+                الخدمات التى تمت اضافتها اليوم
+
+            </div>
+            <div class="card-body">
+                <div class="row g-4">
+                    @foreach ($getservices as $serv)
+                    <div class="col-sm-6 col-md-4">
+                        <div class="card" style="width: auto;">
+                            <div class="card-body">
+
+
+                                    <div class="col-md-12">
+                                        <div class="col-sm-12">
+                                            <img src="{{$serv->icon ? asset('storage/'.$serv->icon) :'assets/images/No_Image.jpg'}}"
+                                             class="card-img-top"
+                                             alt="..."
+                                             style="width: 100%; height:180px">
+
+                                        </div>
+
+                                      <div class="col-sm-12 mb-4 mt-4">
+                                      <h6 style="font-size: 16px"> {{$serv->name}}</h6>
+
+                                      </div>
+                                      <div class="col-sm-12 mb-4 mt-4">
+                                            <span class="">تمت الاضافه بواسطه :<span class=" text-success">{{auth()->user()->name}}</span></span>
+                                        </div>
+                                        <div class="col-sm-12 mb-4 mt-4">
+                                            <span class="">  تاريخ الاضافه :<span class=" text-success">{{$serv->created_at ? $serv->created_at->diffForHumans():'Un Knowen' }}</span></span>
+                                        </div>
+
+                                        <div class="col-sm-12 mb-4 mt-4">
+                                                <a href="/getservices?sortDirections=desc&pagenate=5&searsh={{$serv->name}}" class="btn btn-primary ">الانتقال الى صفحه الخدمه</a>
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+                            </div>
+                          </div>
+                    </div>
+                    @endforeach
+                </div>
+
+            </div>
+          </div>
+
+        @endif
+        @if ($getcatogery->count()> 0)
+
+        <div class="card mt-4 mb-4">
+            <div class="card-header text-center bg-warning">
+            الاقسام  التى تم اضافتهم اليوم
+            </div>
+            <div class="card-body">
+                <div class="row g-4">
+                    @foreach ($getcatogery as $cat)
+                    <div class="col-sm-6 col-md-4">
+                        <div class="card" style="width: auto;">
+                            <div class="card-body">
+
+
+                                    <div class="col-md-12">
+
+
+                                      <div class="col-sm-12 mb-4 mt-4">
+                                      <h6 style="font-size: 16px"> {{$cat->name}}</h6>
+
+                                      </div>
+                                      <div class="col-sm-12 mb-4 mt-4">
+                                            <span class="">تمت الاضافه بواسطه :<span class=" text-success">{{auth()->user()->name}}</span></span>
+                                        </div>
+                                        <div class="col-sm-12 mb-4 mt-4">
+                                            <span class="">  تاريخ الاضافه :<span class=" text-success">{{$cat->created_at ? $cat->created_at->diffForHumans():'Un Knowen' }}</span></span>
+                                        </div>
+
+                                        <div class="col-sm-12 mb-4 mt-4">
+                                                <a href="/getcat?pagenate=5&searsh={{$cat->name}}" class="btn btn-primary ">الانتقال الى صفحه القسم</a>
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+                            </div>
+                          </div>
+                    </div>
+                    @endforeach
+                </div>
+
+            </div>
+          </div>
+
+        @endif
+        @if ($getportfilo->count()> 0)
+
+        <div class="card mt-4 mb-4">
+            <div class="card-header text-center bg-primary">
+            المشاريع التى تمت اضافتها اليوم
+            </div>
+            <div class="card-body">
+                <div class="row g-4">
+                    @foreach ($getportfilo as $port)
+                    <div class="col-sm-6 col-md-4">
+                        <div class="card" style="width: auto;">
+                            <div class="card-body">
+
+
+                                    <div class="col-md-12">
+                                        <div class="col-sm-12">
+                                            <img src="{{$port->icon ? asset('storage/'.$port->icon) :'assets/images/No_Image.jpg'}}"
+                                             class="card-img-top"
+                                             alt="..."
+                                             style="width: 100%; height:180px">
+
+                                        </div>
+
+                                      <div class="col-sm-12 mb-4 mt-4">
+                                      <h6 style="font-size: 16px"> {{$port->name}}</h6>
+
+                                      </div>
+                                      <div class="col-sm-12 mb-4 mt-4">
+                                            <span class="">تمت الاضافه بواسطه :<span class=" text-success">{{auth()->user()->name}}</span></span>
+                                        </div>
+                                        <div class="col-sm-12 mb-4 mt-4">
+                                            <span class="">  تاريخ الاضافه :<span class=" text-success">{{$port->created_at ? $serv->created_at->diffForHumans():'Un Knowen' }}</span></span>
+                                        </div>
+
+                                        <div class="col-sm-12 mb-4 mt-4">
+                                                <a href="/myprofile?sortDirections=desc&pagenate=5&searsh={{$port->name}}" class="btn btn-primary ">الانتقال الى صفحه المشروع</a>
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+                            </div>
+                          </div>
+                    </div>
+                    @endforeach
+                </div>
+
+            </div>
+          </div>
+
+        @endif
+        @if ($getuser->count()> 0)
+
+        <div class="card mt-4 mb-4">
+            <div class="card-header text-center bg-danger">
+            المدرين  التى تم اضافتهم اليوم
+            </div>
+            <div class="card-body">
+                <div class="row g-4">
+                    @foreach ($getuser as $user)
+                    <div class="col-sm-6 col-md-4">
+                        <div class="card" style="width: auto;">
+                            <div class="card-body">
+
+
+                                    <div class="col-md-12">
+
+
+                                      <div class="col-sm-12 mb-4 mt-4">
+                                      <h6 style="font-size: 16px"> {{$user->name}}</h6>
+
+                                      </div>
+                                      <div class="col-sm-12 mb-4 mt-4">
+                                            <span class="">تمت الاضافه بواسطه :<span class=" text-success">{{auth()->user()->name}}</span></span>
+                                        </div>
+                                        <div class="col-sm-12 mb-4 mt-4">
+                                            <span class="">  تاريخ الاضافه :<span class=" text-success">{{$user->created_at ? $serv->created_at->diffForHumans():'Un Knowen' }}</span></span>
+                                        </div>
+
+                                        <div class="col-sm-12 mb-4 mt-4">
+                                                <a href="/user?pagenate=5&searsh={{$user->name}}" class="btn btn-primary ">الانتقال الى صفحه المدير</a>
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+                            </div>
+                          </div>
+                    </div>
+                    @endforeach
+                </div>
+
+            </div>
+          </div>
+
+        @endif
+
+        @if ($getfeedback->count()> 0)
+
+        <div class="card mt-4 mb-4">
+            <div class="card-header text-center" style="background-color: rgb(63, 26, 193)">
+                اراء العملاء  التى تمت اضافتها اليوم
+
+            </div>
+            <div class="card-body">
+                <div class="row g-4">
+                    @foreach ($getfeedback as $feed)
+                    <div class="col-sm-6 col-md-4">
+                        <div class="card" style="width: auto;">
+                            <div class="card-body">
+
+
+                                    <div class="col-md-12">
+                                        <div class="col-sm-12">
+                                            <img src="{{$feed->img ? asset('storage/'.$feed->img) :'assets/images/No_Image.jpg'}}"
+                                             class="card-img-top"
+                                             alt="..."
+                                             style="width: 100%; height:180px">
+
+                                        </div>
+
+                                      <div class="col-sm-12 mb-4 mt-4">
+                                      <h6 style="font-size: 16px"> {{$feed->name}}</h6>
+
+                                      </div>
+                                      <div class="col-sm-12 mb-4 mt-4">
+                                            <span class="">تمت الاضافه بواسطه :<span class=" text-success">{{auth()->user()->name}}</span></span>
+                                        </div>
+                                        <div class="col-sm-12 mb-4 mt-4">
+                                            <span class="">  تاريخ الاضافه :<span class=" text-success">{{$feed->created_at ? $feed->created_at->diffForHumans():'Un Knowen' }}</span></span>
+                                        </div>
+
+                                        <div class="col-sm-12 mb-4 mt-4">
+                                                <a href="/feedback?sortDirections=desc&pagenate=5&searsh={{$feed->name}}" class="btn btn-primary ">الانتقال الى صفحه اداره الاراء</a>
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+                            </div>
+                          </div>
+                    </div>
+                    @endforeach
+                </div>
+
+            </div>
+          </div>
+
+        @endif
+  </div>
+
 </div>

@@ -4707,8 +4707,9 @@ fieldset:disabled .btn {
 .card-header {
     padding: .5rem 1rem;
     margin-bottom: 0;
-    background-color: rgb(255 254 254);
+    background-color: rgb(155, 44, 24);
     border-bottom: 1px solid rgb(255 255 255);
+    color: #fff;
 }
 
 .card-header:first-child {
@@ -8002,7 +8003,7 @@ fieldset:disabled .btn {
 }
 
 .text-white {
-    color: #000;
+    color: #fff;
 }
 
 .text-body {

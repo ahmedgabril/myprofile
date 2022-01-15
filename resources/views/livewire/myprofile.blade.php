@@ -34,22 +34,7 @@
                      <div class="card-tools">
                        <!--  <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i>
                          </button>-->
-                         <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                           <i class="fas fa-minus"></i>
-                         </button>
 
-                         <div class="btn-group">
-                           <button type="button" class="btn btn-tool dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                             <i class="fas fa-wrench"></i>
-                           </button>
-
-                           <div class="dropdown-menu dropdown-menu-right" role="menu" style="">
-                             <a href="#" class="dropdown-item">طباعه</a>
-
-                             <a class="dropdown-divider"></a>
-                             <a href="#" class="dropdown-item"> ....</a>
-                           </div>
-                         </div>
 
                        </div><!--enddivclassaction-->
                    </div>
@@ -57,7 +42,7 @@
 
 
                  @can('اضافه مشروع')
-                 <div class=" col-sm-2 form-group" style="margin-top:29px;padding:4px">
+                 <div class=" col-sm-2 form-group" style="margin-top:12px;padding:4px">
                     <button type="button"  wire:click.prevent="showmodel"
                     class="btn btn-block btn-outline-success text-white"><i class="fas fa-plus-circle"></i>
                      اضافه مشروع </button>
@@ -68,7 +53,7 @@
 
 
                      <div class=" col-sm-4"
-                     style="margin-top:32px; border-right: 1px !important;">
+                     style="margin-top:16px; border-right: 1px !important;">
 
                        <input class="form-control form-control-navbar"
                        wire:model.debounce.200ms="searsh"
@@ -81,7 +66,7 @@
 
 
 
-           <div class="col-sm-3 form-group " style="margin-top:32px" wire:ignore>
+           <div class="col-sm-3 form-group " style="margin-top:16px" wire:ignore>
 
              <select class="form-select form-select-md  d-inline-flex" wire:model="sortDirections">
                  <option value="asc" {{$sortDirections == 'asc'? 'selected':'' }}>من الاقدم </option>
@@ -90,7 +75,7 @@
                </select>
              </div>
 
-             <div class="col-sm-2 form-group" style="margin-top:32px" wire:ignore>
+             <div class="col-sm-2 form-group" style="margin-top:16px" wire:ignore>
 
                  <select class="form-select form-select-md  d-inline-flex" wire:model="pagenate">
                       <option >5</option>
@@ -169,7 +154,7 @@
                                                 </a>
                                             @endcan
                                             @can('حذف مشروع')
-                                            <a href="#" class="dropdown-item" wire:click.prevent="getcurantid({{ $getdata->id }})">
+                                            <a href="#" class="dropdown-item" wire:click.prevent="getcurantid({{ $getdata->id }},'{{$getdata->name}}')">
                                                 <i style="margin-left: 4px;" class="fas fa-trash text-danger"></i>
                                             حذف البيانات
                                             </a>
@@ -430,7 +415,7 @@
           </div>
 
          <div class="col-sm-6 form-group mb-4 ">
-            <label >صوره الخدمه الرئيسه</label>
+            <label >صوره المشروع الرئيسه</label>
               <input type="file"
                class="form-control @error("icon") is-invalid @enderror"
 
@@ -515,9 +500,9 @@
 
             <label for="" class="form-label">شرح تفاصيل المشروع باستفاضه </label>
 
-       <input  id="getdescription1" type="hidden" x-model="getdescription">
+       <input  id="getdescription1" type="hidden"  x-model="getdescription">
        <div x-on:trix-change.defer="getdescription = $refs.trix.value">
-           <trix-editor x-ref="trix" input="getdescription1"
+           <trix-editor x-ref="trix"  input="getdescription1"
                      style="height: 20rem" ></trix-editor>
        </div>
 

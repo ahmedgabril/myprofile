@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>My profile</title>
+    <title>{{$title}}</title>
 
     <!-- Meta -->
     <meta charset="utf-8">

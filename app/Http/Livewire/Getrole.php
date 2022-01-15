@@ -39,7 +39,7 @@ class Getrole extends Component
 
     public function render()
     {
-       app()[PermissionRegistrar::class]->forgetCachedPermissions();
+       //app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
         $role = Role::query()
 
@@ -51,10 +51,10 @@ class Getrole extends Component
         return view('livewire.getrole', ['data'=> $role ,
 
         "counts" => Role::count(),
-        "getpre" => Permission::paginate(),
+        "getpre" => Permission::get(),
 
 
-    ]);
+    ])->layoutData(['title' => 'الوظائف']);
 
 
  }

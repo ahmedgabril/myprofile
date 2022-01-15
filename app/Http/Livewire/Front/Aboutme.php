@@ -15,6 +15,6 @@ class Aboutme extends Component
         return view('livewire.front.aboutme',['data'=> $data,
         'getskills'=>$getskills,
         ])
-        ->layout('layouts.front');
+        ->layout('layouts.front',['title'=>'عنى']);
     }
 }

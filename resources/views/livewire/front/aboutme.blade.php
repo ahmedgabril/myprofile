@@ -10,7 +10,7 @@
       <div class="card mb-3" style="max-width: 1190px;">
           <div class="row g-0">
             <div class="col-md-4">
-              <img src="{{ $data->img !==null ? asset('storage/'.$data->img):'assets/images/no-image-en.png'}}" class="img-fluid rounded-start" alt="...">
+              <img src="{{ $data->img ? asset('storage/'.$data->img):'front/ahmedgabril.jpg'}}" class="img-fluid rounded-start" alt="...">
             </div>
             <div class="col-md-8">
               <div class="card-body">

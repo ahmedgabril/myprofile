@@ -32,27 +32,13 @@
                      <div class="card-tools">
                        <!--  <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i>
                          </button>-->
-                         <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                           <i class="fas fa-minus"></i>
-                         </button>
 
-                         <div class="btn-group">
-                           <button type="button" class="btn btn-tool dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                             <i class="fas fa-wrench"></i>
-                           </button>
 
-                           <div class="dropdown-menu dropdown-menu-right" role="menu" style="">
-                             <a href="#" class="dropdown-item">طباعه</a>
-
-                             <a class="dropdown-divider"></a>
-                             <a href="#" class="dropdown-item"> ....</a>
-                           </div>
-                         </div>
 
                        </div><!--enddivclassaction-->
                    </div>
                    @can('اضافه مهاره')
-                 <div class=" col-sm-2 form-group" style="margin-top:29px;padding:4px">
+                 <div class=" col-sm-2 form-group" style="margin-top:12px;padding:4px">
                      <button type="button"  wire:click.prevent="showmodel"
                      class="btn btn-block btn-outline-success text-white"><i class="fas fa-plus-circle"></i>
                       اضافه مهاره </button>
@@ -61,7 +47,7 @@
 
                    @can('مهاره كنترول')
                      <div class=" col-sm-4"
-                     style="margin-top:32px; border-right: 1px !important;">
+                     style="margin-top:16px; border-right: 1px !important;">
 
                        <input class="form-control form-control-navbar"
                        wire:model.debounce.200ms="searsh"
@@ -74,7 +60,7 @@
 
 
 
-           <div class="col-sm-3 form-group " style="margin-top:32px" wire:ignore>
+           <div class="col-sm-3 form-group " style="margin-top:16px" wire:ignore>
 
              <select class="form-select form-select-md  d-inline-flex" wire:model="sortDirections">
                  <option value="asc" {{$sortDirections == 'asc'? 'selected':'' }}>من الاقدم </option>
@@ -83,7 +69,7 @@
                </select>
              </div>
 
-             <div class="col-sm-2 form-group" style="margin-top:32px" wire:ignore>
+             <div class="col-sm-2 form-group" style="margin-top:16px" wire:ignore>
 
                  <select class="form-select form-select-md  d-inline-flex" wire:model="pagenate">
                    <option selected>5</option>

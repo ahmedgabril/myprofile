@@ -18,7 +18,7 @@ class Handelusers extends Component
     {
         $this->getimage();
 
-        return view('livewire.handelusers');
+        return view('livewire.handelusers')->layoutData(['title' => 'اداره الحساب الشخصى']);
     }
 public function mount()
 {

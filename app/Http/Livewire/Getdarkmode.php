@@ -15,7 +15,7 @@ class Getdarkmode extends Component
 
     public function render()
     {
-        return view('livewire.getdarkmode');
+        return view('livewire.getdarkmode')->layoutData(['title' => 'الوضع الليليى']);
     }
     public function activedarkmode(){
        $sel= User::where('name',auth()->user()->name)->select("id","darkmode")->first();

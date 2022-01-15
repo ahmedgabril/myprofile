@@ -29,29 +29,16 @@
                   <div class="row">
                       <div class="col-12">
                         <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                              <i class="fas fa-minus"></i>
-                            </button>
 
-                            <div class="btn-group">
-                              <button type="button" class="btn btn-tool dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <i class="fas fa-wrench"></i>
-                              </button>
 
-                              <div class="dropdown-menu dropdown-menu-right" role="menu" style="">
-                                <a href="#" class="dropdown-item">طباعه</a>
 
-                                <a class="dropdown-divider"></a>
-                                <a href="#" class="dropdown-item"> ....</a>
-                              </div>
-                            </div>
 
                           </div><!--enddivclassaction-->
                       </div>
                       @can('اضافه وظيفه')
 
 
-                    <div class=" col-sm-2" style="margin-top:24px; padding:10px">
+                    <div class=" col-sm-2" style="margin-top:12px; padding:10px">
                         <button type="button"  wire:click.prevent="showmodel"
                         class="btn btn-block btn-outline-success"><i class="fas fa-plus-circle"></i>
                          اضافه وظيفه </button>
@@ -62,7 +49,7 @@
 
 
                         <div class="col-sm-4"
-                        style="margin-top:32px; border-right: 1px !important;">
+                        style="margin-top:16px; border-right: 1px !important;">
 
                           <input class="form-control"
                           wire:model.debounce.200ms="searsh"
@@ -75,7 +62,7 @@
 
 
 
-              <div class="col-sm-3 form-group " style="margin-top:32px" wire:ignore>
+              <div class="col-sm-3 form-group " style="margin-top:16px" wire:ignore>
 
                 <select class="form-select form-select-md  d-inline-flex" wire:model="sortDirections">
                     <option value="asc" {{ $sortDirections == 'asc'? 'selected':''}}>من الاقدم </option>
@@ -84,7 +71,7 @@
                   </select>
                 </div>
 
-                <div class="col-sm-2 form-group"style="margin-top:32px" >
+                <div class="col-sm-2 form-group"style="margin-top:16px" >
 
                     <select class="form-select form-select-md  d-inline-flex" wire:model="pagenate">
                       <option selected>5</option>

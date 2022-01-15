@@ -59,7 +59,7 @@ class Getcat extends Component
 
 
 
-    ]);
+    ])->layoutData(['title' => 'اداره الاقسام']);
 
 
  }

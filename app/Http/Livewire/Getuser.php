@@ -36,7 +36,7 @@ class Getuser extends Component
     public $sortByany = 'id';
     public $searsh;
     public $email;
-
+     public $user;
     public $rolename = [],$getprem=[];
 
     public $form = [
@@ -49,7 +49,8 @@ class Getuser extends Component
     public function render()
     {
        app()[PermissionRegistrar::class]->forgetCachedPermissions();
-
+       $getrol = User::role('owner')->select('name')->first();
+        $this->user= $getrol->name;
         $user = User::query()
 
         ->where("name","LIKE", "%" . $this->searsh . "%")
@@ -58,15 +59,16 @@ class Getuser extends Component
         ->orderBy($this->sortByany,$this->sortDirections)
 
         ->paginate($this->pagenate)->withQueryString();
+
         return view('livewire.getuser', ['data'=> $user,
 
         "counts" => User::count(),
         //"getpre" => Permission::paginate(),
-        "getrole" => Role::paginate(),
+        "getrole" => Role::get(),
 
 
 
-    ]);
+    ])->layoutData(['title' => 'اداره المستخدمين']);
 
 
  }

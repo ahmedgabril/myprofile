@@ -10,14 +10,14 @@
 
 <!-- Complete Email template -->
 
-<body style="background-color:grey">
+<body style="background-color:rgb(216, 216, 216)">
 	<table align="center" border="0" cellpadding="0" cellspacing="0"
-		width="550" bgcolor="white" style="border:2px solid black">
+		width="650px" bgcolor="white" style="border:2px solid black">
 		<tbody>
 			<tr>
 				<td align="center">
 					<table align="center" border="0" cellpadding="0"
-						cellspacing="0" class="col-550" width="550">
+						cellspacing="0" class="col-550" width="100%">
 						<tbody>
 							<tr>
 								<td align="center" style="background-color: #4cb96b;
@@ -26,7 +26,8 @@
 									<a href="#" style="text-decoration: none;">
 										<p style="color:white;
 												font-weight:bold;">
-											رساله تواصل  من الموقع الشخصى
+											رساله تواصل من Mr : {{$username}}
+
 										</p>
 									</a>
 								</td>
@@ -43,7 +44,9 @@
 					<p style="font-weight: bolder;font-size: 14px;
 							letter-spacing: 0.025em;
 							color:black;">
-					    {{ $getmessage}}
+					    {{ $getmessage}}<br/>
+
+                        <span style="color:#4cb96b">تم الارسال بواسطه{{$getemail}}</span>
 					</p>
 				</td>
 			</tr>
@@ -92,7 +95,7 @@
 	width="30" />
 	</a>
 
-	<a href="#"
+	<a href="https://www.linkedin.com/in/ahmed-gabril-5648901a4/"
 	style="border:none;
 	text-decoration: none;
 	padding: 5px;">
@@ -103,7 +106,7 @@
 width="30" />
 	</a>
 
-	<a href="#"
+	<a href="https://www.facebook.com/adel.gebril.5"
 	style="border:none;
 	text-decoration: none;
 	padding: 5px;">

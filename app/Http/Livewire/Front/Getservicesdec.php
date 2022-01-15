@@ -15,7 +15,7 @@ class Getservicesdec extends Component
     {
         $getserives = services::where('status',1)->orderBy('id','desc')->paginate(12);
 
-        return view('livewire.front.getservicesdec',['getserives'=>$getserives])->layout('layouts.front');
+        return view('livewire.front.getservicesdec',['getserives'=>$getserives])->layout('layouts.front',['title' => 'الخدمات']);
     }
     public function getserdec($getid)
     {

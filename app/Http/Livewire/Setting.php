@@ -22,7 +22,7 @@ class Setting extends Component
     public $darkmodedata;
     public function render()
     {
-        return view('livewire.setting');
+        return view('livewire.setting')->layoutData(['title' => 'اداره الاعدات']);
     }
     public function  mount(){
 

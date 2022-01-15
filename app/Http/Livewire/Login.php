@@ -32,7 +32,7 @@ class Login extends Component
     }
     public function render()
     {
-        return view('livewire.login')->layout('layouts.custom');
+        return view('livewire.login')->layout('layouts.custom',['title'=>'تسجيل الدخول ']);
 
     }
     public  function login()

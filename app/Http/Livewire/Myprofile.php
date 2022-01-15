@@ -7,6 +7,9 @@ use App\Models\portfolio;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use App\Http\mytraits\WithSorting;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+use PHPUnit\Framework\Constraint\FileExists;
 
 class Myprofile extends Component
 {
@@ -71,7 +74,7 @@ class Myprofile extends Component
 
 
 
-    ]);
+    ])->layoutData(['title' => 'اداره المشاريع']);
 
 
  }
@@ -150,12 +153,12 @@ public function removeimages($ides)
 
     ]);
     if($this->icon){
-    $this->gettempimg = $this->icon->storeAs('images/'.$this->form['name'],$this->icon->getClientOriginalName(),'public');
+    $this->gettempimg = $this->icon->storeAs('portfoilo/minimage/'.$this->form['name'],$this->icon->getClientOriginalName(),'public');
       }
 
     if(!empty($this->images)){
         foreach($this->images as $key=>$img){
-            $this->getfinalrusaltforimage[$key]= $img->storeAs('images/'.$this->form['name'],$img->getClientOriginalName(),'public');
+            $this->getfinalrusaltforimage[$key]= $img->storeAs('portfoilo/'.$this->form['name'],$img->getClientOriginalName(),'public');
 
            }
 
@@ -250,7 +253,8 @@ public function updateone(){
 
        if(!empty($this->images)){
         foreach($this->images as $key=>$img){
-        $this->getfinalrusaltforimage[$key]= $img->storeAs('images/'.$this->form['name'],$img->getClientOriginalName(),'public');
+            Storage::deleteDirectory('public/portfoilo/'.$this->form['name']);
+        $this->getfinalrusaltforimage[$key]= $img->storeAs('portfoilo/'.$this->form['name'],$img->getClientOriginalName(),'public');
 
            }
         }else{
@@ -259,7 +263,9 @@ public function updateone(){
 
     $updateportfolio = portfolio::findOrFail($this->globalids);
     if($this->icon){
-        $updateportfolio->icon = $this->icon->storeAs('images/'.$this->form['name'],$this->icon->getClientOriginalName(),'public');
+        Storage::deleteDirectory('public/portfoilo/minimage/'.$this->form['name']);
+
+        $updateportfolio->icon = $this->icon->storeAs('portfoilo/minimage/'.$this->form['name'],$this->icon->getClientOriginalName(),'public');
       }else{
         $updateportfolio->icon = $this->realimage;
       }
@@ -277,8 +283,9 @@ public function updateone(){
   $this->dispatchBrowserEvent("add",['message'=> "تمت  تحديث البيانات بنجاح 🙂"]);
 
 }
-public function getcurantid($getcurantid){
+public function getcurantid($getcurantid,$name){
 $this->idfordelete = $getcurantid;
+$this->form['name'] = $name;
 $this->dispatchBrowserEvent("getconfirm",['title'=> 'هل انت متأكد ??','message'=> 'لن تتمكن من استرجاع البيانات مره اخرى !']);
 
 
@@ -286,8 +293,10 @@ $this->dispatchBrowserEvent("getconfirm",['title'=> 'هل انت متأكد ??',
 public function delete(){
 
 
-    portfolio::destroy($this->idfordelete);
-    $this->dispatchBrowserEvent("getdel",['message'=> "تمت  حذف  البيانات بنجاح 🙂"]);
+ Storage::deleteDirectory('public/portfoilo/minimage/'.$this->form['name']);
+ Storage::deleteDirectory('public/portfoilo/'.$this->form['name']);
+portfolio::destroy($this->idfordelete);
+$this->dispatchBrowserEvent("getdel",['message'=> "تمت  حذف  البيانات بنجاح 🙂"]);
 
 }
 public function  restval(){

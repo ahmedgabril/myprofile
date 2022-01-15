@@ -22,8 +22,9 @@ class ContactMe extends Component
         return [ $query->key =>  $query->value];
 
         });
-        //$setting = setting::
-        return view('livewire.front.contact-me',['data'=>$colect])->layout('layouts.front');
+
+        return view('livewire.front.contact-me',['data'=>$colect])
+        ->layout('layouts.front',['title'=>'اتصل بى']);
     }
 
 

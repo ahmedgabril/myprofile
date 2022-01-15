@@ -49,7 +49,7 @@ public  function mount()
     {
 
        $this->getrealimage();
-        return view('livewire.getsetting');
+        return view('livewire.getsetting')->layoutData(['title' => 'معلموتاتى الشخصيه']);
     }
 
 

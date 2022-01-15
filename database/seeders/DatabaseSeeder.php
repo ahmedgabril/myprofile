@@ -21,7 +21,6 @@ class DatabaseSeeder extends Seeder
             setting::class,
             aboutme::class,
             sochal::class,
-            facts::class,
             getskillseeder::class,
             Cat::class,
 

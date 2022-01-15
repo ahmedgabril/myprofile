@@ -21,7 +21,7 @@ class CreatePortfoliosTable extends Migration
             $table->date('date')->nullable();
             $table->string('icon')->nullable();
             $table->text('dec')->nullable();
-            $table->tex('img')->nullable();
+            $table->text('img')->nullable();
             $table->string('project_url')->nullable();
             $table->string('video_url')->nullable();
             $table->tinyInteger('status')->default(1)->nullable();

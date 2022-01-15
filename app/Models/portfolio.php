@@ -10,7 +10,7 @@ class portfolio extends Model
     use HasFactory;
     protected $guarded =[];
 
-    public $timestamps = false;
+    //public $timestamps = false;
     protected $casts =[
     'img' => 'array',
 

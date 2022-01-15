@@ -1,7 +1,7 @@
 <div>
 <section id="hero" class="d-flex align-items-center" style="width: 100%;
         height: 100vh;
-        background: url({{asset('storage/'.$data->img)}}) top center;
+        background: url({{ $data->img ? asset('storage/'.$data->img):'front/ahmedgabril.jpg'}}) top center;
             background-attachment: scroll;
             background-size: auto;
             background-size: cover; ">
@@ -29,14 +29,14 @@
    <section id="about" class="about">
     <div class="container" data-aos="fade-up">
       <div class="section-title">
-          <h2>عنى </h2>
+          <h2>من انا </h2>
           <p></p>
         </div>
 
       <div class="card mb-3" style="max-width: 1190px;">
           <div class="row g-0">
             <div class="col-md-4">
-              <img src="{{ $data->img !==null ? asset('storage/'.$data->img):'assets/images/no-image-en.png'}}" class="img-fluid rounded-start" alt="...">
+              <img src="{{ $data->img !==null ? asset('storage/'.$data->img):'/assets/images/no-image-en.png'}}" class="img-fluid rounded-start" alt="...">
             </div>
             <div class="col-md-8">
               <div class="card-body">
@@ -147,7 +147,7 @@
   </section><!-- End Skills Section -->
 
         <!-- ======= Facts Section ======= -->
-        <section id="facts" class="facts">
+        <section id="facts" class="facts" dir="rtl">
           <div class="container" data-aos="fade-up">
 
             <div class="section-title">
@@ -158,23 +158,23 @@
             <div class="row counters">
 
               <div class="col-lg-3 col-6 text-center">
-                <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
+                <span data-purecounter-start="0" data-purecounter-end="{{$pro}}" data-purecounter-duration="1" class="purecounter"></span>
                 <p>عدد العملاء</p>
               </div>
 
               <div class="col-lg-3 col-6 text-center">
-                <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
+                <span data-purecounter-start="0" data-purecounter-end="{{$pro}}" data-purecounter-duration="1" class="purecounter"></span>
                 <p>عدد المشاريع</p>
               </div>
 
               <div class="col-lg-3 col-6 text-center">
-                <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1" class="purecounter"></span>
+                <span data-purecounter-start="0" data-purecounter-end="{{$hores}}" data-purecounter-duration="1" class="purecounter"></span>
                 <p>ساعات الدعم </p>
               </div>
 
               <div class="col-lg-3 col-6 text-center">
-                <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1" class="purecounter"></span>
-                <p>العمل الشاق</p>
+                <span data-purecounter-start="0" data-purecounter-end="{{$serv}}" data-purecounter-duration="1" class="purecounter"></span>
+                <p>الخدمات المقدمه</p>
               </div>
 
             </div>
@@ -272,6 +272,45 @@
 
 
 </div>
+
+
+    <!-- ======= Testimonials Section ======= -->
+    @if ($feedback->count() > 0)
+    <section id="testimonials" class="testimonials">
+        <div class="container" data-aos="fade-up">
+
+          <div class="section-title">
+            <h2>اراء العملاء عن التعامل معنا </h2>
+            <p>نحن فخورين باراء عملائنا الرائعه وجاهزون دائما لتقديم افضل مالدينا</p>
+          </div>
+
+          <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
+            <div class="swiper-wrapper">
+
+           @foreach ($feedback as $feed )
+           <div class="swiper-slide">
+            <div class="testimonial-item">
+              <img src="{{$feed->img ? asset('storage/'.$feed->img):'front/assets/img/testimonials/testimonials-5.jpg'}}" class="testimonial-img" alt="">
+              <h3>{{$feed->name}}</h3>
+              <h4>{{$feed->gabs}}</h4>
+              <p>
+                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                {!!$feed->feedback !!}
+                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+              </p>
+            </div>
+          </div><!-- End testimonial item -->
+           @endforeach
+
+
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+
+        </div>
+      </section><!-- End Testimonials Section -->
+    @endif
+
 @push('addcss')
 
 <style>

@@ -5,12 +5,12 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>My Profile</title>
+  <title>{{$title}}</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="{{asset('front/assets/img/favicon.png')}}" rel="icon">
+  <link href="{{ getlogo() !== null ?asset('storage/'.getlogo()):'front/assets/img/apple-touch-icon.png'}}" rel="icon">
   <link href="{{asset('front/assets/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
   <script defer src="../assets/plugins/fontawesome/js/all.min.js"></script>
 

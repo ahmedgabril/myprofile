@@ -16,13 +16,11 @@ class aboutme extends Seeder
     {
         DB::table('abouts')->delete();
         $data =[
-      'name'=> 'Ahmed Gabril',
-      'title'=> 'Im a professional web develper',
-      'img'=> '../img/hero-bg.jpg',
-      'dec'=> 'Im a professional web develper in egypt from 6 manth ago',
-      'url'=> 'images/iCwQIpLPrySpKoZIaWem67fqNv4WIKUPUrInR1MF.png',
-
-
+            'name'=> 'Ahmed Gabril',
+            'title'=> 'Im a professional web develper',
+            'img'=> 'images/No_Image.jpg',
+            'dec'=> 'Im a professional web develper in egypt from 6 manth ago',
+            'url'=> 'images/No_Image.jpg',
         ];
         DB::table('abouts')->insert($data);
 

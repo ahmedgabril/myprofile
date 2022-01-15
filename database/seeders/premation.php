@@ -6,7 +6,7 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
-use Spatie\Permission\PermissionRegistrar;
+//use Spatie\Permission\PermissionRegistrar;
 
 class premation extends Seeder
 {
@@ -18,12 +18,11 @@ class premation extends Seeder
     public function run()
     {
         // Reset cached roles and permissions
-        app()[PermissionRegistrar::class]->forgetCachedPermissions();
+        //app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
 
         // create permissions
       $getpremation = [
-        'الصفحه الرئيسه',
         'عنى',
         'بيانتى الشخصيه ',
         'صوره الموقع الرئيسه',
@@ -42,7 +41,7 @@ class premation extends Seeder
         'خدمه كنترول',
         'تعديل خدمه',
         'حذف خدمه',
-
+         'معرض الاعمال',
         'اداره الاقسام',
         'قسم كنترول',
         'تعديل قسم',
@@ -53,6 +52,10 @@ class premation extends Seeder
         'تعديل مشروع',
         'حذف مشروع',
 
+        'اداره اراء العملاء',
+        'راى كنترول',
+        'تعديل راى',
+        'حذف راى',
 
         'المستخدمين والصلاحيات',
         'اداره المستخدمين',
@@ -81,18 +84,7 @@ class premation extends Seeder
 
         $role1->givePermissionTo($getpremation);
 
-        $role2 = Role::create(['name' => 'admin']);
-        $role2->givePermissionTo("الاعدادت");
-        $role2->givePermissionTo("الصفحه الرئيسه");
-        $role2->givePermissionTo("الخدمات");
-        $role2->givePermissionTo("عنى");
 
-        $user = \App\Models\User::factory()->create([
-            'name' => 'Example Admin User',
-            'email' => 'admin@test.com',
-            'password' => bcrypt('admin'),
-        ]);
-        $user->assignRole($role2);
 
         $user = \App\Models\User::factory()->create([
             'name' => 'Ahmed Gabril',

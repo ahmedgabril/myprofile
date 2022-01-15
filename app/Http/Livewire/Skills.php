@@ -59,8 +59,7 @@ class Skills extends Component
 
 
 
-    ]);
-
+    ])->layoutData(['title' => 'اداره المهارات']);
 
  }
  public function updatedsearsh(){
