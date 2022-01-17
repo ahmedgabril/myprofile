@@ -138,7 +138,7 @@
                             alt="user profile" id="userprofile">
                             @else
                             <img
-                            src="assets/images/user.png"
+                            src="{{asset('front/ahmedgabril.jpg')}}"
                              alt="user profile" id="userprofile">
                            @endif
                          </a>

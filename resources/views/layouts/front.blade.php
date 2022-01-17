@@ -41,17 +41,31 @@
     }
     </style>
     @livewireStyles
+    {{-- <script async src='https://stackwhats.com/pixel/fae5b4ebfe5977b7607ff1d47dec9a'></script> --}}
+
 </head>
 
 <body>
 
     @include('fornt.assest.header')
 
+
       <main id="main" style="padding-top:24px">
+
        {{$slot}}
       </main>
+      <div class="whatsup">
+        <a href="https://wa.me/{{getwhatsupnumber()}}?text='{{$title}}'">
+
+            <i class="bi bi-whatsapp" style="font-size: 31px;
+            color: white;
+            padding: 1px 0px 0px 0px;"></i>
+        </a>
+
+    </div>
     @include('fornt.assest.footer')
     <div id="preloader"></div>
+
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 @livewireScripts
     <!-- Vendor JS Files -->

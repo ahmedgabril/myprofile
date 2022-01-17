@@ -22,12 +22,12 @@ class Skills extends Component
 
     ];
     public $idfordelete ;
-    public $pagenate = 5;
+    public $pagenate = 10;
     public $dispatechupdate = "add" ;
     public $getpaginateindex;
      public $globalids;
     public $showmodelf = false;
-    public $sortDirections = 'asc';
+    public $sortDirections = 'desc';
     public $sortByany = 'id';
     public $searsh;
 

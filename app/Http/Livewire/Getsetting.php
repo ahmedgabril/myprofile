@@ -70,7 +70,9 @@ public function uploadelogo()
 
     if($this->logo){
         $getlogo = about::select('id','logo')->first();
-        $getlogo->logo  = $this->logo->store("images",'public');
+        Storage::deleteDirectory('public/sitelogo');
+
+        $getlogo->logo  = $this->logo->store("sitelogo",'public');
 
 
 
@@ -93,6 +95,8 @@ public function uploadelogo()
             {
                 $this->validateOnly($propertyName, [
                     'form.name' => 'required|max:30',
+                    'form.title' => 'required||max:60',
+
                     'img' => 'sometimes|image|max:1024',
                     'logo' => 'sometimes|image|max:1024',
 
@@ -159,7 +163,8 @@ public function uploadelogo()
 
             if($this->img){
             $getimg = about::select('id','img')->first();
-            $getimg->img  = $this->img->store("images",'public');
+           Storage::deleteDirectory('public/minsiteimage');
+            $getimg->img  = $this->img->store("minsiteimage",'public');
 
 
 
@@ -204,6 +209,8 @@ public function uploadelogo()
 
                   $this->validate([
                 'form.name' => 'required|max:30',
+                'form.title' => 'required||max:60',
+
 
             ],[
 

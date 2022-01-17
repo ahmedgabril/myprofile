@@ -131,7 +131,7 @@
                           @else
 
                           <div class=" col-sm-12 mb-4 mt-4 ">
-                            <img src="{{$realimage!==null? asset('storage/'.$realimage):'assets/images/No_image.jpg'}}" width="100%" height="250">
+                            <img src="{{$realimage ? asset('storage/'.$realimage):'assets/images/No_image.jpg'}}" width="100%" height="250">
 
                         </div>
 

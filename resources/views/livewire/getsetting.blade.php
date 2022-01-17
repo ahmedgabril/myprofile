@@ -109,8 +109,8 @@
 
 
                                   <div class="mb-3 col-sm-12">
-                                      <label for="setting-input-3" class="form-label">اوصف نفسك فى 70 كلمه</label>
-                                      <textarea  wire:model="form.title" rows="2" class="form-control @error("form.status")  is-invalid @enderror"></textarea>
+                                      <label for="setting-input-3" class="form-label">اوصف نفسك فى 30حرف </label>
+                                      <textarea  wire:model="form.title" rows="2" class="form-control @error("form.title")  is-invalid @enderror"></textarea>
 
                                       @error('form.title')
                                       <div class="invalid-feedback">

@@ -99,7 +99,7 @@ public function removeimages($imgid)
      $this->validateOnly($propertyName, [
 
         'form.name' => 'required|string|unique:services,name|max:55|min:25',
-        'form.title' => 'required|string|min:30|max:360',
+        'form.title' => 'required|string|max:81|min:65',
         'icon' => 'sometimes|nullable|image|max:1024',
         'form.status' => 'sometimes|nullable|alpha_num',
         'form.url' => 'sometimes|nullable|url',
@@ -113,7 +113,7 @@ public function removeimages($imgid)
   "form.name.required" => "اسم الخدمه مطلوب",
   "form.name.unique" => "اسم الخدمه مسجل من قبل",
   "form.name.string" => "اسم المهاره حروف  فقط",
-  "form.title.max" => "الحد المسموح به 360 حرف فقط",
+  "form.title.max" => "الحد المسموح به 80 حرف فقط",
 
     ]);
 
@@ -137,7 +137,7 @@ public function removeimages($imgid)
  public function add(){
     $this->validate([
         'form.name' => 'required|string|unique:services,name|max:55|min:25',
-        'form.title' => 'required|string|min:30|max:360',
+        'form.title' => 'required|string|max:81|min:65',
 
         'icon' => 'sometimes|nullable|image|max:1024',
         'form.status' => 'sometimes|nullable|alpha_num',
@@ -151,11 +151,11 @@ public function removeimages($imgid)
   "form.name.required" => "اسم الخدمه مطلوب",
   "form.name.unique" => "اسم الخدمه مسجل من قبل",
   "form.name.string" => "اسم المهاره حروف  فقط",
-  "form.title.max" => "الحد المسموح به 360 حرف فقط",
+  "form.title.max" => "الحد المسموح به 80 حرف فقط",
 
     ]);
     if($this->icon){
-        $this->icon = $this->icon->storeAs('images/'.$this->form['name'],$this->icon->getClientOriginalName(),'public');
+        $this->icon = $this->icon->storeAs('service_image/man_services_image'.$this->form['name'],$this->icon->getClientOriginalName(),'public');
       }
 
     if(!empty($this->img)){
@@ -225,7 +225,7 @@ public function updateone(){
 
 
         'form.name' => 'required|string|max:55|min:25|unique:services,name,'.$this->globalids,
-        'form.title' => 'required|string|max:360|min:30',
+        'form.title' => 'required|string|max:81|min:65',
         'icon' => 'sometimes|nullable|image|max:1024',
         'form.status' => 'sometimes|nullable|alpha_num',
         'form.url' => 'sometimes|nullable|url',
@@ -238,7 +238,7 @@ public function updateone(){
   "form.name.required" => "اسم الخدمه مطلوب",
   "form.name.unique" => "اسم الخدمه مسجل من قبل",
   "form.name.string" => "اسم المهاره حروف  فقط",
-  "form.title.max" => "الحد المسموح به 360 حرف فقط",
+  "form.title.max" => "الحد المسموح به 80 حرف فقط",
 
     ]);
 
@@ -250,9 +250,9 @@ public function updateone(){
   $updateservices->name = $this->form['name'];
   $updateservices->title = $this->form['title'];
   if($this->icon){
-    Storage::deleteDirectory('public/service_image/'.$this->form['name']);
+    Storage::deleteDirectory('public/service_image/man_services_image/'.$this->form['name']);
 
-    $updateservices->icon = $this->icon->storeAs('service_image/'.$this->form['name'],$this->icon->getClientOriginalName(),'public');
+    $updateservices->icon = $this->icon->storeAs('service_image/man_services_image/'.$this->form['name'],$this->icon->getClientOriginalName(),'public');
   }else{
     $updateservices->icon = $this->realimage;
   }
@@ -288,7 +288,7 @@ $this->dispatchBrowserEvent("getconfirm",['title'=> 'هل انت متأكد ??',
 }
 public function delete(){
 
-    Storage::deleteDirectory('public/service_image/'.$this->form['name']);
+    Storage::deleteDirectory('public/service_image/man_services_image'.$this->form['name']);
     Storage::deleteDirectory('public/service_image/'.$this->form['name']);
     services::destroy($this->idfordelete);
 

@@ -28,7 +28,22 @@ class Setting extends Component
 
         $this->info();
     }
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName, [
+              'form.compnyname' => 'required|max:20',
 
+       ],[
+
+     "form.compnyname.required" => "اسم الموقع مطلوب",
+     "form.compnyname.max" => "20 الحد الاقصى للحروف هو",
+
+
+
+
+       ]);
+
+    }
     public function info(){
 
    $getsetting = mysetting::query()->get();
@@ -39,6 +54,7 @@ class Setting extends Component
     return [ $query->key =>  $query->value];
 
     });
+
 
     foreach ($colect['mseting'] as $key=> $value){
         if($key == "compnyname"){
@@ -71,6 +87,18 @@ class Setting extends Component
 
   public function updatesetting(){
 
+    $this->validate([
+        'form.compnyname' => 'required|max:20',
+
+ ],[
+
+    "form.compnyname.required" => "اسم الموقع مطلوب",
+    "form.compnyname.max" => "20 الحد الاقصى للحروف هو",
+
+
+
+
+        ]);
     foreach ($this->form as $key=> $value){
       $getstatus =  mysetting::where('key',$key)->update(['value'=> $value]);
       if($getstatus){

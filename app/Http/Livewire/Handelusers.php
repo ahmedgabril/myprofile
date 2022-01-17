@@ -6,6 +6,7 @@ use App\Models\User;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class Handelusers extends Component
 {
@@ -134,7 +135,8 @@ public function changepassword(){
         ]);
         if($this->image){
             $upimage =User::findOrFail(auth()->user()->id);
-            $upimage->image  = $this->image->store("images",'public');
+        Storage::deleteDirectory('public/image_user_profile');
+            $upimage->image  = $this->image->store("image_user_profile",'public');
 
 
 

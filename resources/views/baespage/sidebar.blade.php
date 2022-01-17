@@ -6,7 +6,7 @@
         <div class="app-branding">
             <a class="app-logo" href="{{route('backend')}}">
                 <img class="logo-icon me-2"
-                 src="{{asset('storage/'.getlogo())}}" alt="logo"><span class="logo-text">My Profile</span></a>
+                 src="{{asset('storage/'.getlogo())}}" alt="logo"><span class="logo-text">{{getsitename()}}</span></a>
 
         </div><!--//app-branding-->
 

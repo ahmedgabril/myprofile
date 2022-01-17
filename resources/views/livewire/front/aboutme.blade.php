@@ -3,21 +3,23 @@
    <section id="about" class="about">
     <div class="container" data-aos="fade-up">
       <div class="section-title">
-          <h2>عنى </h2>
+          <h2>  من انا</h2>
           <p></p>
         </div>
 
       <div class="card mb-3" style="max-width: 1190px;">
           <div class="row g-0">
-            <div class="col-md-4">
+            <div class="col-md-4 mb-5">
               <img src="{{ $data->img ? asset('storage/'.$data->img):'front/ahmedgabril.jpg'}}" class="img-fluid rounded-start" alt="...">
             </div>
-            <div class="col-md-8">
-              <div class="card-body">
+            <div class="col-md-8 mt-5">
                 <h5 class="card-title text-center mb-4">{{$data->name}}</h5>
                 <p class="card-text  text-center text-wrap text-primary mb-4">
                   {{$data->title}}
-                </p>
+                </p>            </div>
+            <div class="col-md-12">
+              <div class="card-body">
+
                 <div class="text-center text-wrap">
                   {!!$data->dec!!}
                 </div>

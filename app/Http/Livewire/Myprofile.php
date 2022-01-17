@@ -100,9 +100,9 @@ public function removeimage()
 
 
         'form.name' => 'required|string|max:50|unique:portfolios,name',
-        'form.title' => 'required|string|max:350',
-        'form.project_url' => 'sometimes|url',
-        'form.video_url' => 'sometimes|url',
+        'form.title' => 'required|string|min:60|max:100',
+        'form.project_url' => 'sometimes|nullable|url',
+        'form.video_url' => 'sometimes|nullable|url',
         'form.clint_name' => 'sometimes|nullable|string',
         'getdescription' => 'sometimes|nullable',
         'form.cat_id' => 'required|alpha_num',
@@ -138,9 +138,9 @@ public function removeimages($ides)
     $this->validate([
 
         'form.name' => 'required|string|max:50|unique:portfolios,name',
-        'form.title' => 'required|string|max:350',
-        'form.project_url' => 'sometimes|url',
-        'form.video_url' => 'sometimes|url',
+        'form.title' => 'required|string|min:60|max:100',
+        'form.project_url' => 'sometimes|nullable|url',
+        'form.video_url' => 'sometimes|nullable|url',
         'form.clint_name' => 'sometimes|nullable|string',
         'form.cat_id' => 'required|alpha_num',
         'images' =>     'required|array',
@@ -236,9 +236,9 @@ public function updateone(){
 
 
         'form.name' => 'required|string|max:50|unique:portfolios,name,'.$this->globalids,
-        'form.title' => 'required|string|max:350',
-        'form.project_url' => 'sometimes|url',
-        'form.video_url' => 'sometimes|url',
+        'form.title' => 'required|string|min:60|max:100',
+        'form.project_url' => 'sometimes|nullable|url',
+        'form.video_url' => 'sometimes|nullable|url',
         'form.clint_name' => 'sometimes|nullable|string',
         'form.cat_id' => 'required|alpha_num',
         'images' =>     'sometimes|nullable',

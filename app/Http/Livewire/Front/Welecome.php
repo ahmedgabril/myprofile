@@ -19,14 +19,12 @@ class Welecome extends Component
 
     public function render()
     {
-        $getskills = skill::get();
         $feedback = feedback::where('status',1)->get();
 
         return view('livewire.front.welecome',[
 
           'data'=>about::first(),
           'sochal'=>sochail::first(),
-          'getskills'=>   $getskills,
           'pro'=> portfolio::count(),
           'hores'=> portfolio::count() * 10,
           'serv'=> services::count(),

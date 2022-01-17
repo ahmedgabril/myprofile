@@ -148,8 +148,7 @@
 
 
 
-                                         <a class="dropdown-divider"></a>
-                                         <a href="#" class="dropdown-item"> ......</a>
+
                                        </div>
                                      </div>
 
@@ -203,6 +202,8 @@
        </div>
       </div><!--end col-12-->
          <!--model add -->
+         <x-modelspaner wire:loading wire:target="add,updateone" />
+
 <div class=" modal fade " wire:ignore.self id="modal-role"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
  <div class=" modal-dialog modal-fullscreen-sm-down">
    <div class="modal-content">

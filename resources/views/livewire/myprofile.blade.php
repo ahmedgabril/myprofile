@@ -471,7 +471,7 @@
              @enderror
          </div>
          <div class="mb-4 col-sm-12 form-group">
-            <label for="">عنوان اوصف صغير </label>
+            <label for="">عنوان اوصف صغير من 60 الى  100 حرف  </label>
               <textarea class="form-control @error("form.title")  is-invalid
 
              @enderror" rows="2"

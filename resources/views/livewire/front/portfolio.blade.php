@@ -50,7 +50,7 @@
                     </div>
                     <div class="card-body">
                     <h5><a href="#services">{{Str::substr( $services->name,0,45)}}..</a></h5>
-                      <p class="card-text" style="height: 95px;">{{Str::substr($services->title,0,130)}}<a href="#" class="text-danger"   data-bs-target="#showdec"
+                      <p class="card-text" style="height: 85px;">{{Str::substr($services->title,0,100)}}<a href="#" class="text-danger"   data-bs-target="#showdec"
                         data-bs-toggle="modal" wire:click.prevent="getserdec({{$services->id}})"> {{ $services->title < Str::substr($services->title,0,70)?'اكمل القراءه':''}}</a></p>
                       <div class="d-flex justify-content-between" >
                         <span>

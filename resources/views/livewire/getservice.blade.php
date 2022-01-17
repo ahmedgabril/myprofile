@@ -426,7 +426,7 @@
                @enderror
              </div>
          <div class="mb-3 col-sm-12" id="toolbar-container">
-            <label for="setting-input-3" class="form-label">وصف قصير للخدمه </label>
+            <label for="setting-input-3" class="form-label"> وصف قصير للخدمه فى 80 حرف</label>
             <textarea wire:model="form.title" rows="2"
             class="form-control @error("form.title") is-invalid @enderror" id="note">
 

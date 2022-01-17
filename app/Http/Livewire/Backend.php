@@ -17,11 +17,11 @@ class Backend extends Component
         $procount = portfolio::count();
         $serv = services::count();
         $user = User::count();
-        $getservicedata = services::whereDate('created_at',Carbon::yesterday()->toDateString())->get();
-        $getcatogery = catogery::whereDate('created_at',Carbon::yesterday()->toDateString())->get();
-        $getportfilo = portfolio::whereDate('created_at',Carbon::yesterday()->toDateString())->get();
-        $getuser = User::whereDate('created_at',Carbon::yesterday()->toDateString())->get();
-        $getfeedback = feedback::whereDate('created_at',Carbon::yesterday()->toDateString())->get();
+        $getservicedata = services::whereDate('created_at',Carbon::today()->toDateString())->get();
+        $getcatogery = catogery::whereDate('created_at',Carbon::today()->toDateString())->get();
+        $getportfilo = portfolio::whereDate('created_at',Carbon::today()->toDateString())->get();
+        $getuser = User::whereDate('created_at',Carbon::today()->toDateString())->get();
+        $getfeedback = feedback::whereDate('created_at',Carbon::today()->toDateString())->get();
 
         return view('livewire.backend',[
             'port'=>$procount,
