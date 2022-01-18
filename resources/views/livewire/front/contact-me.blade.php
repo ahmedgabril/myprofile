@@ -38,7 +38,7 @@
                 <div class="phone">
                   <i class="bi bi-phone"></i>
                   <h4>رقم الهاتف:</h4>
-                  <p>{{$item['faks']}}</p>
+                  <p>{{$item['whatsup']}}</p>
                 </div>
 
                 <div class="phone">

@@ -50,12 +50,12 @@
     @include('fornt.assest.header')
 
 
-      <main id="main" style="padding-top:24px">
+      <main id="main" style="padding-top:36px">
 
        {{$slot}}
       </main>
       <div class="whatsup">
-        <a href="https://wa.me/{{getwhatsupnumber()}}?text='{{$title}}'">
+        <a href="https://wa.me/{{'+2'.getwhatsupnumber()}}?text={{getwhatsupmsg()}}">
 
             <i class="bi bi-whatsapp" style="font-size: 31px;
             color: white;

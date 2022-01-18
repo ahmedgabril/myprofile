@@ -487,7 +487,7 @@
 
          </div>
 
-         <div class="mb-2 col-sm-12" wire:ignore wire:key="1"
+         <div class="mb-2 col-sm-12" wire:ignore wire:key="getdecs1"
 
          x-data="{ getdescription: @entangle('getdescription').defer }"
 

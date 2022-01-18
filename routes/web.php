@@ -73,7 +73,7 @@ Route::group(['middleware' =>['auth','permission:المستخدمين والصل
 
        });
 
-       Route::group(['middleware' =>['auth','permission:عنى']],function () {
+       Route::group(['middleware' =>['auth','permission:من انا']],function () {
 
 
         Route::get('/getsetting',Getsetting::class)->name('getsetting');

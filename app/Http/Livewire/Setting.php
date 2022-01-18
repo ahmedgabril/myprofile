@@ -8,12 +8,14 @@ use Illuminate\Support\Facades\Cookie;
 
 class Setting extends Component
 {
+    public $whatsup;
+    public $whatsupmsg;
     public $form =[
      'compnyname'=>'',
      'email'=>'',
      'phone'=>'',
      'phone2'=>'',
-     'faks'=>'',
+
      'manger'=>'',
      'address'=>'',
 
@@ -32,6 +34,7 @@ class Setting extends Component
     {
         $this->validateOnly($propertyName, [
               'form.compnyname' => 'required|max:20',
+              'whatsup' => 'required|numeric|min:11',
 
        ],[
 
@@ -75,8 +78,11 @@ class Setting extends Component
         if($key == "manger"){
         $this->form['manger'] = $value;
       }
-      if($key == "faks"){
-        $this->form['faks'] = $value;
+      if($key == "whatsup"){
+        $this->whatsup= $value;
+      }
+      if($key == "whatsupmsg"){
+        $this->whatsupmsg = $value;
       }
       if($key == "darkmode"){
        return $this->darkmodedata=$value;
@@ -84,7 +90,17 @@ class Setting extends Component
     }
   }
 
+public function handelwhatsup( )
+{
+    $this->validate([
+        'whatsup' => 'required|numeric|min:11',
 
+ ]);
+        mysetting::where('key','whatsup')->update(['value'=> $this->whatsup]);
+        mysetting::where('key','whatsupmsg')->update(['value'=> $this->whatsupmsg]);
+        $this->dispatchBrowserEvent("update-compny-info");
+
+}
   public function updatesetting(){
 
     $this->validate([

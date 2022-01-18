@@ -308,7 +308,7 @@
                                             <span class="">تمت الاضافه بواسطه :<span class=" text-success">{{auth()->user()->name}}</span></span>
                                         </div>
                                         <div class="col-sm-12 mb-4 mt-4">
-                                            <span class="">  تاريخ الاضافه :<span class=" text-success">{{$user->created_at ? $serv->created_at->diffForHumans():'Un Knowen' }}</span></span>
+                                            <span class="">  تاريخ الاضافه :<span class=" text-success">{{$user->created_at ? $user->created_at->diffForHumans():'Un Knowen' }}</span></span>
                                         </div>
 
                                         <div class="col-sm-12 mb-4 mt-4">

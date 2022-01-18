@@ -17,7 +17,13 @@ function getsitename(){
 }
 function getwhatsupnumber(){
 
-    $sitename = setting::where('key','faks')->select('key','value')->first();
+    $sitename = setting::where('key','whatsup')->select('key','value')->first();
+    return $sitename->value;
+
+}
+function getwhatsupmsg(){
+
+    $sitename = setting::where('key','whatsupmsg')->select('key','value')->first();
     return $sitename->value;
 
 }

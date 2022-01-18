@@ -2,7 +2,7 @@
     <div class="container">
       <div class="row mb-4">
           <div class="col-sm-4">
-            <h1 class="m-0"> اعدادت الموقع  </h1>
+            <h1 class="m-0"> قسم من انا وتغير اللوجو</h1>
           </div><!-- /.col -->
           <div class="col-sm-8">
             <ol class="breadcrumb float-sm-right">
@@ -24,7 +24,7 @@
       <hr class="mb-4">
       <div class="container-xl">
       <div class="row mb-4">
-            <div class="col-12 text-center mb-5 text-success text-bold" style="font-size: 25px">اعدادت وبيانات الموقع</div>
+            <div class="col-12 text-center mb-5 text-success text-bold" style="font-size: 25px"> قسم من انا   وتغير اللوجو</div>
           <div class="col-12 col-md-8 ms-auto me-auto">
 
               <div class="app-card app-card-settings shadow-sm p-4">

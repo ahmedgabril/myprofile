@@ -17,14 +17,13 @@ class setting extends Seeder
       DB::table('settings')->delete();
       $data =[
      ['key'=> 'compnyname','value'=>'myprofile'],
-     ['key'=> 'faks','value'=>'01092586526'],
+     ['key'=> 'whatsup','value'=>'01092586526'],
+     ['key'=> 'whatsupmsg','value'=>'hello there how ican help you'],
      ['key'=> 'manger','value'=>'ahmed gabril'],
      ['key'=> 'phone','value'=>'01092586526'],
      ['key'=> 'address','value'=>'كفر الشيخ '],
      ['key'=> 'phone2','value'=>'01000000140'],
      ['key'=> 'email','value'=>'ahmed@gmail.com'],
-     ['key'=> 'darkmode','value'=>'0'],
-
      ['key'=> 'sidebar','value'=>'open'],
      ['key'=> 'sitename','value'=>'one click'],
      ['key'=> 'logo','value'=>'/dist/img/AdminLTELogo.png'],
